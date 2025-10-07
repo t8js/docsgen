@@ -229,17 +229,25 @@ html.blank .layout {
 }
 
 .badges .badge {
-  display: inline-flex;
-  min-width: 60px;
+  display: inline-block;
+  min-width: 80px;
   min-height: 20px;
   font-size: 11px;
   font-family: Verdana, sans-serif;
+  line-height: 20px;
   text-align: center;
   white-space: nowrap;
-  place-content: center;
+  vertical-align: top;
   color: #fff;
   background: #345;
   box-sizing: border-box;
+}
+.badges .badge.loaded,
+.badges .badge.failed {
+  min-width: none;
+}
+.badges .badge.failed {
+  padding: 0 6px;
 }
 .badges img {
   vertical-align: top;

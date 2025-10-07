@@ -188,6 +188,7 @@ ${counterContent}
   </p>
   ${backstory ? `<p class="ref"><a href="${backstory}">Backstory</a></p>` : ""}
   <p class="installation"><code>${installation}</code></p>
+  <script>document.querySelectorAll(".badges img").forEach(img=>{let c=img.closest(".badge");if(c){if(img.complete)c.classList.add("loaded");else{img.onload=()=>{c.classList.add("loaded");};img.onerror=()=>{c.classList.add("failed");};}}});</script>
 </section>
 ${
   features
