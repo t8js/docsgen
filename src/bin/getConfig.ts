@@ -18,7 +18,6 @@ export async function getConfig(): Promise<BinConfig> {
   } catch {}
 
   config = {
-    ghPagesBranch: "gh-pages",
     mainBranch: "main",
     root: "/",
     contentDir: "x",

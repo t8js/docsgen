@@ -11,35 +11,34 @@ const stdout = async (cmd: string) => (await exec(cmd)).stdout.trim();
 
 async function run() {
   let isGitDir = false;
+  let { targetBranch, mainBranch, remove } = await getConfig();
 
   try {
     await access("./.git");
     isGitDir = true;
   } catch {}
 
-  if (!isGitDir) {
+  if (!isGitDir || !targetBranch) {
     await cleanup();
     await createFiles();
     return;
   }
 
-  let { ghPagesBranch, mainBranch, remove } = await getConfig();
-
   let originalBranch = await stdout("git rev-parse --abbrev-ref HEAD");
 
-  if (originalBranch === ghPagesBranch)
+  if (originalBranch === targetBranch)
     await exec(`git checkout ${mainBranch}`);
 
   try {
-    await exec(`git branch -D ${ghPagesBranch}`);
+    await exec(`git branch -D ${targetBranch}`);
   } catch {}
   try {
-    await exec(`git push origin ${ghPagesBranch} --delete`);
+    await exec(`git push origin ${targetBranch} --delete`);
   } catch {}
 
   if (remove) return;
 
-  await exec(`git checkout -b ${ghPagesBranch}`);
+  await exec(`git checkout -b ${targetBranch}`);
   await createFiles();
   await exec("git add *");
 
@@ -47,10 +46,10 @@ async function run() {
 
   if (updated) {
     await exec('git commit -m "release gh-pages"');
-    await exec(`git push -u origin ${ghPagesBranch} -f`);
+    await exec(`git push -u origin ${targetBranch} -f`);
   }
 
-  if (originalBranch && originalBranch !== ghPagesBranch)
+  if (originalBranch && originalBranch !== targetBranch)
     await exec(`git checkout ${originalBranch}`);
 }
 
