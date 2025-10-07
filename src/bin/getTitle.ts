@@ -16,8 +16,7 @@ export function getTitle(
   if (originalContent && ![name, packageTitle].includes(originalContent.trim()))
     return originalContent;
 
-  if (cover && htmlTitle)
-    return htmlTitle;
+  if (cover && htmlTitle) return htmlTitle;
 
   if (packageTitle) {
     let escapedTitle = escapeHTML(packageTitle);

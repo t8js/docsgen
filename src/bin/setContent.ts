@@ -7,12 +7,12 @@ import type { Context } from "../types/Context";
 import { escapeHTML } from "../utils/escapeHTML";
 import { escapeRegExp } from "../utils/escapeRegExp";
 import { getCounterContent } from "./getCounterContent";
+import { getIcon } from "./getIcon";
 import { getNav } from "./getNav";
 import { getParsedContent } from "./getParsedContent";
 import { getRepoLink } from "./getRepoLink";
 import { getTitle } from "./getTitle";
 import { toFileContent } from "./toFileContent";
-import { getIcon } from "./getIcon";
 
 const exec = promisify(defaultExec);
 

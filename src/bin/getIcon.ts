@@ -1,4 +1,4 @@
-import { Context } from "../types/Context";
+import type { Context } from "../types/Context";
 
 const iconTypeMap: Record<string, string> = {
   ico: "image/x-icon",
