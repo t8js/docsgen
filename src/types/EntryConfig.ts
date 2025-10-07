@@ -37,9 +37,11 @@ export type EntryConfig = {
   backstory?: string;
   /** URL of an HTML file inserted into the navigation bar. */
   nav?: string;
-  /** Scope URL */
+  /** Favicon URL. */
+  favicon?: string;
+  /** Scope URL. */
   scope?: string;
-  /** Redirection URL */
+  /** Redirection URL. */
   redirect?: string;
   /** Whether to remove the GitHub Pages branch and quit. */
   remove?: boolean;
