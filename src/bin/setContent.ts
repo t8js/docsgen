@@ -19,7 +19,7 @@ const exec = promisify(defaultExec);
 export async function setContent(ctx: Context) {
   let {
     dir = "",
-    colorScheme,
+    baseColor,
     theme,
     root,
     contentDir = "",
@@ -45,8 +45,8 @@ export async function setContent(ctx: Context) {
 
   if (theme) rootAttrs += ` data-theme="${escapeHTML(theme)}"`;
 
-  if (colorScheme)
-    rootAttrs += ` style="--color-scheme: ${escapeHTML(colorScheme)}"`;
+  if (baseColor)
+    rootAttrs += ` style="--base-color: ${escapeHTML(baseColor)}"`;
 
   let icon = getIcon(ctx);
   let iconTag = icon.url

@@ -4,7 +4,7 @@ export type EntryConfig = {
   id?: string;
   source?: string;
   dir?: string;
-  colorScheme?: string;
+  baseColor?: string;
   theme?: Theme;
   name?: string;
   title?: string;

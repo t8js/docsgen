@@ -2,7 +2,7 @@
   color-scheme: light dark;
 
   --b0: light-dark(white, #1a1a1a);
-  --b1: var(--color-scheme, gray);
+  --b1: var(--base-color, gray);
   --link-color: light-dark(royalblue, deepskyblue);
   --button-color: light-dark(royalblue, royalblue);
 
