@@ -10,8 +10,7 @@ export async function createFiles(ctx: Context) {
   if (dir) {
     try {
       await access(dir);
-    }
-    catch {
+    } catch {
       await mkdir(dir);
     }
   }
