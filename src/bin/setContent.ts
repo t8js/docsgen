@@ -1,7 +1,9 @@
 import { exec as defaultExec } from "node:child_process";
 import { access, mkdir, writeFile } from "node:fs/promises";
+import { join } from "node:path";
 import { promisify } from "node:util";
 import { packageName } from "../const/packageName";
+import type { Context } from "../types/Context";
 import { escapeHTML } from "../utils/escapeHTML";
 import { escapeRegExp } from "../utils/escapeRegExp";
 import { getCounterContent } from "./getCounterContent";
@@ -10,8 +12,6 @@ import { getParsedContent } from "./getParsedContent";
 import { getRepoLink } from "./getRepoLink";
 import { getTitle } from "./getTitle";
 import { toFileContent } from "./toFileContent";
-import { Context } from "../types/Context";
-import { join } from "node:path";
 
 const exec = promisify(defaultExec);
 

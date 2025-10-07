@@ -1,4 +1,4 @@
-import { Context } from "../types/Context";
+import type { Context } from "../types/Context";
 import { setCName } from "./setCName";
 import { setContent } from "./setContent";
 import { setImages } from "./setImages";

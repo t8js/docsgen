@@ -6,8 +6,7 @@ async function run() {
   let { targetId, entries, ...rootCtx } = await getConfig();
 
   if (!entries) {
-    if (!targetId || targetId === rootCtx.id)
-      return await runEntry(rootCtx);
+    if (!targetId || targetId === rootCtx.id) return await runEntry(rootCtx);
 
     console.warn(`Specified config entry not found: '${targetId}'`);
     return;
@@ -18,11 +17,12 @@ async function run() {
 
     if (entryCtx) runEntry(entryCtx);
     else console.warn(`Specified config entry not found: '${targetId}'`);
-  }
-  else {
-    await Promise.all(entries.map(entryCtx => {
-      return runEntry({ ...rootCtx, ...entryCtx });
-    }));
+  } else {
+    await Promise.all(
+      entries.map((entryCtx) => {
+        return runEntry({ ...rootCtx, ...entryCtx });
+      }),
+    );
   }
 }
 

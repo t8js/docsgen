@@ -1,9 +1,9 @@
 import { JSDOM } from "jsdom";
 import Markdown from "markdown-it";
+import type { Context } from "../types/Context";
 import type { NavItem } from "../types/NavItem";
-import { getSlug } from "./getSlug";
-import { Context } from "../types/Context";
 import { fetchText } from "./fetchText";
+import { getSlug } from "./getSlug";
 
 const md = new Markdown({
   html: true,

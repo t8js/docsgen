@@ -1,9 +1,9 @@
 import { exec as defaultExec } from "node:child_process";
 import { access } from "node:fs/promises";
 import { promisify } from "node:util";
+import type { Context } from "../types/Context";
 import { cleanup } from "./cleanup";
 import { createFiles } from "./createFiles";
-import { Context } from "../types/Context";
 
 const exec = promisify(defaultExec);
 const stdout = async (cmd: string) => (await exec(cmd)).stdout.trim();
@@ -28,8 +28,7 @@ export async function runEntry(ctx: Context) {
 
   let originalBranch = await stdout("git rev-parse --abbrev-ref HEAD");
 
-  if (originalBranch === targetBranch)
-    await exec(`git checkout ${mainBranch}`);
+  if (originalBranch === targetBranch) await exec(`git checkout ${mainBranch}`);
 
   try {
     await exec(`git branch -D ${targetBranch}`);

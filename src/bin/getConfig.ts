@@ -1,8 +1,8 @@
 import { parseArgs } from "args-json";
 import type { BinConfig } from "../types/BinConfig";
 import type { PackageMetadata } from "../types/PackageMetadata";
-import { toConfig } from "./toConfig";
 import { fetchText } from "./fetchText";
+import { toConfig } from "./toConfig";
 
 let config: BinConfig | null = null;
 
@@ -18,14 +18,15 @@ export async function getConfig(): Promise<BinConfig> {
   let localConfig: BinConfig = {};
 
   try {
-    localConfig = JSON.parse(await fetchText("./docsgen.config.json")) as BinConfig;
+    localConfig = JSON.parse(
+      await fetchText("./docsgen.config.json"),
+    ) as BinConfig;
   } catch {}
 
-  let targetId: string | undefined = undefined;
+  let targetId: string | undefined;
   let args = process.argv.slice(2);
 
-  if (!args[0].startsWith("--"))
-    targetId = args.shift();
+  if (!args[0].startsWith("--")) targetId = args.shift();
 
   config = {
     targetId,

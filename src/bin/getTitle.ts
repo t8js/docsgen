@@ -1,4 +1,4 @@
-import { Context } from "../types/Context";
+import type { Context } from "../types/Context";
 import { escapeHTML } from "../utils/escapeHTML";
 
 type GetTitleParams = {
@@ -7,11 +7,10 @@ type GetTitleParams = {
   withPackageURL?: boolean;
 };
 
-export function getTitle(ctx: Context, {
-  cover,
-  originalContent,
-  withPackageURL,
-}: GetTitleParams = {}) {
+export function getTitle(
+  ctx: Context,
+  { cover, originalContent, withPackageURL }: GetTitleParams = {},
+) {
   let { root, name, title: packageTitle, scope, theme } = ctx;
 
   if (originalContent && ![name, packageTitle].includes(originalContent.trim()))

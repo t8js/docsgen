@@ -1,4 +1,4 @@
-import { Context } from "../types/Context";
+import type { Context } from "../types/Context";
 
 export function getCounterContent({ ymid }: Context) {
   if (!ymid) return "";
