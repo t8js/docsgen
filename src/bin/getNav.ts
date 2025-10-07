@@ -32,7 +32,7 @@ export async function getNav(ctx: Context, navItems: NavItem[]) {
 
   if (navItems.length > 1) {
     for (let { id, title, items } of navItems) {
-      s += `\n<li data-id="${id}"><a href="${root}${contentDir}/${id}">${title}</a></li>`;
+      s += `\n<li data-id="${id}"><a href="${root}${contentDir}/${id}">${title}</a>`;
 
       if (items.length !== 0) {
         s += "\n  <ul>";

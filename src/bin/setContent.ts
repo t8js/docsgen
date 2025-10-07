@@ -132,9 +132,9 @@ ${content}
 ${navContent ? "<hr>" : ""}
 ${navContent.replace(
   new RegExp(
-    `(<li data-id="${escapeRegExp(nav[i]?.id)}">)<a href="[^"]+">([^<]+)</a>(</li>)`,
+    `(<li data-id="${escapeRegExp(nav[i]?.id)}">)<a href="[^"]+">([^<]+)</a>`,
   ),
-  "$1<strong>$2</strong>$3",
+  "$1<strong>$2</strong>",
 )}
 </div>
 </div>
