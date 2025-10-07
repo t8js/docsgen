@@ -8,6 +8,7 @@ export type EntryConfig = {
   theme?: Theme;
   name?: string;
   title?: string;
+  htmlTitle?: string;
   description?: string;
   version?: string;
   repo?: string;

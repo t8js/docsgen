@@ -11,16 +11,16 @@ export function getTitle(
   ctx: Context,
   { cover, originalContent, withPackageURL }: GetTitleParams = {},
 ) {
-  let { root, name, title: packageTitle, scope, theme } = ctx;
+  let { root, name, title: packageTitle, htmlTitle, scope } = ctx;
 
   if (originalContent && ![name, packageTitle].includes(originalContent.trim()))
     return originalContent;
 
+  if (cover && htmlTitle)
+    return htmlTitle;
+
   if (packageTitle) {
     let escapedTitle = escapeHTML(packageTitle);
-
-    if (cover && theme === "t8" && packageTitle.startsWith("T8 "))
-      return `<a href="/">T8</a> <span class="name">${packageTitle.replace(/^T8 /, "")}</span>`;
 
     return withPackageURL
       ? `<a href="${root}" class="name">${escapedTitle}</a>`
