@@ -1,0 +1,212 @@
+html[data-theme="t8"] {
+  background:
+    linear-gradient(to bottom right, #90eec6, #9a70ce) 50% 50% / cover no-repeat;
+}
+@media (max-width: 840px) {
+  html[data-theme="t8"] {
+    background:
+      linear-gradient(to bottom, #90eec6, #9a70ce) 50% 50% / cover no-repeat;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  html[data-theme="t8"] {
+    background:
+      linear-gradient(to bottom right, #14a482, #6649b5) 50% 50% / cover
+      no-repeat;
+  }
+}
+@media (max-width: 840px) and (prefers-color-scheme: dark) {
+  html[data-theme="t8"] {
+    background:
+      linear-gradient(to bottom, #14a482, #6649b5) 50% 50% / cover no-repeat;
+  }
+}
+body {
+  min-height: 100vh;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  --max-content-width: 32em;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+  margin: 6vh 0;
+}
+@media (max-width: 840px) {
+  main {
+    --max-content-width: 100%;
+
+    display: block;
+    margin: 0;
+  }
+}
+
+h1 {
+  font-size: 2.5em;
+  font-weight: 900;
+  margin: 1.5rem 0;
+}
+@media (max-width: 840px) {
+  h1 {
+    font-size: 2.35em;
+  }
+}
+h1 a {
+  position: relative;
+}
+h1 a::before {
+  content: "";
+  background-color: color(from var(--b1) srgb r g b / 0.3);
+  transform: skew(-15deg, -10deg);
+  border-radius: 0.4em;
+  position: absolute;
+  inset: 0.3em -0.25em 0.25em;
+  transition: inset 0.3s;
+}
+h1 a:hover {
+  text-decoration: none;
+}
+h1 a:hover::before {
+  inset: 0.25em -0.25em 0.2em;
+}
+header {
+  display: block;
+  text-align: center;
+  padding: 0 var(--content-padding-x);
+}
+@media (max-width: 840px) {
+  .badges {
+    margin: 0 2em;
+  }
+}
+.description {
+  font-size: 1.1em;
+  margin: 0;
+}
+.description p {
+  margin-top: 0;
+}
+.actions {
+  --r: 1em;
+
+  font-size: 1.25em;
+  margin: 0.5em 0;
+}
+.actions a.button {
+  min-width: 32%;
+}
+@media (max-width: 840px) {
+  .actions {
+    font-size: 1.15em;
+  }
+}
+.actions .sep {
+  display: none;
+}
+.ref {
+  font-size: 0.9em;
+}
+
+section {
+  max-width: var(--max-content-width);
+  padding: 0 2.5em;
+  box-sizing: border-box;
+}
+section + section {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  justify-content: center;
+  border-left: 0.1em solid var(--b1-medium);
+}
+section.intro-title {
+  text-align: center;
+  padding-top: 4em;
+  padding-bottom: 4em;
+}
+@media (max-width: 840px) {
+  section {
+    max-width: 100%;
+    padding: var(--content-padding-y) var(--content-padding-x);
+  }
+  section + section {
+    display: block;
+    border-left: none;
+  }
+  section.intro-title {
+    padding-top: 2em;
+    padding-bottom: 0;
+  }
+  section.intro {
+    padding-bottom: 2.5em;
+  }
+}
+.features {
+  --link-color: color(from var(--c0) srgb r g b / 0.55);
+  --link-decoration: underline;
+
+  margin: 2em 0;
+}
+@media (max-width: 840px) {
+  .features {
+    padding: 0;
+    margin: 0;
+  }
+}
+.features h2 {
+  font-size: 1.5em;
+  font-style: italic;
+  text-align: center;
+  border: none;
+  padding: 0.1em 0;
+  margin: 0.75em 0 0.5em;
+}
+.features > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5em 0 0;
+}
+.features > ul > li {
+  background: var(--b1-light);
+  border-bottom: 0.25em solid var(--b1-medium);
+  border-radius: 0.5em;
+  padding: 0.9em 1.2em;
+  margin: 1em 0;
+  box-sizing: border-box;
+}
+@media (max-width: 840px) {
+  .features > ul > li {
+    width: 100%;
+    margin: 0.5em 0;
+  }
+}
+.features > ul > li > ul {
+  list-style: disc;
+}
+.note {
+  padding: 0 3.5em;
+  margin: 1.5em 0;
+}
+@media (max-width: 840px) {
+  .note {
+    padding: 0;
+  }
+}
+p.installation {
+  font-size: 1.25em;
+  text-align: center;
+  margin: 1em 0;
+}
+.installation code {
+  background: transparent;
+}

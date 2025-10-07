@@ -1,0 +1,30 @@
+.hljs {
+  color: #dbdad6;
+  background: #1d2331;
+}
+.hljs-bullet,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-template-variable,
+.hljs-variable {
+  color: #f49466;
+}
+.hljs-attr,
+.hljs-link,
+.hljs-literal,
+.hljs-number,
+.hljs-symbol,
+.hljs-variable.constant_ {
+  color: #f2af7d;
+}
+.hljs-deletion {
+  color: #f88f7f;
+  background: #3d1e20;
+}
+.hljs-addition {
+  color: #6ad4af;
+  background: #19362c;
+}
+.hljs-comment {
+  color: #7a8599;
+}

@@ -1,0 +1,36 @@
+{
+  "name": "@t8/docsgen",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/bin.js",
+  "bin": {
+    "docsgen": "dist/bin.js"
+  },
+  "scripts": {
+    "build": "npx npm-run-all clean build-bin -s build-css",
+    "build-bin": "npx esbuild ./src/bin/run.ts --bundle --outfile=dist/bin.js --platform=node --external:jsdom --external:markdown-it",
+    "build-css": "node -e \"require('node:fs').cpSync('src/css', 'dist/css', { force: true, recursive: true });\"",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { force: true, recursive: true });\"",
+    "prepublishOnly": "npm run build",
+    "preversion": "npx npm-run-all typecheck shape build",
+    "shape": "npx codeshape",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t8js/docsgen.git"
+  },
+  "license": "ISC",
+  "author": "axtk",
+  "devDependencies": {
+    "@types/jsdom": "^27.0.0",
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^24.7.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "args-json": "^1.2.4",
+    "jsdom": "^27.0.0",
+    "markdown-it": "^14.1.0"
+  }
+}

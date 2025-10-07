@@ -1,0 +1,232 @@
+:root {
+  color-scheme: light dark;
+
+  --b0: light-dark(white, #1a1a1a);
+  --b1: var(--color-scheme, gray);
+  --link-color: light-dark(royalblue, deepskyblue);
+  --button-color: light-dark(royalblue, royalblue);
+
+  --b1-light: color(from var(--b1) srgb r g b / 0.12);
+  --b1-medium: color(
+    from var(--b1) srgb calc(0.8 * r) calc(0.8 * g) calc(0.8 * b) /
+    0.5
+  );
+  --b1-heavy: color(
+    from var(--b1) srgb calc(0.35 * r) calc(0.35 * g) calc(0.35 * b) /
+    0.9
+  );
+
+  --c0: oklch(from var(--b0) calc(100 * (0.78 - l)) 0 0 / 0.82);
+  --c1: oklch(from var(--b1) calc(100 * (0.78 - l)) 0 0 / 0.82);
+  --c2: oklch(from var(--button-color) calc(100 * (0.75 - l)) 0 0 / 0.82);
+
+  /*
+    --link-color: color(
+        from var(--c0) srgb calc(r + 0.2) calc(g + 0.4) calc(b + 0.8)
+    );
+    */
+  --link-decoration: underline;
+
+  --max-content-width: 64em;
+  --content-padding-x: 1.75rem;
+  --content-padding-y: 1.75rem;
+  --content-border-radius: 1rem;
+  --space-x: var(--content-padding-x);
+  --block-margin-y: 1em;
+  --hr-border: 0.15rem solid var(--b1-medium);
+
+  font-size: 100%;
+  font-family: sans-serif;
+  /*
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    */
+  line-height: 1.45;
+}
+html {
+  color: var(--c0);
+  background-color: var(--b0);
+  background-position: 50% 0;
+}
+html[data-theme="t8"] {
+  --color-scheme: #410fcd;
+}
+body {
+  color: inherit;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+@media (max-width: 840px) {
+  :root {
+    --content-padding-x: 0.85rem;
+    --content-padding-y: 1rem;
+  }
+  body {
+    font-size: 100%;
+  }
+}
+
+p,
+ul,
+ol,
+table,
+pre,
+blockquote {
+  margin-top: var(--block-margin-y);
+  margin-bottom: var(--block-margin-y);
+}
+ul,
+ol {
+  padding-inline-start: 2em;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: var(--link-color);
+  text-decoration: var(--link-decoration);
+}
+
+a.button {
+  --bc1: color(from var(--c0) srgb r g b / 0.25);
+  --bc2: color(
+    from var(--c0) srgb calc(0.8 * r) calc(0.8 * g) calc(0.8 * b) /
+    0.35
+  );
+
+  display: inline-block;
+  text-decoration: none;
+  color: var(--b0);
+  background: color(from var(--c0) srgb r g b / 0.65);
+  border: 0.075em solid var(--c0);
+  border-color: var(--bc1) var(--bc2) var(--bc2) var(--bc1);
+  border-radius: var(--r);
+  padding: 0.25em 1.25em;
+  margin: 0.5em 0.35em;
+  box-shadow: 0 0 0.1em 0 var(--c0);
+  transition: box-shadow 0.1s;
+  box-sizing: border-box;
+}
+a.button:hover {
+  box-shadow: 0 0 0.25em 0 var(--c0);
+}
+a.button.primary {
+  --bc1: color(from var(--button-color) srgb r g b / 0.55);
+  --bc2: color(
+    from var(--button-color) srgb calc(0.8 * r) calc(0.8 * g) calc(0.8 * b) /
+    0.7
+  );
+
+  font-weight: bold;
+  color: var(--c2);
+  background: var(--button-color);
+  box-shadow: 0 0 0.2em 0 var(--button-color);
+}
+a.button.primary:hover {
+  box-shadow: 0 0 0.35em 0 var(--button-color);
+}
+
+h1 {
+  font-size: 2.25em;
+  line-height: 1;
+  margin: 0;
+}
+h1 a,
+h1 a:link,
+h1 a:visited,
+h1 a:active {
+  color: inherit;
+  text-decoration: none;
+}
+h1 a:hover {
+  color: inherit;
+  text-decoration: underline;
+}
+h2,
+h3,
+h4 {
+  line-height: 1.1;
+}
+h2 {
+  font-size: 1.6em;
+  margin: 1em 0 0.65em 0;
+}
+h3 {
+  font-size: 1.3em;
+  margin: 1em 0 0.65em 0;
+}
+h4 {
+  font-size: 1.15em;
+  margin: 1em 0 0.65em 0;
+}
+
+header,
+.body,
+footer {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+header,
+footer {
+  padding: 0 var(--content-padding-x);
+}
+
+main {
+  box-sizing: border-box;
+}
+main h2:first-child {
+  margin-top: 0;
+}
+main ul {
+  padding: 0;
+  padding-inline-start: 1.5em;
+  margin: 1em 0;
+}
+main ul ul {
+  margin: 0.5em 0;
+}
+main li {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.highlight {
+  border-radius: 1em;
+  margin: 0;
+}
+code {
+  background: light-dark(
+    color(from currentColor srgb r g b / 0.08),
+    color(from currentColor srgb r g b / 0.15)
+  );
+  border-radius: 0.35em;
+  padding: 0.15em 0.35em;
+}
+pre,
+pre.highlight {
+  line-height: 1.25;
+  color: inherit;
+  border-radius: 1em;
+  overflow: auto;
+}
+pre > code {
+  display: block;
+  background: transparent;
+  padding: 1.25em;
+}
+
+html.blank h1 {
+  font-size: 10vmin;
+  color: var(--b1-light);
+}
+html.blank .layout {
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
