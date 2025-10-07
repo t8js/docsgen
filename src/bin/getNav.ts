@@ -1,20 +1,13 @@
 import { JSDOM } from "jsdom";
 import type { NavItem } from "../types/NavItem";
-import { getConfig } from "./getConfig";
 import { getRepoLink } from "./getRepoLink";
+import { Context } from "../types/Context";
+import { fetchText } from "./fetchText";
 
-export async function getNav(navItems: NavItem[]) {
-  let { name, root, contentDir, backstory, nav } = await getConfig();
-  let s = "",
-    navContent = "";
-
-  if (nav) {
-    try {
-      navContent = await (await fetch(nav)).text();
-    } catch {
-      console.warn(`Failed to fetch content from '${nav}'`);
-    }
-  }
+export async function getNav(ctx: Context, navItems: NavItem[]) {
+  let { name, root, contentDir, backstory, nav } = ctx;
+  let navContent = await fetchText(nav);
+  let s = "";
 
   if (navContent) {
     let navDom = new JSDOM(navContent).window.document.body;
@@ -55,7 +48,7 @@ export async function getNav(navItems: NavItem[]) {
 
   if (!s && !navContent) return "";
 
-  let repoLink = await getRepoLink();
+  let repoLink = getRepoLink(ctx);
 
   s = s.trim() ? `<section><ul>${s}\n</ul></section>` : "";
   s = `${s}

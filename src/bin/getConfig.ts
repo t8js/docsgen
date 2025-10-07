@@ -1,8 +1,8 @@
-import { readFile } from "node:fs/promises";
 import { parseArgs } from "args-json";
 import type { BinConfig } from "../types/BinConfig";
 import type { PackageMetadata } from "../types/PackageMetadata";
 import { toConfig } from "./toConfig";
+import { fetchText } from "./fetchText";
 
 let config: BinConfig | null = null;
 
@@ -12,17 +12,29 @@ export async function getConfig(): Promise<BinConfig> {
   let metadata: PackageMetadata = {};
 
   try {
-    metadata = JSON.parse(
-      (await readFile("./package.json")).toString(),
-    ) as PackageMetadata;
+    metadata = JSON.parse(await fetchText("./package.json")) as PackageMetadata;
   } catch {}
 
+  let localConfig: BinConfig = {};
+
+  try {
+    localConfig = JSON.parse(await fetchText("./docsgen.config.json")) as BinConfig;
+  } catch {}
+
+  let targetId: string | undefined = undefined;
+  let args = process.argv.slice(2);
+
+  if (!args[0].startsWith("--"))
+    targetId = args.shift();
+
   config = {
+    targetId,
     mainBranch: "main",
     root: "/",
     contentDir: "x",
     ...toConfig(metadata),
-    ...parseArgs<BinConfig>(process.argv.slice(2)),
+    ...localConfig,
+    ...parseArgs<BinConfig>(args),
   };
 
   if (!config.root?.endsWith("/")) config.root = `${config.root ?? ""}/`;

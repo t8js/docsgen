@@ -1,8 +1,8 @@
+import { Context } from "../types/Context";
 import { setCName } from "./setCName";
 import { setContent } from "./setContent";
 import { setImages } from "./setImages";
-import { setNpmIgnore } from "./setNpmIgnore";
 
-export async function createFiles() {
-  await Promise.all([setNpmIgnore(), setCName(), setContent(), setImages()]);
+export async function createFiles(ctx: Context) {
+  await Promise.all([setCName(ctx), setContent(ctx), setImages(ctx)]);
 }

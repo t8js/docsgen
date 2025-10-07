@@ -1,11 +1,9 @@
-import { readFile } from "node:fs/promises";
 import { JSDOM } from "jsdom";
 import Markdown from "markdown-it";
 import type { NavItem } from "../types/NavItem";
-import { getConfig } from "./getConfig";
 import { getSlug } from "./getSlug";
-
-const contentPath = "./README.md";
+import { Context } from "../types/Context";
+import { fetchText } from "./fetchText";
 
 const md = new Markdown({
   html: true,
@@ -15,8 +13,8 @@ function joinLines(x: string[]) {
   return x.join("\n").trim();
 }
 
-async function buildNav(dom: JSDOM) {
-  let { root, contentDir, singlePage } = await getConfig();
+function buildNav(ctx: Context, dom: JSDOM) {
+  let { root, contentDir, singlePage } = ctx;
   let linkMap: Record<string, string> = {};
 
   let navItem: NavItem | null = null;
@@ -104,12 +102,12 @@ function getSectionPostprocess(linkMap: Record<string, string>) {
   };
 }
 
-export async function getParsedContent() {
-  let { singlePage } = await getConfig();
-  let content = md.render((await readFile(contentPath)).toString());
+export async function getParsedContent(ctx: Context) {
+  let { source = "README.md", singlePage } = ctx;
+  let content = md.render(await fetchText(source));
   let dom = new JSDOM(content);
 
-  let { nav, linkMap } = await buildNav(dom);
+  let { nav, linkMap } = buildNav(ctx, dom);
 
   let badges: string[] = [];
   let title = "";

@@ -3,6 +3,7 @@ import type { Theme } from "./Theme";
 export type EntryConfig = {
   id?: string;
   source?: string;
+  dir?: string;
   colorScheme?: string;
   theme?: Theme;
   name?: string;

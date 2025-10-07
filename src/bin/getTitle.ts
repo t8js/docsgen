@@ -1,5 +1,5 @@
+import { Context } from "../types/Context";
 import { escapeHTML } from "../utils/escapeHTML";
-import { getConfig } from "./getConfig";
 
 type GetTitleParams = {
   cover?: boolean;
@@ -7,12 +7,12 @@ type GetTitleParams = {
   withPackageURL?: boolean;
 };
 
-export async function getTitle({
+export function getTitle(ctx: Context, {
   cover,
   originalContent,
   withPackageURL,
 }: GetTitleParams = {}) {
-  let { root, name, title: packageTitle, scope, theme } = await getConfig();
+  let { root, name, title: packageTitle, scope, theme } = ctx;
 
   if (originalContent && ![name, packageTitle].includes(originalContent.trim()))
     return originalContent;

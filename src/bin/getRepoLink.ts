@@ -1,8 +1,6 @@
-import { getConfig } from "./getConfig";
+import { Context } from "../types/Context";
 
-export async function getRepoLink(className?: string) {
-  let { repo } = await getConfig();
-
+export function getRepoLink({ repo }: Context, className?: string) {
   if (!repo) return "";
 
   let caption = /\bgithub\.com\//.test(repo) ? "GitHub" : "Repository";

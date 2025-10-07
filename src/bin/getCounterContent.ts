@@ -1,8 +1,6 @@
-import { getConfig } from "./getConfig";
+import { Context } from "../types/Context";
 
-export async function getCounterContent() {
-  let { ymid } = await getConfig();
-
+export function getCounterContent({ ymid }: Context) {
   if (!ymid) return "";
 
   return `

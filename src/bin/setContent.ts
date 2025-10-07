@@ -4,30 +4,32 @@ import { promisify } from "node:util";
 import { packageName } from "../const/packageName";
 import { escapeHTML } from "../utils/escapeHTML";
 import { escapeRegExp } from "../utils/escapeRegExp";
-import { getConfig } from "./getConfig";
 import { getCounterContent } from "./getCounterContent";
 import { getNav } from "./getNav";
 import { getParsedContent } from "./getParsedContent";
 import { getRepoLink } from "./getRepoLink";
 import { getTitle } from "./getTitle";
 import { toFileContent } from "./toFileContent";
+import { Context } from "../types/Context";
+import { join } from "node:path";
 
 const exec = promisify(defaultExec);
 
-export async function setContent() {
+export async function setContent(ctx: Context) {
   let {
+    dir = "",
     colorScheme,
     theme,
     root,
-    contentDir,
+    contentDir = "",
     name,
     title,
     description: packageDescription,
     backstory,
     redirect,
-  } = await getConfig();
+  } = ctx;
 
-  let counterContent = await getCounterContent();
+  let counterContent = getCounterContent(ctx);
   let escapedName = escapeHTML(name);
   let escapedTitle = title ? escapeHTML(title) : escapedName;
 
@@ -60,7 +62,7 @@ export async function setContent() {
     let escapedRedirect = escapeHTML(redirect);
 
     await writeFile(
-      "./index.html",
+      join(dir, "index.html"),
       toFileContent(`
 <!DOCTYPE html>
 <html lang="en" class="blank"${rootAttrs}>
@@ -81,17 +83,19 @@ ${counterContent}
   }
 
   let { badges, description, features, installation, sections, nav } =
-    await getParsedContent();
+    await getParsedContent(ctx);
 
-  let navContent = await getNav(nav);
-  let dirs = [`./${contentDir}`];
+  let navContent = await getNav(ctx, nav);
+  let dirs = [contentDir];
 
   await Promise.all(
     dirs.map(async (path) => {
+      let dirPath = join(dir, path);
+
       try {
-        await access(path);
+        await access(dirPath);
       } catch {
-        await mkdir(path);
+        await mkdir(dirPath);
       }
     }),
   );
@@ -99,7 +103,7 @@ ${counterContent}
   await Promise.all([
     ...sections.map(async (content, i) =>
       writeFile(
-        `./${contentDir}/${nav[i]?.id ?? `_untitled_${i}`}.html`,
+        join(dir, contentDir, `${nav[i]?.id ?? `_untitled_${i}`}.html`),
         toFileContent(`
 <!DOCTYPE html>
 <html lang="en"${rootAttrs}>
@@ -117,7 +121,7 @@ ${nav[i - 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[i - 1]
 <div class="layout">
 <div class="${navContent ? "" : "no-nav "}body">
 <main>
-<h1>${await getTitle({ withPackageURL: true })}</h1>
+<h1>${getTitle(ctx, { withPackageURL: true })}</h1>
 ${content}
 
 <p class="pagenav">
@@ -126,7 +130,7 @@ ${content}
     ${nav[i - 1]?.id ? `<a href="${root}${contentDir}/${nav[i - 1]?.id}">${nav[i - 1]?.title}</a>` : `<a href="${root}">Intro</a>`}
   </span>
   <span class="sep">|</span>
-  ${nav[i + 1]?.id ? `<span class="next"><a href="${root}${contentDir}/${nav[i + 1]?.id}">${nav[i + 1]?.title}</a> <span class="icon">→</span></span>` : `<span class="repo next">${await getRepoLink()} <span class="icon">✦</span></span>`}
+  ${nav[i + 1]?.id ? `<span class="next"><a href="${root}${contentDir}/${nav[i + 1]?.id}">${nav[i + 1]?.title}</a> <span class="icon">→</span></span>` : `<span class="repo next">${getRepoLink(ctx)} <span class="icon">✦</span></span>`}
 </p>
 </main>
 ${navContent ? "<hr>" : ""}
@@ -156,7 +160,7 @@ ${counterContent}
       ),
     ),
     writeFile(
-      "./index.html",
+      join(dir, "index.html"),
       toFileContent(`
 <!DOCTYPE html>
 <html lang="en"${rootAttrs}>
@@ -177,14 +181,14 @@ ${nav[0] ? `<link rel="prefetch" href="${root}${contentDir}/${nav[0]?.id ?? ""}"
   <div class="badges">
     ${badges}
   </div>
-  <h1>${await getTitle({ cover: true })}</h1>
+  <h1>${getTitle(ctx, { cover: true })}</h1>
   <div class="description">
     ${description}
   </div>
   <p class="actions">
     <a href="${root}start" class="primary button">Docs</a>
     <span class="sep"> • </span>
-    ${await getRepoLink("button")}
+    ${getRepoLink(ctx, "button")}
   </p>
   ${backstory ? `<p class="ref"><a href="${backstory}">Backstory</a></p>` : ""}
   <p class="installation"><code>${installation}</code></p>
@@ -220,7 +224,7 @@ ${counterContent}
             `),
     ),
     writeFile(
-      "./start.html",
+      join(dir, "start.html"),
       toFileContent(`
 <!DOCTYPE html>
 <html lang="en" class="blank"${rootAttrs}>
