@@ -244,7 +244,7 @@ html.blank .layout {
 }
 .badges .badge.loaded,
 .badges .badge.failed {
-  min-width: none;
+  min-width: auto;
 }
 .badges .badge.failed {
   padding: 0 6px;
