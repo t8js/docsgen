@@ -1,18 +1,27 @@
 :root {
-  --g0: color(from var(--b1) srgb calc(.5*r + .5) calc(.5*g + .5) calc(.5*b + .5));
-  --g1: color(from var(--g1) xyz calc(.25*x) calc(1.5*y) calc(.5*z));
+  --g0: color(
+    from var(--b1) srgb calc(0.5 * r + 0.5) calc(0.5 * g + 0.5)
+      calc(0.5 * b + 0.5)
+  );
+  --g1: color(from var(--g1) xyz calc(0.25 * x) calc(1.5 * y) calc(0.5 * z));
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --g0: color(from var(--b1) srgb calc(.5*r + .3) calc(.5*g + .3) calc(.5*b + .3));
+    --g0: color(
+      from var(--b1) srgb calc(0.5 * r + 0.3) calc(0.5 * g + 0.3)
+        calc(0.5 * b + 0.3)
+    );
   }
 }
 html {
-  background: linear-gradient(to bottom right, var(--g1), var(--g0)) 50% 50% / cover no-repeat;
+  background:
+    linear-gradient(to bottom right, var(--g1), var(--g0)) 50% 50% / cover
+    no-repeat;
 }
 @media (max-width: 840px) {
   html {
-    background: linear-gradient(to bottom, var(--g1), var(--g0)) 50% 50% / cover no-repeat;
+    background:
+      linear-gradient(to bottom, var(--g1), var(--g0)) 50% 50% / cover no-repeat;
   }
 }
 body {
