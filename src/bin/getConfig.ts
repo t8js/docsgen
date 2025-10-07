@@ -26,7 +26,7 @@ export async function getConfig(): Promise<BinConfig> {
   let targetId: string | undefined;
   let args = process.argv.slice(2);
 
-  if (!args[0].startsWith("--")) targetId = args.shift();
+  if (args.length !== 0 && !args[0].startsWith("--")) targetId = args.shift();
 
   config = {
     targetId,

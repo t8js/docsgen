@@ -17,7 +17,7 @@ async function run() {
       ({ id, dir }) => id === targetId || dir === targetId,
     );
 
-    if (entryCtx) runEntry(entryCtx);
+    if (entryCtx) runEntry({ ...rootCtx, ...entryCtx });
     else console.warn(`Specified config entry not found: '${targetId}'`);
   } else {
     await Promise.all(
