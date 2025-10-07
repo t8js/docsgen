@@ -45,8 +45,7 @@ export async function setContent(ctx: Context) {
 
   if (theme) rootAttrs += ` data-theme="${escapeHTML(theme)}"`;
 
-  if (baseColor)
-    rootAttrs += ` style="--base-color: ${escapeHTML(baseColor)}"`;
+  if (baseColor) rootAttrs += ` style="--base-color: ${escapeHTML(baseColor)}"`;
 
   let icon = getIcon(ctx);
   let iconTag = icon.url
