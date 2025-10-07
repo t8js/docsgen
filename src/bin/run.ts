@@ -13,7 +13,7 @@ async function run() {
   }
 
   if (targetId) {
-    let entryCtx = entries.find(({ id }) => id === targetId);
+    let entryCtx = entries.find(({ id, dir }) => id === targetId || dir === targetId);
 
     if (entryCtx) runEntry(entryCtx);
     else console.warn(`Specified config entry not found: '${targetId}'`);
