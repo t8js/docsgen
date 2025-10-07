@@ -3,17 +3,12 @@ import type { BinConfig } from "../types/BinConfig";
 import type { PackageMetadata } from "../types/PackageMetadata";
 import { fetchText } from "./fetchText";
 import { toConfig } from "./toConfig";
+import { getLocation } from "./getLocation";
 
 let config: BinConfig | null = null;
 
 export async function getConfig(): Promise<BinConfig> {
   if (config) return config;
-
-  let metadata: PackageMetadata = {};
-
-  try {
-    metadata = JSON.parse(await fetchText("./package.json")) as PackageMetadata;
-  } catch {}
 
   let localConfig: BinConfig = {};
 
@@ -33,10 +28,19 @@ export async function getConfig(): Promise<BinConfig> {
     mainBranch: "main",
     root: "/",
     contentDir: "x",
-    ...toConfig(metadata),
     ...localConfig,
     ...parseArgs<BinConfig>(args),
   };
+
+  try {
+    let rawContent = await fetchText(getLocation(config, "package.json"));
+    let metadata = JSON.parse(rawContent) as PackageMetadata;
+
+    config = {
+      ...toConfig(metadata),
+      ...config,
+    };
+  } catch {}
 
   if (!config.root?.endsWith("/")) config.root = `${config.root ?? ""}/`;
 

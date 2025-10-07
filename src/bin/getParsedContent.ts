@@ -4,7 +4,7 @@ import type { Context } from "../types/Context";
 import type { NavItem } from "../types/NavItem";
 import { fetchText } from "./fetchText";
 import { getSlug } from "./getSlug";
-import { getSource } from "./getSource";
+import { getLocation } from "./getLocation";
 
 const md = new Markdown({
   html: true,
@@ -105,7 +105,8 @@ function getSectionPostprocess(linkMap: Record<string, string>) {
 
 export async function getParsedContent(ctx: Context) {
   let { singlePage } = ctx;
-  let content = md.render(await fetchText(getSource(ctx)));
+  let rawContent = await fetchText(getLocation(ctx, "README.md", ctx.source));
+  let content = md.render(rawContent);
   let dom = new JSDOM(content);
 
   let { nav, linkMap } = buildNav(ctx, dom);
