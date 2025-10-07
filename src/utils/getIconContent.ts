@@ -1,4 +1,4 @@
-export function getIcon(baseColor = "gray") {
+export function getIconContent(baseColor = "gray") {
   return `
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
         <style>.b{fill:${baseColor};}.c0{fill:oklch(from ${baseColor} calc(100*(.78 - l)) 0 0 / .5);}.c1{fill:oklch(from ${baseColor} calc(100*(.78 - l)) 0 0 / .3);}.c2{fill:none;}</style>

@@ -40,6 +40,7 @@ export type EntryConfig = {
   nav?: string;
   /** Favicon URL. */
   favicon?: string;
+  faviconType?: string;
   /** Scope URL. */
   scope?: string;
   /** Redirection URL. */

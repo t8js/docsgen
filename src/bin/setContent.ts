@@ -12,6 +12,7 @@ import { getParsedContent } from "./getParsedContent";
 import { getRepoLink } from "./getRepoLink";
 import { getTitle } from "./getTitle";
 import { toFileContent } from "./toFileContent";
+import { getIcon } from "./getIcon";
 
 const exec = promisify(defaultExec);
 
@@ -42,21 +43,15 @@ export async function setContent(ctx: Context) {
   let packageUrl = `https://unpkg.com/${packageName}@${packageVersion}`;
   let rootAttrs = "";
 
-  let icon = {
-    url: `${root}favicon.svg`,
-    type: "image/svg+xml",
-  };
-
   if (theme) rootAttrs += ` data-theme="${escapeHTML(theme)}"`;
 
   if (colorScheme)
     rootAttrs += ` style="--color-scheme: ${escapeHTML(colorScheme)}"`;
 
-  if (theme === "t8")
-    icon = {
-      url: "/assets/t8.png",
-      type: "image/png",
-    };
+  let icon = getIcon(ctx);
+  let iconTag = icon.url
+    ? `<link rel="icon"${icon.type ? ` type="${icon.type}"` : ""} href="${icon.url}">`
+    : "";
 
   if (redirect) {
     let escapedRedirect = escapeHTML(redirect);
@@ -70,6 +65,7 @@ export async function setContent(ctx: Context) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="refresh" content="0; URL=${escapedRedirect}">
+  ${iconTag}
 </head>
 <body>
 ${counterContent}
@@ -108,14 +104,14 @@ ${counterContent}
 <!DOCTYPE html>
 <html lang="en"${rootAttrs}>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escapeHTML(nav[i]?.title)} | ${escapedTitle}</title>
-<link rel="stylesheet" href="${packageUrl}/dist/css/base.css">
-<link rel="stylesheet" href="${packageUrl}/dist/css/section.css">
-<link rel="icon" type="${icon.type}" href="${icon.url}">
-${nav[i + 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[i + 1]?.id}">` : ""}
-${nav[i - 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[i - 1]?.id}">` : ""}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${escapeHTML(nav[i]?.title)} | ${escapedTitle}</title>
+  <link rel="stylesheet" href="${packageUrl}/dist/css/base.css">
+  <link rel="stylesheet" href="${packageUrl}/dist/css/section.css">
+  ${iconTag}
+  ${nav[i + 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[i + 1]?.id}">` : ""}
+  ${nav[i - 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[i - 1]?.id}">` : ""}
 </head>
 <body>
 <div class="layout">
@@ -165,14 +161,14 @@ ${counterContent}
 <!DOCTYPE html>
 <html lang="en"${rootAttrs}>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escapedTitle}${packageDescription ? ` | ${escapeHTML(packageDescription)}` : ""}</title>
-<link rel="stylesheet" href="${packageUrl}/dist/css/base.css">
-<link rel="stylesheet" href="${packageUrl}/dist/css/index.css">
-<link rel="icon" type="${icon.type}" href="${icon.url}">
-<link rel="prefetch" href="${root}start">
-${nav[0] ? `<link rel="prefetch" href="${root}${contentDir}/${nav[0]?.id ?? ""}">` : ""}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${escapedTitle}${packageDescription ? ` | ${escapeHTML(packageDescription)}` : ""}</title>
+  <link rel="stylesheet" href="${packageUrl}/dist/css/base.css">
+  <link rel="stylesheet" href="${packageUrl}/dist/css/index.css">
+  ${iconTag}
+  <link rel="prefetch" href="${root}start">
+  ${nav[0] ? `<link rel="prefetch" href="${root}${contentDir}/${nav[0]?.id ?? ""}">` : ""}
 </head>
 <body>
 <div class="layout">
@@ -234,7 +230,7 @@ ${counterContent}
   <meta http-equiv="refresh" content="0; URL=${root}${contentDir}/${nav[0]?.id}">
   <title>${escapedTitle}</title>
   <link rel="stylesheet" href="${packageUrl}/dist/css/base.css">
-  <link rel="icon" type="${icon.type}" href="${icon.url}">
+  ${iconTag}
   <script>window.location.replace("${root}${contentDir}/${nav[0]?.id}");</script>
 </head>
 <body>
