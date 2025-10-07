@@ -72,11 +72,11 @@ h1 a {
 }
 h1 a::before {
   content: "";
-  background-color: color(from var(--b1) srgb r g b / 0.3);
+  background-color: color(from var(--link-color) srgb r g b / 0.3);
   transform: skew(-15deg, -10deg);
   border-radius: 0.4em;
   position: absolute;
-  inset: 0.3em -0.25em 0.25em;
+  inset: 0.35em -0.25em 0.3em;
   transition: inset 0.3s;
 }
 h1 a:hover {
