@@ -47,9 +47,6 @@ html {
   background-color: var(--b0);
   background-position: 50% 0;
 }
-html[data-theme="t8"] {
-  --color-scheme: #410fcd;
-}
 body {
   color: inherit;
   background-color: transparent;
