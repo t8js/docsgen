@@ -12,5 +12,7 @@ export async function fetchText(location: string | undefined) {
     }
   }
 
-  return (await readFile(location)).toString();
+  let locationPath = location.replace(/^\//, "");
+
+  return (await readFile(locationPath)).toString();
 }
