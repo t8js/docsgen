@@ -3,7 +3,10 @@
     from var(--b1) srgb calc(0.5 * r + 0.5) calc(0.5 * g + 0.5)
       calc(0.5 * b + 0.5)
   );
-  --g1: color(from var(--g0) srgb calc(1.5*g - .3) calc(1.5*b - .3) calc(1.5*r - .3));
+  --g1: color(
+    from var(--g0) srgb calc(1.5 * g - 0.3) calc(1.5 * b - 0.3)
+      calc(1.5 * r - 0.3)
+  );
 }
 @media (prefers-color-scheme: dark) {
   :root {
