@@ -4,6 +4,21 @@ import type { PackageMetadata } from "../types/PackageMetadata";
 import { fetchText } from "./fetchText";
 import { getLocation } from "./getLocation";
 import { toConfig } from "./toConfig";
+import { EntryConfig } from "../types/EntryConfig";
+
+async function addMetadata(config: EntryConfig) {
+  try {
+    let rawContent = await fetchText(getLocation(config, "package.json"));
+    let metadata = JSON.parse(rawContent) as PackageMetadata;
+
+    return {
+      ...toConfig(metadata),
+      ...config,
+    };
+  } catch {
+    return config;
+  }
+}
 
 let config: BinConfig | null = null;
 
@@ -32,15 +47,9 @@ export async function getConfig(): Promise<BinConfig> {
     ...parseArgs<BinConfig>(args),
   };
 
-  try {
-    let rawContent = await fetchText(getLocation(config, "package.json"));
-    let metadata = JSON.parse(rawContent) as PackageMetadata;
-
-    config = {
-      ...toConfig(metadata),
-      ...config,
-    };
-  } catch {}
+  if (config.entries)
+    config.entries = await Promise.all(config.entries.map(addMetadata));
+  else await addMetadata(config);
 
   if (!config.root?.endsWith("/")) config.root = `${config.root ?? ""}/`;
 
