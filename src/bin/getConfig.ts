@@ -2,8 +2,8 @@ import { parseArgs } from "args-json";
 import type { BinConfig } from "../types/BinConfig";
 import type { PackageMetadata } from "../types/PackageMetadata";
 import { fetchText } from "./fetchText";
-import { toConfig } from "./toConfig";
 import { getLocation } from "./getLocation";
+import { toConfig } from "./toConfig";
 
 let config: BinConfig | null = null;
 

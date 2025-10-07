@@ -1,6 +1,10 @@
 import type { Context } from "../types/Context";
 
-export function getLocation(ctx: Context, path: string, preferredLocation?: string | undefined) {
+export function getLocation(
+  ctx: Context,
+  path: string,
+  preferredLocation?: string | undefined,
+) {
   let { repo, mainBranch = "main" } = ctx;
 
   if (preferredLocation) return preferredLocation;
