@@ -48,17 +48,20 @@ export async function getNav(ctx: Context, navItems: NavItem[]) {
 
   if (!s && !navContent) return "";
 
-  let repoLink = getRepoLink(ctx);
-
   s = s.trim() ? `<section><ul>${s}\n</ul></section>` : "";
-  s = `${s}
+
+  let repoLink = getRepoLink(ctx);
+  let refContent = "";
+
+  if (repoLink || backstory)
+    refContent = `
 <section class="ref">
   <ul>
-    <li>${repoLink}</li>
+    ${repoLink ? `<li>${repoLink}</li>` : ""}
     ${backstory ? `<li><a href="${backstory}">Backstory</a></li>` : ""}
   </ul>
 </section>
-${navContent}`;
+`;
 
-  return `<nav>\n${s}\n</nav>`;
+  return `<nav>\n${s}${refContent}\n${navContent}\n</nav>`;
 }
