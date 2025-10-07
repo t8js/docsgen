@@ -227,3 +227,23 @@ html.blank .layout {
   justify-content: center;
   overflow: hidden;
 }
+
+.badges .badge {
+  display: inline-flex;
+  min-width: 60px;
+  min-height: 20px;
+  font-size: 11px;
+  font-family: Verdana, sans-serif;
+  text-align: center;
+  white-space: nowrap;
+  place-content: center;
+  color: #fff;
+  background: #345;
+  box-sizing: border-box;
+}
+.badges img {
+  vertical-align: top;
+}
+.badges a {
+  text-decoration: none;
+}

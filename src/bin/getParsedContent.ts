@@ -103,6 +103,24 @@ function getSectionPostprocess(linkMap: Record<string, string>) {
   };
 }
 
+function postprocessBadges(content: string) {
+  let { document } = new JSDOM(content).window;
+
+  for (let img of document.querySelectorAll("img")) {
+    let parent = img.parentElement;
+
+    if (!parent) continue;
+
+    let container = document.createElement("span");
+    container.className = "badge";
+
+    parent.insertBefore(container, img);
+    container.append(img);
+  }
+
+  return document.body.innerHTML;
+}
+
 export async function getParsedContent(ctx: Context) {
   let { singlePage } = ctx;
   let rawContent = await fetchText(getLocation(ctx, "README.md", ctx.source));
@@ -170,7 +188,7 @@ export async function getParsedContent(ctx: Context) {
   let postprocess = getSectionPostprocess(linkMap);
 
   return {
-    badges: joinLines(badges),
+    badges: postprocessBadges(joinLines(badges)),
     title,
     description: joinLines(description),
     features: joinLines(features),
