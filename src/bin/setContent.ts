@@ -106,6 +106,7 @@ ${counterContent}
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="${escapedTitle}: ${escapeHTML(nav[i]?.title)}">
   <title>${escapeHTML(nav[i]?.title)} | ${escapedTitle}</title>
   <link rel="stylesheet" href="${packageUrl}/dist/css/base.css">
   <link rel="stylesheet" href="${packageUrl}/dist/css/section.css">
@@ -163,6 +164,7 @@ ${counterContent}
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="${escapedTitle}${packageDescription ? `: ${escapeHTML(packageDescription)}` : ""}">
   <title>${escapedTitle}${packageDescription ? ` | ${escapeHTML(packageDescription)}` : ""}</title>
   <link rel="stylesheet" href="${packageUrl}/dist/css/base.css">
   <link rel="stylesheet" href="${packageUrl}/dist/css/index.css">
