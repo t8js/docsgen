@@ -1,10 +1,10 @@
 import { parseArgs } from "args-json";
 import type { BinConfig } from "../types/BinConfig";
+import type { EntryConfig } from "../types/EntryConfig";
 import type { PackageMetadata } from "../types/PackageMetadata";
 import { fetchText } from "./fetchText";
 import { getLocation } from "./getLocation";
 import { toConfig } from "./toConfig";
-import { EntryConfig } from "../types/EntryConfig";
 
 async function addMetadata(config: EntryConfig) {
   try {
