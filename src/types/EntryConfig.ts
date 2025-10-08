@@ -1,3 +1,4 @@
+import { ContentInjectionMap } from "./ContentInjectionMap";
 import type { Theme } from "./Theme";
 
 export type EntryConfig = {
@@ -58,4 +59,5 @@ export type EntryConfig = {
    */
   jsorg?: boolean | string;
   ymid?: number | string;
+  append?: ContentInjectionMap<"head" | "body">;
 };

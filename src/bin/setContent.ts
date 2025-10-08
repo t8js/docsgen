@@ -13,6 +13,7 @@ import { getParsedContent } from "./getParsedContent";
 import { getRepoLink } from "./getRepoLink";
 import { getTitle } from "./getTitle";
 import { toFileContent } from "./toFileContent";
+import { getInjectedContent } from "./getInjectedContent";
 
 const exec = promisify(defaultExec);
 
@@ -65,9 +66,11 @@ export async function setContent(ctx: Context) {
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="refresh" content="0; URL=${escapedRedirect}">
   ${iconTag}
+  ${getInjectedContent(ctx, "redirect", "head")}
 </head>
 <body>
 ${counterContent}
+${getInjectedContent(ctx, "redirect", "body")}
 <script>window.location.replace("${escapedRedirect}");</script>
 </body>
 </html>
@@ -112,6 +115,7 @@ ${counterContent}
   ${iconTag}
   ${nav[i + 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[i + 1]?.id}">` : ""}
   ${nav[i - 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[i - 1]?.id}">` : ""}
+  ${getInjectedContent(ctx, "section", "head")}
 </head>
 <body>
 <div class="layout">
@@ -150,6 +154,7 @@ ${
     : ""
 }
 ${counterContent}
+${getInjectedContent(ctx, "section", "body")}
 </body>
 </html>
         `),
@@ -170,6 +175,7 @@ ${counterContent}
   ${iconTag}
   <link rel="prefetch" href="${root}start">
   ${nav[0] ? `<link rel="prefetch" href="${root}${contentDir}/${nav[0]?.id ?? ""}">` : ""}
+  ${getInjectedContent(ctx, "index", "head")}
 </head>
 <body>
 <div class="layout">
@@ -217,6 +223,7 @@ ${
     : ""
 }
 ${counterContent}
+${getInjectedContent(ctx, "index", "body")}
 </body>
 </html>
             `),
@@ -234,6 +241,7 @@ ${counterContent}
   <link rel="stylesheet" href="${packageUrl}/dist/css/base.css">
   ${iconTag}
   <script>window.location.replace("${root}${contentDir}/${nav[0]?.id}");</script>
+  ${getInjectedContent(ctx, "start", "head")}
 </head>
 <body>
 <div class="layout">
@@ -241,6 +249,7 @@ ${counterContent}
 </div>
 
 ${counterContent}
+${getInjectedContent(ctx, "start", "body")}
 </body>
 </html>
             `),
