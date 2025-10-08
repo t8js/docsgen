@@ -8,12 +8,12 @@ import { escapeHTML } from "../utils/escapeHTML";
 import { escapeRegExp } from "../utils/escapeRegExp";
 import { getCounterContent } from "./getCounterContent";
 import { getIcon } from "./getIcon";
+import { getInjectedContent } from "./getInjectedContent";
 import { getNav } from "./getNav";
 import { getParsedContent } from "./getParsedContent";
 import { getRepoLink } from "./getRepoLink";
 import { getTitle } from "./getTitle";
 import { toFileContent } from "./toFileContent";
-import { getInjectedContent } from "./getInjectedContent";
 
 const exec = promisify(defaultExec);
 

@@ -1,4 +1,4 @@
-import { ContentInjectionMap } from "./ContentInjectionMap";
+import type { ContentInjectionMap } from "./ContentInjectionMap";
 import type { Theme } from "./Theme";
 
 export type EntryConfig = {

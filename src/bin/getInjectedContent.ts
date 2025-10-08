@@ -1,6 +1,6 @@
-import { ContentInjectionTarget } from "../types/ContentInjectionTarget";
-import { Context } from "../types/Context";
-import { Page } from "../types/Page";
+import type { ContentInjectionTarget } from "../types/ContentInjectionTarget";
+import type { Context } from "../types/Context";
+import type { Page } from "../types/Page";
 
 export function getInjectedContent(
   ctx: Context,
@@ -10,22 +10,19 @@ export function getInjectedContent(
 ) {
   let injectedContent = ctx[mode]?.[target];
 
-  if (!injectedContent)
-    return "";
+  if (!injectedContent) return "";
 
-  return (Array.isArray(injectedContent) ? injectedContent : [injectedContent])
-    .reduce((s, item) => {
-      if (item === undefined)
-        return s;
+  return (
+    Array.isArray(injectedContent) ? injectedContent : [injectedContent]
+  ).reduce((s, item) => {
+    if (item === undefined) return s;
 
-      if (typeof item === "string")
-        return `${s}${s ? "\n" : ""}${item}`;
+    if (typeof item === "string") return `${s}${s ? "\n" : ""}${item}`;
 
-      let { content, pages } = item;
+    let { content, pages } = item;
 
-      if (!content || (pages && !pages.includes(page)))
-        return s;
+    if (!content || (pages && !pages.includes(page))) return s;
 
-      return `${s}${s ? "\n" : ""}${content}`;
-    }, "");
+    return `${s}${s ? "\n" : ""}${content}`;
+  }, "");
 }
