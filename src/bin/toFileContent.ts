@@ -1,3 +1,3 @@
 export function toFileContent(x: string) {
-  return `${x.replace(/\s+(<\/(head|body)>)/g, "\n$1").trim()}\n`;
+  return `${x.replace(/\s+(\r?\n *<\/(script|link|head|body)>)/g, "$1").trim()}\n`;
 }
