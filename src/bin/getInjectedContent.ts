@@ -14,7 +14,7 @@ export function getInjectedContent(
 
   return (
     Array.isArray(injectedContent) ? injectedContent : [injectedContent]
-  ).reduce((s, item) => {
+  ).reduce<string>((s, item) => {
     if (item === undefined) return s;
 
     if (typeof item === "string") return `${s}${s ? "\n" : ""}${item}`;

@@ -44,6 +44,13 @@ export async function setContent(ctx: Context) {
   let packageUrl = `https://unpkg.com/${packageName}@${packageVersion}`;
   let rootAttrs = "";
 
+  let defaultCodeStyleContent = `
+<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/base16/material.min.css">
+<link rel="stylesheet" href="${packageUrl}/dist/css/code.css">
+<script src="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/highlight.min.js"></script>
+<script>hljs.highlightAll()</script>
+  `.trim();
+
   if (theme) rootAttrs += ` data-theme="${escapeHTML(theme)}"`;
 
   if (baseColor) rootAttrs += ` style="--base-color: ${escapeHTML(baseColor)}"`;
@@ -145,12 +152,7 @@ ${navContent.replace(
 
 ${
   content.includes("<pre><code ")
-    ? `
-<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/base16/material.min.css">
-<link rel="stylesheet" href="${packageUrl}/dist/css/code.css">
-<script src="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/highlight.min.js"></script>
-<script>hljs.highlightAll()</script>
-`.trim()
+    ? (getInjectedContent(ctx, "section", ":has-code") || defaultCodeStyleContent)
     : ""
 }
 ${counterContent}
@@ -214,12 +216,7 @@ ${
 
 ${
   [description, features].some((s) => s.includes("<pre><code "))
-    ? `
-<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/base16/material.min.css">
-<link rel="stylesheet" href="${packageUrl}/dist/css/code.css">
-<script src="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/highlight.min.js"></script>
-<script>hljs.highlightAll()</script>
-`.trim()
+    ? (getInjectedContent(ctx, "index", ":has-code") || defaultCodeStyleContent)
     : ""
 }
 ${counterContent}

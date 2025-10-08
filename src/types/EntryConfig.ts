@@ -59,5 +59,5 @@ export type EntryConfig = {
    */
   jsorg?: boolean | string;
   ymid?: number | string;
-  append?: ContentInjectionMap<"head" | "body">;
+  append?: ContentInjectionMap<"head" | "body" | ":has-code">;
 };

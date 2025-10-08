@@ -1,1 +1,1 @@
-export type ContentInjectionTarget = "head" | "body";
+export type ContentInjectionTarget = "head" | "body" | ":has-code";
