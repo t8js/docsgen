@@ -5,6 +5,7 @@ import type { PackageMetadata } from "../types/PackageMetadata";
 import { fetchText } from "./fetchText";
 import { getLocation } from "./getLocation";
 import { toConfig } from "./toConfig";
+import { stripHTML } from "./stripHTML";
 
 async function addMetadata(config: EntryConfig) {
   try {
@@ -18,6 +19,26 @@ async function addMetadata(config: EntryConfig) {
   } catch {
     return config;
   }
+}
+
+function deriveMissingProps(config: EntryConfig) {
+  let { dir, root, title, htmlTitle } = config;
+
+  if (htmlTitle && !title) title = stripHTML(htmlTitle);
+  if (dir && !root) root = `/${dir}/`;
+  if (!root?.endsWith("/")) root = `${root ?? ""}/`;
+
+  return {
+    ...config,
+    dir,
+    root,
+    title,
+    htmlTitle,
+  };
+}
+
+async function reviseConfig(config: EntryConfig) {
+  return deriveMissingProps(await addMetadata(config));
 }
 
 let config: BinConfig | null = null;
@@ -48,10 +69,8 @@ export async function getConfig(): Promise<BinConfig> {
   };
 
   if (config.entries)
-    config.entries = await Promise.all(config.entries.map(addMetadata));
-  else await addMetadata(config);
-
-  if (!config.root?.endsWith("/")) config.root = `${config.root ?? ""}/`;
+    config.entries = await Promise.all(config.entries.map(reviseConfig));
+  else config = await reviseConfig(config);
 
   return config;
 }
