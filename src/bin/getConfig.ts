@@ -1,5 +1,5 @@
 import { parseArgs } from "args-json";
-import type { BinConfig } from "../types/BinConfig";
+import type { Config } from "../types/Config";
 import type { EntryConfig } from "../types/EntryConfig";
 import type { PackageMetadata } from "../types/PackageMetadata";
 import { fetchText } from "./fetchText";
@@ -41,17 +41,17 @@ async function reviseConfig(config: EntryConfig) {
   return deriveMissingProps(await addMetadata(config));
 }
 
-let config: BinConfig | null = null;
+let config: Config | null = null;
 
-export async function getConfig(): Promise<BinConfig> {
+export async function getConfig(): Promise<Config> {
   if (config) return config;
 
-  let localConfig: BinConfig = {};
+  let localConfig: Config = {};
 
   try {
     localConfig = JSON.parse(
       await fetchText("./docsgen.config.json"),
-    ) as BinConfig;
+    ) as Config;
   } catch {}
 
   let targetId: string | undefined;
@@ -65,7 +65,7 @@ export async function getConfig(): Promise<BinConfig> {
     root: "/",
     contentDir: "x",
     ...localConfig,
-    ...parseArgs<BinConfig>(args),
+    ...parseArgs<Config>(args),
   };
 
   if (config.entries)

@@ -1,4 +1,4 @@
-import type { BinConfig } from "./BinConfig";
+import type { Config } from "./Config";
 import type { EntryConfig } from "./EntryConfig";
 
-export type Context = Omit<BinConfig, "entries"> & EntryConfig;
+export type Context = Omit<Config, "entries"> & EntryConfig;

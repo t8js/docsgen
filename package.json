@@ -7,12 +7,13 @@
     "docsgen": "dist/bin.js"
   },
   "scripts": {
-    "build": "npx npm-run-all clean build-bin -s build-css",
+    "build": "npx npm-run-all clean build-bin -p build-css",
     "build-bin": "npx esbuild ./src/bin/run.ts --bundle --outfile=dist/bin.js --platform=node --external:jsdom --external:markdown-it",
     "build-css": "node -e \"require('node:fs').cpSync('src/css', 'dist/css', { force: true, recursive: true });\"",
+    "build-schema": "npx ts-json-schema-generator -p src/types/Config.ts -t Config -o schema.json --minify",
     "clean": "node -e \"require('node:fs').rmSync('dist', { force: true, recursive: true });\"",
     "prepublishOnly": "npm run build",
-    "preversion": "npx npm-run-all typecheck shape build",
+    "preversion": "npx npm-run-all typecheck build-schema shape build",
     "shape": "npx codeshape",
     "typecheck": "tsc --noEmit"
   },
