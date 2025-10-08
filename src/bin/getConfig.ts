@@ -4,8 +4,8 @@ import type { EntryConfig } from "../types/EntryConfig";
 import type { PackageMetadata } from "../types/PackageMetadata";
 import { fetchText } from "./fetchText";
 import { getLocation } from "./getLocation";
-import { toConfig } from "./toConfig";
 import { stripHTML } from "./stripHTML";
+import { toConfig } from "./toConfig";
 
 async function addMetadata(config: EntryConfig) {
   try {
