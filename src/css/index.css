@@ -83,7 +83,7 @@ h1 a:hover {
   text-decoration: none;
 }
 h1 a:hover::before {
-  inset: 0.25em -0.25em 0.2em;
+  inset: 0.35em -0.25em 0.25em;
 }
 header {
   display: block;
