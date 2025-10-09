@@ -139,7 +139,7 @@ main h1 + h2 {
   margin-top: 0.75rem;
 }
 main h2 {
-  border-bottom: var(--hr-border);
+  border-bottom: .3rem solid var(--b1-light);
   padding-bottom: 0.1em;
 }
 
