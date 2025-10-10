@@ -14,6 +14,7 @@ import { getParsedContent } from "./getParsedContent";
 import { getRepoLink } from "./getRepoLink";
 import { getTitle } from "./getTitle";
 import { toFileContent } from "./toFileContent";
+import { stripHTML } from "./stripHTML";
 
 const exec = promisify(defaultExec);
 
@@ -115,8 +116,8 @@ ${getInjectedContent(ctx, "redirect", "body")}
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="${escapedTitle}: ${escapeHTML(nav[i]?.title)}">
-  <title>${escapeHTML(nav[i]?.title)} | ${escapedTitle}</title>
+  <meta name="description" content="${escapedTitle}: ${escapeHTML(stripHTML(nav[i]?.title))}">
+  <title>${escapeHTML(stripHTML(nav[i]?.title))} | ${escapedTitle}</title>
   <link rel="stylesheet" href="${packageUrl}/dist/css/base.css">
   <link rel="stylesheet" href="${packageUrl}/dist/css/section.css">
   ${iconTag}
