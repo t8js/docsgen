@@ -90,13 +90,15 @@ function getInstallationCode(element: Element) {
     .match(/(\S\s*)?(npm (i|install) .*)/)?.[2];
 }
 
-function getSectionPostprocess(linkMap: Record<string, string>) {
+function getSectionPostprocess(linkMap: Record<string, string | undefined>) {
   return (content: string) => {
     let s = content;
 
     s = s.replace(/<a href="([^"]+)">/g, (_, url) => {
-      if (url?.startsWith("#")) return `<a href="${linkMap[url] ?? url}">`;
-      return `<a href="${url}" target="_blank">`;
+      let nextURL = linkMap[url] ?? url;
+      let attrs = /^(https?:)?\/\//.test(nextURL) ? " target=\"_blank\"" : "";
+
+      return `<a href="${nextURL}"${attrs}>`;
     });
 
     return s;
@@ -122,12 +124,12 @@ function postprocessBadges(content: string) {
 }
 
 export async function getParsedContent(ctx: Context) {
-  let { singlePage } = ctx;
+  let { singlePage, linkMap } = ctx;
   let rawContent = await fetchText(getLocation(ctx, "README.md", ctx.source));
   let content = md.render(rawContent);
   let dom = new JSDOM(content);
 
-  let { nav, linkMap } = buildNav(ctx, dom);
+  let { nav, linkMap: navLinkMap } = buildNav(ctx, dom);
 
   let badges: string[] = [];
   let title = "";
@@ -185,7 +187,10 @@ export async function getParsedContent(ctx: Context) {
 
   if (section.length !== 0) sections.push(joinLines(section));
 
-  let postprocess = getSectionPostprocess(linkMap);
+  let postprocess = getSectionPostprocess({
+    ...navLinkMap,
+    ...linkMap,
+  });
 
   return {
     badges: postprocessBadges(joinLines(badges)),

@@ -60,4 +60,6 @@ export type EntryConfig = {
   jsorg?: boolean | string;
   ymid?: number | string;
   append?: ContentInjectionMap<"head" | "body" | ":has-code">;
+  /** Link substitution map. */
+  linkMap?: Record<string, string | undefined>;
 };
