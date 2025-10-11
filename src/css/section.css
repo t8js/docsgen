@@ -117,7 +117,7 @@ main p.sep {
 main hr {
   background: none transparent;
   border: none;
-  border-top: 0.075em solid;
+  border-top: var(--hr-border);
   margin: var(--block-margin-y) 0;
 }
 main h1 {
@@ -139,7 +139,7 @@ main h1 + h2 {
   margin-top: 0.75rem;
 }
 main h2 {
-  border-bottom: .3rem solid var(--b1-light);
+  border-bottom: var(--hr-border);
   padding-bottom: 0.1em;
 }
 
@@ -150,7 +150,7 @@ main h2 {
   justify-content: space-between;
   gap: 1em;
   background: var(--b1-light);
-  border-top: var(--hr-border);
+  border-top: 0.15rem solid var(--b1-medium);
   padding: 0.6em 0.75em 0.75em;
   margin: 1.5em 0 0;
 }
