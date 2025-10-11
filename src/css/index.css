@@ -78,16 +78,16 @@ h1 a::before {
   background-color: color(from var(--link-color) srgb r g b / 0.3);
   border-radius: 0.4em;
   position: absolute;
-  inset: 0.25em -0.25em 0.15em;
-  transform: skew(-15deg, -3deg);
+  inset: 0.25em -0.15em 0.15em;
+  transform: skew(-15deg, -1deg);
   transition: inset 0.3s, transform 0.3s;
 }
 h1 a:hover {
   text-decoration: none;
 }
 h1 a:hover::before {
-  inset: 0.15em -0.25em 0.05em;
-  transform: skew(-3deg, -3deg);
+  inset: 0.15em -0.15em 0.05em;
+  transform: skew(-5deg, -1deg);
 }
 header {
   display: block;
