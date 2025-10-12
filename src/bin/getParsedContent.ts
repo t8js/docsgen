@@ -22,60 +22,65 @@ function buildNav(ctx: Context, dom: JSDOM) {
   let nav: NavItem[] = [];
 
   if (singlePage)
-    nav.push({
+    navItem = {
       id: "Overview",
       title: "Overview",
       items: [],
-    });
-  else {
-    let headings =
-      dom.window.document.body.querySelectorAll("h2, h3, h4, h5, h6");
+    };
 
-    for (let element of headings) {
-      let tagName = element.tagName.toLowerCase();
+  let headings =
+    dom.window.document.body.querySelectorAll("h2, h3, h4, h5, h6");
 
-      let isSectionTitle = tagName === "h2";
-      let isSubsectionTitle = tagName === "h3";
+  for (let element of headings) {
+    let tagName = element.tagName.toLowerCase();
 
-      let sectionId = isSectionTitle
-        ? getSlug(element.textContent)
-        : (navItem?.id ?? "");
-      let elementId = element.id;
+    let isSectionTitle = tagName === "h2";
+    let isSubsectionTitle = tagName === "h3";
 
-      if (!elementId)
-        elementId = getSlug(element.textContent)
-          .toLowerCase()
-          .replace(/_/g, "-");
+    let sectionId = isSectionTitle
+      ? getSlug(element.textContent)
+      : (navItem?.id ?? "");
+    let elementId = element.id;
 
-      if (elementId) {
-        element.id = elementId;
+    if (!elementId)
+      elementId = getSlug(element.textContent)
+        .toLowerCase()
+        .replace(/_/g, "-");
 
-        let link = `${root}${contentDir}/${sectionId}`;
+    if (elementId) {
+      element.id = elementId;
 
-        if (!isSectionTitle) link += `#${elementId}`;
+      let link = `${root}${contentDir}/${sectionId}`;
 
-        linkMap[`#${elementId}`] = link;
-      }
+      if (!isSectionTitle) link += `#${elementId}`;
 
-      if (isSectionTitle) {
-        if (navItem) nav.push(navItem);
-
-        navItem = {
-          id: getSlug(element.textContent),
-          title: element.innerHTML.trim(),
-          items: [],
-        };
-      } else if (isSubsectionTitle) {
-        if (navItem)
-          navItem.items.push({
-            id: getSlug(element.textContent),
-            title: element.innerHTML.trim(),
-          });
-      }
+      linkMap[`#${elementId}`] = link;
     }
 
-    if (navItem) nav.push(navItem);
+    if (singlePage && isSectionTitle) {
+      if (navItem)
+        navItem.items.push({
+          id: getSlug(element.textContent),
+          title: element.innerHTML.trim(),
+        });
+    } else if (isSectionTitle) {
+      if (navItem) nav.push(navItem);
+
+      navItem = {
+        id: getSlug(element.textContent),
+        title: element.innerHTML.trim(),
+        items: [],
+      };
+    } else if (isSubsectionTitle) {
+      if (navItem)
+        navItem.items.push({
+          id: getSlug(element.textContent),
+          title: element.innerHTML.trim(),
+        });
+    }
   }
+
+  if (navItem) nav.push(navItem);
 
   return {
     nav,
