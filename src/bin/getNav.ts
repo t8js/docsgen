@@ -32,24 +32,35 @@ export async function getNav(ctx: Context, navItems: NavItem[]) {
 
   let navItemCount = 0;
 
-  for (let { id, title, items } of navItems) {
+  if (navItems.length === 1) {
+    let { id, items } = navItems[0];
     let itemLink = `${root}${contentDir}/${encodeURIComponent(id)}`;
 
-    s += `\n<li data-id="${id}"><a href="${itemLink}">${title}</a>`;
+    for (let { id, title } of items) {
+      s += `\n<li><a href="${itemLink}#${encodeURIComponent(id)}">${title}</a></li>`;
+      navItemCount++;
+    }
+  }
+  else {
+    for (let { id, title, items } of navItems) {
+      let itemLink = `${root}${contentDir}/${encodeURIComponent(id)}`;
 
-    if (items.length !== 0) {
-      s += "\n  <ul>";
+      s += `\n<li data-id="${id}"><a href="${itemLink}">${title}</a>`;
 
-      for (let { id, title } of items) {
-        s += `\n    <li><a href="${itemLink}#${encodeURIComponent(id)}">${title}</a></li>`;
-        navItemCount++;
+      if (items.length !== 0) {
+        s += "\n  <ul>";
+
+        for (let { id, title } of items) {
+          s += `\n    <li><a href="${itemLink}#${encodeURIComponent(id)}">${title}</a></li>`;
+          navItemCount++;
+        }
+
+        s += "\n  </ul>\n";
       }
 
-      s += "\n  </ul>\n";
+      s += "</li>";
+      navItemCount++;
     }
-
-    s += "</li>";
-    navItemCount++;
   }
 
   if ((!s || navItemCount < 2) && !navContent) return "";
