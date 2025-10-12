@@ -30,26 +30,29 @@ export async function getNav(ctx: Context, navItems: NavItem[]) {
     navContent = navDom.innerHTML;
   }
 
-  if (navItems.length > 1) {
-    for (let { id, title, items } of navItems) {
-      let itemLink = `${root}${contentDir}/${encodeURIComponent(id)}`;
+  let navItemCount = 0;
 
-      s += `\n<li data-id="${id}"><a href="${itemLink}">${title}</a>`;
+  for (let { id, title, items } of navItems) {
+    let itemLink = `${root}${contentDir}/${encodeURIComponent(id)}`;
 
-      if (items.length !== 0) {
-        s += "\n  <ul>";
+    s += `\n<li data-id="${id}"><a href="${itemLink}">${title}</a>`;
 
-        for (let { id, title } of items)
-          s += `\n    <li><a href="${itemLink}#${encodeURIComponent(id)}">${title}</a></li>`;
+    if (items.length !== 0) {
+      s += "\n  <ul>";
 
-        s += "\n  </ul>\n";
+      for (let { id, title } of items) {
+        s += `\n    <li><a href="${itemLink}#${encodeURIComponent(id)}">${title}</a></li>`;
+        navItemCount++;
       }
 
-      s += "</li>";
+      s += "\n  </ul>\n";
     }
+
+    s += "</li>";
+    navItemCount++;
   }
 
-  if (!s && !navContent) return "";
+  if ((!s || navItemCount < 2) && !navContent) return "";
 
   s = s.trim() ? `<section><ul>${s}\n</ul></section>` : "";
 
