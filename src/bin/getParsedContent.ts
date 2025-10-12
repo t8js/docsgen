@@ -41,9 +41,10 @@ function buildNav(ctx: Context, dom: JSDOM) {
     let sectionId = isSectionTitle ? slug : (navItem?.id ?? "");
     let link = `${root}${contentDir}/${sectionId}`;
 
-    if (!isSectionTitle) link += `#${slug}`;
+    let elementId = element.id || slug.toLowerCase().replace(/_/g, "-");
 
-    linkMap[`#${slug}`] = link;
+    if (elementId)
+      linkMap[`#${elementId}`] = `${link}${isSectionTitle ? "" : `#${slug}`}`;
 
     if (singlePage && isSectionTitle) {
       if (navItem) {
@@ -54,8 +55,6 @@ function buildNav(ctx: Context, dom: JSDOM) {
         });
       }
     } else if (isSectionTitle) {
-      element.id = slug;
-
       if (navItem) nav.push(navItem);
 
       navItem = {
