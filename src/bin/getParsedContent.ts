@@ -36,47 +36,41 @@ function buildNav(ctx: Context, dom: JSDOM) {
 
     let isSectionTitle = tagName === "h2";
     let isSubsectionTitle = tagName === "h3";
+    let slug = getSlug(element.textContent);
 
-    let sectionId = isSectionTitle
-      ? getSlug(element.textContent)
-      : (navItem?.id ?? "");
-    let elementId = element.id;
+    let sectionId = isSectionTitle ? slug : (navItem?.id ?? "");
+    let link = `${root}${contentDir}/${sectionId}`;
 
-    if (!elementId)
-      elementId = getSlug(element.textContent)
-        .toLowerCase()
-        .replace(/_/g, "-");
+    if (!isSectionTitle) link += `#${slug}`;
 
-    if (elementId) {
-      element.id = elementId;
-
-      let link = `${root}${contentDir}/${sectionId}`;
-
-      if (!isSectionTitle) link += `#${elementId}`;
-
-      linkMap[`#${elementId}`] = link;
-    }
+    linkMap[`#${slug}`] = link;
 
     if (singlePage && isSectionTitle) {
-      if (navItem)
+      if (navItem) {
+        element.id = slug;
         navItem.items.push({
-          id: getSlug(element.textContent),
+          id: slug,
           title: element.innerHTML.trim(),
         });
+      }
     } else if (isSectionTitle) {
+      element.id = slug;
+
       if (navItem) nav.push(navItem);
 
       navItem = {
-        id: getSlug(element.textContent),
+        id: slug,
         title: element.innerHTML.trim(),
         items: [],
       };
     } else if (isSubsectionTitle) {
-      if (navItem)
+      if (navItem) {
+        element.id = slug;
         navItem.items.push({
-          id: getSlug(element.textContent),
+          id: slug,
           title: element.innerHTML.trim(),
         });
+      }
     }
   }
 
