@@ -141,7 +141,7 @@ section + section {
   flex-direction: column;
   align-self: stretch;
   justify-content: center;
-  border-left: 0.1em solid var(--b1-medium);
+  border-left: 0.1em solid var(--b1-light);
 }
 section.intro-title {
   text-align: center;
@@ -169,40 +169,42 @@ section.intro-title {
 .features {
   --link-color: color(from var(--c0) srgb r g b / 0.55);
   --link-decoration: underline;
+  --list-padding-x: 1.25rem;
+  --list-item-padding-x: .35rem;
 
   margin: 2em 0;
 }
-@media (max-width: 840px) {
-  .features {
-    padding: 0;
-    margin: 0;
-  }
-}
 .features h2 {
-  font-size: 1.5em;
+  font-size: 1.25em;
   font-style: italic;
-  text-align: center;
   border: none;
-  padding: 0.1em 0;
+  padding: 0.1em calc(var(--list-padding-x) + var(--list-item-padding-x));
   margin: 0.75em 0 0.5em;
 }
 .features > ul {
-  list-style: none;
+  list-style: circle;
   padding: 0;
+  padding-inline-start: var(--list-padding-x);
   margin: 0.5em 0 0;
 }
 .features > ul > li {
-  background: var(--b1-light);
-  border-bottom: 0.25em solid var(--b1-medium);
-  border-radius: 0.5em;
-  padding: 0.9em 1.2em;
-  margin: 1em 0;
+  padding: 0.25em var(--list-item-padding-x);
+  margin: 0;
   box-sizing: border-box;
 }
+.features > ul > li + li {
+  border-top: 0.15em solid var(--b1-light);
+}
 @media (max-width: 840px) {
+  .features {
+    padding: 0 .5em;
+    margin: 0;
+  }
+  .features h2 {
+    text-align: center;
+  }
   .features > ul > li {
     width: 100%;
-    margin: 0.5em 0;
   }
 }
 .features > ul > li > ul {
