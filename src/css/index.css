@@ -167,7 +167,8 @@ section.intro-title {
     padding-top: 2em;
     padding-bottom: 0;
   }
-  section.intro {
+  section.intro,
+  section.intro-title:last-child {
     padding-bottom: 2.5em;
   }
 }
