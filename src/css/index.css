@@ -42,6 +42,11 @@ body {
   align-items: center;
   justify-content: center;
 }
+@media (max-width: 840px) {
+  .layout {
+    min-height: 100vh;
+  }
+}
 
 main {
   --max-content-width: 32em;
