@@ -10,10 +10,7 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --g0: color(
-      from var(--b1) srgb calc(0.5 * r + 0.3) calc(0.5 * g + 0.3)
-        calc(0.5 * b + 0.3)
-    );
+    --g0: color(from var(--b1) srgb calc(0.65 * r + .1) calc(0.65 * g + .15) calc(0.65 * b + .2));
     --g1: color(
       from var(--g0) srgb calc(1.2 * g - 0.3) calc(1.3 * b - 0.3)
         calc(1.5 * r - 0.3)
@@ -50,7 +47,7 @@ body {
 
 main {
   --max-content-width: 32em;
-  --line-color: color(from var(--b1) srgb r g b / 0.2);
+  --line-color: color(from var(--c0) srgb r g b / 0.1);
 
   display: flex;
   width: 100%;
