@@ -94,7 +94,7 @@ function getSectionPostprocess(linkMap: Record<string, string | undefined>) {
 
     s = s.replace(/<a href="([^"]+)">/g, (_, url) => {
       let nextURL = linkMap[url] ?? url;
-      let attrs = /^(https?:)?\/\//.test(nextURL) ? " target=\"_blank\"" : "";
+      let attrs = /^(https?:)?\/\//.test(nextURL) ? ' target="_blank"' : "";
 
       return `<a href="${nextURL}"${attrs}>`;
     });

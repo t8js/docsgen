@@ -10,7 +10,10 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --g0: color(from var(--b1) srgb calc(0.65 * r + .1) calc(0.65 * g + .15) calc(0.65 * b + .2));
+    --g0: color(
+      from var(--b1) srgb calc(0.65 * r + 0.1) calc(0.65 * g + 0.15)
+        calc(0.65 * b + 0.2)
+    );
     --g1: color(
       from var(--g0) srgb calc(1.2 * g - 0.3) calc(1.3 * b - 0.3)
         calc(1.5 * r - 0.3)
@@ -86,7 +89,9 @@ h1 a::before {
   position: absolute;
   inset: 0.25em -0.15em 0.15em;
   transform: skew(-15deg, -1deg);
-  transition: inset 0.3s, transform 0.3s;
+  transition:
+    inset 0.3s,
+    transform 0.3s;
 }
 h1 a:hover {
   text-decoration: none;
@@ -174,7 +179,7 @@ section.intro-title {
   --link-color: color(from var(--c0) srgb r g b / 0.55);
   --link-decoration: underline;
   --list-padding-x: 1.25rem;
-  --list-item-padding-x: .35rem;
+  --list-item-padding-x: 0.35rem;
 
   margin: 2em 0;
 }
@@ -201,7 +206,7 @@ section.intro-title {
 }
 @media (max-width: 840px) {
   .features {
-    padding: 0 .5em;
+    padding: 0 0.5em;
     margin: 0;
   }
   .features h2 {

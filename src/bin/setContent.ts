@@ -13,8 +13,8 @@ import { getNav } from "./getNav";
 import { getParsedContent } from "./getParsedContent";
 import { getRepoLink } from "./getRepoLink";
 import { getTitle } from "./getTitle";
-import { toFileContent } from "./toFileContent";
 import { stripHTML } from "./stripHTML";
+import { toFileContent } from "./toFileContent";
 
 const exec = promisify(defaultExec);
 
@@ -153,7 +153,7 @@ ${navContent.replace(
 
 ${
   content.includes("<pre><code ")
-    ? (getInjectedContent(ctx, "section", ":has-code") || defaultCodeStyleContent)
+    ? getInjectedContent(ctx, "section", ":has-code") || defaultCodeStyleContent
     : ""
 }
 ${counterContent}
@@ -217,7 +217,7 @@ ${
 
 ${
   [description, features].some((s) => s.includes("<pre><code "))
-    ? (getInjectedContent(ctx, "index", ":has-code") || defaultCodeStyleContent)
+    ? getInjectedContent(ctx, "index", ":has-code") || defaultCodeStyleContent
     : ""
 }
 ${counterContent}

@@ -40,8 +40,7 @@ export async function getNav(ctx: Context, navItems: NavItem[]) {
       s += `\n<li><a href="${itemLink}#${encodeURIComponent(id)}">${title}</a></li>`;
       navItemCount++;
     }
-  }
-  else {
+  } else {
     for (let { id, title, items } of navItems) {
       let itemLink = `${root}${contentDir}/${encodeURIComponent(id)}`;
 
