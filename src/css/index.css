@@ -50,6 +50,7 @@ body {
 
 main {
   --max-content-width: 32em;
+  --line-color: color(from var(--b1) srgb r g b / 0.2);
 
   display: flex;
   width: 100%;
@@ -146,7 +147,7 @@ section + section {
   flex-direction: column;
   align-self: stretch;
   justify-content: center;
-  border-left: 0.1em solid var(--b1-light);
+  border-left: 0.1em solid var(--line-color);
 }
 section.intro-title {
   text-align: center;
@@ -199,7 +200,7 @@ section.intro-title {
   box-sizing: border-box;
 }
 .features > ul > li + li {
-  border-top: 0.15em solid var(--b1-light);
+  border-top: 0.15em solid var(--line-color);
 }
 @media (max-width: 840px) {
   .features {
