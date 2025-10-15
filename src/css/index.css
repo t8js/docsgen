@@ -9,11 +9,15 @@
   }
 }
 html {
-  background: linear-gradient(to bottom right, var(--g0), var(--g1) 60%) 50% 50%/cover no-repeat;
+  background:
+    linear-gradient(to bottom right, var(--g0), var(--g1) 60%) 50% 50% / cover
+    no-repeat;
 }
 @media (max-width: 840px) {
   html {
-    background: linear-gradient(to bottom, var(--g0), var(--g1) 60%) 50% 50%/cover no-repeat;
+    background:
+      linear-gradient(to bottom, var(--g0), var(--g1) 60%) 50% 50% / cover
+      no-repeat;
   }
 }
 body {
