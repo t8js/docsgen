@@ -138,7 +138,7 @@ section.intro-title {
     padding: var(--content-padding-y) var(--content-padding-x);
   }
   section + section {
-    display: block;
+    align-items: center;
     border-left: none;
   }
   section.intro-title {
