@@ -114,7 +114,6 @@ header {
 }
 
 section {
-  width: 50%;
   max-width: var(--max-content-width);
   padding: 0 2.5em;
   box-sizing: border-box;
