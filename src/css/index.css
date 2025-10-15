@@ -1,5 +1,19 @@
+:root {
+  --g0: hsl(from var(--b1) calc(h + 250) calc(2*s) calc(.9*l));
+  --g1: hsl(from var(--b1) h s calc(.9*l));
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --g0: hsl(from var(--b1) calc(h + 270) calc(2*s) calc(.9*l));
+  }
+}
 html {
-  background: var(--b1);
+  background: linear-gradient(to bottom right, var(--g0), var(--g1) 60%);
+}
+@media (max-width: 840px) {
+  html {
+    background: linear-gradient(to bottom, var(--g0), var(--g1) 60%);
+  }
 }
 body {
   min-height: 100vh;
