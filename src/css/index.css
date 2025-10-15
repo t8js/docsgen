@@ -1,10 +1,10 @@
 :root {
-  --g0: hsl(from var(--b1) calc(h + 250) calc(2*s) calc(.9*l));
-  --g1: hsl(from var(--b1) h s calc(.9*l));
+  --g0: hsl(from var(--b1) calc(h + 250) calc(2 * s) calc(0.9 * l));
+  --g1: hsl(from var(--b1) h s calc(0.9 * l));
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --g0: hsl(from var(--b1) calc(h + 270) calc(2*s) calc(.9*l));
+    --g0: hsl(from var(--b1) calc(h + 270) calc(2 * s) calc(0.9 * l));
   }
 }
 html {
