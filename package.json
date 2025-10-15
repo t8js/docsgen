@@ -21,7 +21,7 @@
     "type": "git",
     "url": "git+https://github.com/t8js/docsgen.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "author": "axtk",
   "devDependencies": {
     "@types/jsdom": "^27.0.0",
