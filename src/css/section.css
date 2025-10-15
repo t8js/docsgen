@@ -17,7 +17,7 @@
   flex: none;
   align-self: flex-start;
   font-size: 0.9em;
-  background: var(--b1-light);
+  background: var(--overlay-background-color);
   padding: 0.5rem var(--content-padding-x) 0.65rem;
   margin: 0 0 0 var(--space-x);
   box-sizing: border-box;
@@ -26,7 +26,7 @@
   .body > nav {
     width: 100%;
     font-size: inherit;
-    border-top: 0.35em solid var(--b1);
+    border-top: 0.35em solid var(--overlay-border-color);
     padding: 0.25rem var(--content-padding-x) 0.35rem;
     margin: 0;
   }
@@ -35,10 +35,10 @@
   padding: 1rem 0;
 }
 .body > nav section + section {
-  border-top: 0.05rem solid var(--b1);
+  border-top: 0.05rem solid var(--overlay-border-color);
 }
 .body > nav section.related {
-  border-top: 0.15rem double var(--b1);
+  border-top: 0.15rem double var(--overlay-border-color);
 }
 .body > nav h2,
 .body > nav p.title {
@@ -60,7 +60,7 @@
   margin: 0;
 }
 .body > nav > ul + ul {
-  border-top: 0.05rem solid var(--b1);
+  border-top: 0.05rem solid var(--overlay-border-color);
   padding-top: 1.2em;
   margin-top: 1.5em;
 }
@@ -149,8 +149,8 @@ main h2 {
   display: flex;
   justify-content: space-between;
   gap: 1em;
-  background: var(--b1-light);
-  border-top: 0.15rem solid var(--b1-medium);
+  background: var(--overlay-background-color);
+  border-top: 0.15rem solid var(--overlay-border-color);
   padding: 0.6em 0.75em 0.75em;
   margin: 1.5em 0 0;
 }

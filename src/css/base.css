@@ -1,20 +1,14 @@
 :root {
   color-scheme: light dark;
 
+  --default-base-color: light-dark(#ddd, #555);
   --b0: light-dark(white, #1a1a1a);
-  --b1: var(--base-color, gray);
+  --b1: var(--base-color, var(--default-base-color));
   --link-color: light-dark(royalblue, deepskyblue);
   --button-color: light-dark(royalblue, royalblue);
 
-  --b1-light: color(from var(--b1) srgb r g b / 0.12);
-  --b1-medium: color(
-    from var(--b1) srgb calc(0.8 * r) calc(0.8 * g) calc(0.8 * b) /
-    0.5
-  );
-  --b1-heavy: color(
-    from var(--b1) srgb calc(0.35 * r) calc(0.35 * g) calc(0.35 * b) /
-    0.9
-  );
+  --overlay-background-color: color(from var(--b1) srgb r g b / 0.5);
+  --overlay-border-color: hsl(from var(--b1) h s calc(.75*l));
 
   --c0: oklch(from var(--b0) calc(100 * (0.78 - l)) 0 0 / 0.82);
   --c1: oklch(from var(--b1) calc(100 * (0.78 - l)) 0 0 / 0.82);
@@ -32,7 +26,7 @@
   --content-padding-y: 1.75rem;
   --space-x: var(--content-padding-x);
   --block-margin-y: 1em;
-  --hr-border: 0.3rem solid var(--b1-light);
+  --hr-border: 0.3rem solid var(--overlay-background-color);
 
   font-size: 100%;
   font-family: sans-serif;
@@ -40,6 +34,12 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     */
   line-height: 1.45;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --overlay-background-color: color(from var(--b1) srgb r g b / 0.75);
+    --overlay-border-color: hsl(from var(--b1) h s calc(1.5*l));
+  }
 }
 html {
   color: var(--c0);
@@ -215,7 +215,7 @@ pre > code {
 
 html.blank h1 {
   font-size: 10vmin;
-  color: var(--b1-light);
+  color: var(--overlay-background-color);
 }
 html.blank .layout {
   display: flex;
