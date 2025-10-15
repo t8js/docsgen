@@ -1,9 +1,19 @@
-html {
-  background: hsl(from var(--b1) h 20% 80%);
+:root {
+  --g0: hsl(from var(--b1) calc(h + 240) 80% 70%);
+  --g1: hsl(from var(--b1) calc(h - 30) 40% 70%);
 }
 @media (prefers-color-scheme: dark) {
+  :root {
+    --g0: hsl(from var(--b1) calc(h + 50) 40% 30%);
+    --g1: hsl(from var(--b1) calc(h - 10) 40% 40%);
+  }
+}
+html {
+  background: linear-gradient(to bottom right, var(--g0), var(--g1) 60%) 50% 50%/cover no-repeat;
+}
+@media (max-width: 840px) {
   html {
-    background: hsl(from var(--b1) h 15% 40%);
+    background: linear-gradient(to bottom, var(--g0), var(--g1) 60%) 50% 50%/cover no-repeat;
   }
 }
 body {
