@@ -6,9 +6,9 @@
   --b1: var(--base-color, var(--default-base-color));
   --link-color: light-dark(royalblue, deepskyblue);
   --button-color: light-dark(royalblue, royalblue);
-
-  --overlay-background-color: color(from var(--b1) srgb r g b / 0.5);
-  --overlay-border-color: hsl(from var(--b1) h s calc(0.75 * l));
+  
+  --overlay-background-color: hsl(from var(--b1) h 50% 50% / .2);
+  --overlay-border-color: hsl(from var(--b1) h 60% 60% / .7);
 
   --c0: oklch(from var(--b0) calc(100 * (0.78 - l)) 0 0 / 0.82);
   --c1: oklch(from var(--b1) calc(100 * (0.78 - l)) 0 0 / 0.82);
@@ -34,12 +34,6 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     */
   line-height: 1.45;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --overlay-background-color: color(from var(--b1) srgb r g b / 0.75);
-    --overlay-border-color: hsl(from var(--b1) h s calc(1.5 * l));
-  }
 }
 html {
   color: var(--c0);
