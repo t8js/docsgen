@@ -8,7 +8,7 @@
   --button-color: light-dark(royalblue, royalblue);
 
   --overlay-background-color: color(from var(--b1) srgb r g b / 0.5);
-  --overlay-border-color: hsl(from var(--b1) h s calc(.75*l));
+  --overlay-border-color: hsl(from var(--b1) h s calc(0.75 * l));
 
   --c0: oklch(from var(--b0) calc(100 * (0.78 - l)) 0 0 / 0.82);
   --c1: oklch(from var(--b1) calc(100 * (0.78 - l)) 0 0 / 0.82);
@@ -38,7 +38,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --overlay-background-color: color(from var(--b1) srgb r g b / 0.75);
-    --overlay-border-color: hsl(from var(--b1) h s calc(1.5*l));
+    --overlay-border-color: hsl(from var(--b1) h s calc(1.5 * l));
   }
 }
 html {
