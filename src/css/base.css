@@ -6,9 +6,9 @@
   --b1: var(--base-color, var(--default-base-color));
   --link-color: light-dark(royalblue, deepskyblue);
   --button-color: light-dark(royalblue, royalblue);
-  
-  --overlay-background-color: hsl(from var(--b1) h 50% 50% / .2);
-  --overlay-border-color: hsl(from var(--b1) h 60% 60% / .7);
+
+  --overlay-background-color: hsl(from var(--b1) h 50% 50% / 0.2);
+  --overlay-border-color: hsl(from var(--b1) h 60% 60% / 0.7);
 
   --c0: oklch(from var(--b0) calc(100 * (0.78 - l)) 0 0 / 0.82);
   --c1: oklch(from var(--b1) calc(100 * (0.78 - l)) 0 0 / 0.82);
