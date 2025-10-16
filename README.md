@@ -1,9 +1,5 @@
-# @t8/docsgen
-
-*Generates docs from READMEs*
-
 ```sh
-# with specified docs entries (e.g. in docsgen.config.json)
+# with specified entries (e.g. in docsgen.config.json)
 npx @t8/docsgen [...<entry id or dir>]
 
 # without entries
