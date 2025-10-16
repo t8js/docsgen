@@ -173,19 +173,21 @@ section.intro .section-content {
     max-width: auto;
     padding: var(--content-padding-y) var(--content-padding-x);
   }
+  section.intro-title .section-content {
+    min-height: auto;
+    padding-top: 2em;
+    padding-bottom: 1.5em;
+  }
+  section.intro-title:last-child .section-content {
+    padding-bottom: 2.5em;
+  }
   section.intro {
     flex: auto;
     justify-content: flex-start;
     align-items: center;
+  }
+  section.intro .section-content {
     padding-top: 0.5em;
-  }
-  section.intro-title .section-content {
-    min-height: auto;
-    padding-top: 2em;
-    padding-bottom: 0;
-  }
-  section.intro-title:last-child .section-content {
-    padding-bottom: 2.5em;
   }
 }
 .features {
