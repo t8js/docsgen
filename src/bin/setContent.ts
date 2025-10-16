@@ -232,7 +232,7 @@ ${
 </div>
 
 ${
-  [description, features].some((s) => s.includes("<pre><code "))
+  [description, intro, features].some((s) => s.includes("<pre><code "))
     ? getInjectedContent(ctx, "index", ":has-code") || defaultCodeStyleContent
     : ""
 }
