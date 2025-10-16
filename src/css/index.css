@@ -53,7 +53,8 @@ main {
   main {
     --max-content-width: 100%;
 
-    display: block;
+    min-height: 100vh;
+    flex-direction: column;
     margin: 0;
   }
 }
@@ -173,15 +174,16 @@ section.intro .section-content {
     padding: var(--content-padding-y) var(--content-padding-x);
   }
   section.intro {
+    flex: auto;
+    justify-content: flex-start;
     align-items: center;
-    background: none transparent;
+    padding-top: .5em;
   }
   section.intro-title .section-content {
     min-height: auto;
     padding-top: 2em;
     padding-bottom: 0;
   }
-  section.intro .section-content,
   section.intro-title:last-child .section-content {
     padding-bottom: 2.5em;
   }
