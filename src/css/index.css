@@ -171,15 +171,15 @@ section.intro .section-content {
   }
   section .section-content {
     max-width: auto;
-    padding: var(--content-padding-y) var(--content-padding-x);
+    padding: 1rem 1.35rem;
   }
   section.intro-title .section-content {
-    min-height: auto;
-    padding-top: 2em;
-    padding-bottom: 1.5em;
+    min-height: 60vh;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
   }
   section.intro-title:last-child .section-content {
-    padding-bottom: 2.5em;
+    padding-bottom: 2.5rem;
   }
   section.intro {
     flex: auto;
@@ -187,7 +187,7 @@ section.intro .section-content {
     align-items: center;
   }
   section.intro .section-content {
-    padding-top: 0.5em;
+    padding-top: 0.5rem;
   }
 }
 .features {
@@ -220,10 +220,6 @@ section.intro .section-content {
   border-top: 0.15em solid var(--line-color);
 }
 @media (max-width: 840px) {
-  .features {
-    padding: 0 0.5em;
-    margin: 0;
-  }
   .features h2 {
     text-align: center;
   }

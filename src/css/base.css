@@ -167,9 +167,6 @@ footer {
 main {
   box-sizing: border-box;
 }
-main h2:first-child {
-  margin-top: 0;
-}
 main ul {
   padding: 0;
   padding-inline-start: 1.5em;
