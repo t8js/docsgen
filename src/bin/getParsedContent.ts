@@ -216,8 +216,8 @@ export async function getParsedContent(ctx: Context) {
       intro[i].endsWith("</p>")
     ) {
       let s = intro[i].replace(
-        /<br>\r?\n(\s*)/g,
-        '</span><br>$1<span class="li">',
+        /<br>(\r?\n)?(\s*)/g,
+        '</span><br>$1$2<span class="li">',
       );
 
       intro[i] = `<p><span class="li">${s}</span></p>`;
