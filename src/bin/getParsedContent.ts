@@ -201,8 +201,7 @@ export async function getParsedContent(ctx: Context) {
     description = [];
   }
 
-  if (intro.at(-1) === "<hr>")
-    intro.pop();
+  if (intro.at(-1) === "<hr>") intro.pop();
 
   return {
     badges: postprocessBadges(joinLines(badges)),
