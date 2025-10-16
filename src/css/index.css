@@ -139,6 +139,9 @@ section .section-content {
   box-sizing: border-box;
 }
 section.intro-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 section.intro-title .section-content {
