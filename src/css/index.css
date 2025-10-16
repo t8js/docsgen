@@ -247,3 +247,8 @@ p.installation {
 .installation code {
   background: transparent;
 }
+
+.li {
+  display: inline-block;
+  margin: .25em 0;
+}
