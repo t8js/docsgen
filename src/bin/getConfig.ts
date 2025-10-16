@@ -72,7 +72,12 @@ export async function getConfig(): Promise<Config> {
 
   if (config.entries)
     config.entries = await Promise.all(config.entries.map(reviseConfig));
-  else config = await reviseConfig(config);
+  else {
+    if (targetId && !config.dir)
+      config.dir = targetId;
+
+    config = await reviseConfig(config);
+  }
 
   return config;
 }
