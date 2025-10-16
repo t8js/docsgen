@@ -59,8 +59,7 @@ export async function getConfig(): Promise<Config> {
   let args = process.argv.slice(2);
   let targetArgs: string[] = [];
 
-  while (args[0] && !args[0].startsWith("--"))
-    targetArgs.push(args.shift()!);
+  while (args[0] && !args[0].startsWith("--")) targetArgs.push(args.shift()!);
 
   config = {
     mainBranch: "main",
@@ -73,13 +72,12 @@ export async function getConfig(): Promise<Config> {
   if (config.entries) {
     config.targetIds = targetArgs;
     config.entries = await Promise.all(config.entries.map(reviseConfig));
-  }
-  else {
+  } else {
     if (!config.dir)
-      config.dir = targetArgs.find(arg => !/^https?:\/\//.test(arg));
+      config.dir = targetArgs.find((arg) => !/^https?:\/\//.test(arg));
 
     if (!config.repo)
-      config.repo = targetArgs.find(arg => /^https?:\/\//.test(arg));
+      config.repo = targetArgs.find((arg) => /^https?:\/\//.test(arg));
 
     config = await reviseConfig(config);
   }

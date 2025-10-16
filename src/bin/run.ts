@@ -5,14 +5,16 @@ import { runEntry } from "./runEntry";
 async function run() {
   let { targetIds, entries, ...rootCtx } = await getConfig();
 
-  if (!entries)
-    return await runEntry(rootCtx);
+  if (!entries) return await runEntry(rootCtx);
 
-  let targetEntries = targetIds && targetIds.length !== 0
-    ? entries.filter(({ id, dir }) => {
-        return (id && targetIds.includes(id)) || (dir && targetIds.includes(dir));
-      })
-    : entries;
+  let targetEntries =
+    targetIds && targetIds.length !== 0
+      ? entries.filter(({ id, dir }) => {
+          return (
+            (id && targetIds.includes(id)) || (dir && targetIds.includes(dir))
+          );
+        })
+      : entries;
 
   await Promise.all(
     targetEntries.map((entryCtx) => runEntry({ ...rootCtx, ...entryCtx })),
