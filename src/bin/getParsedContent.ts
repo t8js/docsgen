@@ -132,6 +132,7 @@ export async function getParsedContent(ctx: Context) {
   let badges: string[] = [];
   let title = "";
   let description: string[] = [];
+  let intro: string[] = [];
   let features: string[] = [];
   let note: string[] = [];
   let installation = "";
@@ -170,7 +171,8 @@ export async function getParsedContent(ctx: Context) {
           let installationCode = getInstallationCode(element);
 
           if (installationCode) installation = installationCode;
-          else description.push(outerHTML);
+          else if (description.length === 0) description.push(outerHTML);
+          else intro.push(outerHTML);
         }
       } else {
         let installationCode = getInstallationCode(element);
@@ -190,10 +192,16 @@ export async function getParsedContent(ctx: Context) {
     ...linkMap,
   });
 
+  if (intro.length !== 0 && description.length !== 0 && !description[0].startsWith("<p><em>")) {
+    intro.unshift(description[0]);
+    description = [];
+  }
+
   return {
     badges: postprocessBadges(joinLines(badges)),
     title,
     description: joinLines(description),
+    intro: joinLines(intro),
     features: joinLines(features),
     note: joinLines(note),
     installation,

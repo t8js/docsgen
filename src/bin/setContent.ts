@@ -35,6 +35,7 @@ export async function setContent(ctx: Context) {
   let counterContent = getCounterContent(ctx);
   let escapedName = escapeHTML(name);
   let escapedTitle = title ? escapeHTML(title) : escapedName;
+  let escapedPackageDescription = escapeHTML(packageDescription);
 
   let packageVersion = (await exec(`npm view ${packageName} version`)).stdout
     .trim()
@@ -88,7 +89,7 @@ ${getInjectedContent(ctx, "redirect", "body")}
     return;
   }
 
-  let { badges, description, features, installation, sections, nav } =
+  let { badges, description, intro, features, installation, sections, nav } =
     await getParsedContent(ctx);
 
   let navContent = await getNav(ctx, nav);
@@ -171,8 +172,8 @@ ${getInjectedContent(ctx, "section", "body")}
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="${escapedTitle}${packageDescription ? `: ${escapeHTML(packageDescription)}` : ""}">
-  <title>${escapedTitle}${packageDescription ? ` | ${escapeHTML(packageDescription)}` : ""}</title>
+  <meta name="description" content="${escapedTitle}${escapedPackageDescription ? `: ${escapedPackageDescription}` : ""}">
+  <title>${escapedTitle}${escapedPackageDescription ? ` | ${escapedPackageDescription}` : ""}</title>
   <link rel="stylesheet" href="${packageUrl}/dist/css/base.css">
   <link rel="stylesheet" href="${packageUrl}/dist/css/index.css">
   ${iconTag}
@@ -189,7 +190,7 @@ ${getInjectedContent(ctx, "section", "body")}
   </div>
   <h1>${getTitle(ctx, { cover: true })}</h1>
   <div class="description">
-    ${description}
+    ${description || (escapedPackageDescription ? `<p><em>${escapedPackageDescription}</em><p>` : "")}
   </div>
   <p class="actions">
     <a href="${root}start" class="primary button">Docs</a>
@@ -201,13 +202,20 @@ ${getInjectedContent(ctx, "section", "body")}
   <script>document.querySelectorAll(".badges img").forEach(img=>{let c=img.closest(".badge");if(c){if(img.complete)c.classList.add("loaded");else{img.onload=()=>{c.classList.add("loaded");};img.onerror=()=>{c.classList.add("failed");};}}});</script>
 </section>
 ${
-  features
+  intro || features
     ? `
 <section class="intro">
+${intro ? `
+  <div class="intro-content">
+    ${intro}
+  </div>
+` : ""}
+${features ? `
   <div class="features">
     <h2>Features</h2>
     ${features}
   </div>
+` : ""}
 </section>
 `
     : ""
