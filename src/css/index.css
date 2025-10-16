@@ -177,7 +177,7 @@ section.intro .section-content {
     flex: auto;
     justify-content: flex-start;
     align-items: center;
-    padding-top: .5em;
+    padding-top: 0.5em;
   }
   section.intro-title .section-content {
     min-height: auto;
