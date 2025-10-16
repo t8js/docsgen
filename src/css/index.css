@@ -157,7 +157,7 @@ section.intro {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: color(from var(--c0) srgb r g b / .05);
+  background: color(from var(--c0) srgb r g b / 0.05);
 }
 section.intro .section-content {
   width: 100%;
