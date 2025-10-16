@@ -205,17 +205,25 @@ ${
   intro || features
     ? `
 <section class="intro">
-${intro ? `
+${
+  intro
+    ? `
   <div class="intro-content">
     ${intro}
   </div>
-` : ""}
-${features ? `
+`
+    : ""
+}
+${
+  features
+    ? `
   <div class="features">
     <h2>Features</h2>
     ${features}
   </div>
-` : ""}
+`
+    : ""
+}
 </section>
 `
     : ""

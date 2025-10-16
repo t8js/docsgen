@@ -192,7 +192,11 @@ export async function getParsedContent(ctx: Context) {
     ...linkMap,
   });
 
-  if (intro.length !== 0 && description.length !== 0 && !description[0].startsWith("<p><em>")) {
+  if (
+    intro.length !== 0 &&
+    description.length !== 0 &&
+    !description[0].startsWith("<p><em>")
+  ) {
     intro.unshift(description[0]);
     description = [];
   }
