@@ -89,7 +89,7 @@ ${getInjectedContent(ctx, "redirect", "body")}
     return;
   }
 
-  let { badges, description, intro, features, installation, sections, nav } =
+  let { badges, description, descriptionNote, intro, features, installation, sections, nav } =
     await getParsedContent(ctx);
 
   let navContent = await getNav(ctx, nav);
@@ -192,6 +192,7 @@ ${getInjectedContent(ctx, "section", "body")}
     <h1>${getTitle(ctx, { cover: true })}</h1>
     <div class="description">
       ${description || (escapedPackageDescription ? `<p><em>${escapedPackageDescription}</em><p>` : "")}
+      ${descriptionNote}
     </div>
     <p class="actions">
       <a href="${root}start" class="primary button">Docs</a>
