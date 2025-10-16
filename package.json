@@ -1,6 +1,6 @@
 {
   "name": "@t8/docsgen",
-  "version": "0.1.66",
+  "version": "0.1.67",
   "description": "",
   "main": "dist/bin.js",
   "bin": {
