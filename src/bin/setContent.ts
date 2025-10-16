@@ -185,20 +185,22 @@ ${getInjectedContent(ctx, "section", "body")}
 <div class="layout">
 <main>
 <section class="intro-title">
-  <div class="badges">
-    ${badges}
+  <div class="section-content">
+    <div class="badges">
+      ${badges}
+    </div>
+    <h1>${getTitle(ctx, { cover: true })}</h1>
+    <div class="description">
+      ${description || (escapedPackageDescription ? `<p><em>${escapedPackageDescription}</em><p>` : "")}
+    </div>
+    <p class="actions">
+      <a href="${root}start" class="primary button">Docs</a>
+      <span class="sep"> • </span>
+      ${getRepoLink(ctx, "button")}
+    </p>
+    ${backstory ? `<p class="ref"><a href="${backstory}">Backstory</a></p>` : ""}
+    <p class="installation"><code>${installation}</code></p>
   </div>
-  <h1>${getTitle(ctx, { cover: true })}</h1>
-  <div class="description">
-    ${description || (escapedPackageDescription ? `<p><em>${escapedPackageDescription}</em><p>` : "")}
-  </div>
-  <p class="actions">
-    <a href="${root}start" class="primary button">Docs</a>
-    <span class="sep"> • </span>
-    ${getRepoLink(ctx, "button")}
-  </p>
-  ${backstory ? `<p class="ref"><a href="${backstory}">Backstory</a></p>` : ""}
-  <p class="installation"><code>${installation}</code></p>
   <script>document.querySelectorAll(".badges img").forEach(img=>{let c=img.closest(".badge");if(c){if(img.complete)c.classList.add("loaded");else{img.onload=()=>{c.classList.add("loaded");};img.onerror=()=>{c.classList.add("failed");};}}});</script>
 </section>
 ${
@@ -208,7 +210,7 @@ ${
 ${
   intro
     ? `
-  <div class="intro-content">
+  <div class="section-content">
     ${intro}
   </div>
 `
@@ -217,7 +219,7 @@ ${
 ${
   features
     ? `
-  <div class="features">
+  <div class="features section-content">
     <h2>Features</h2>
     ${features}
   </div>

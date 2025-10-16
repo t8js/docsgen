@@ -38,7 +38,7 @@ body {
 }
 
 main {
-  --max-content-width: 32em;
+  --max-content-width: 36em;
   --line-color: color(from var(--c0) srgb r g b / 0.1);
 
   display: flex;
@@ -46,7 +46,7 @@ main {
   align-items: flex-start;
   justify-content: center;
   padding: 0;
-  margin: 6vh 0;
+  margin: 0;
   box-sizing: border-box;
 }
 @media (max-width: 840px) {
@@ -128,21 +128,34 @@ header {
 }
 
 section {
-  max-width: var(--max-content-width);
-  padding: 0 2.5em;
+  width: 50%;
+  align-self: stretch;
+  padding: 0;
   box-sizing: border-box;
 }
-section + section {
-  display: flex;
-  flex-direction: column;
-  align-self: stretch;
-  justify-content: center;
-  border-left: 0.1em solid var(--line-color);
+section .section-content {
+  max-width: var(--max-content-width);
+  padding: 1em 3.5vw;
+  box-sizing: border-box;
 }
 section.intro-title {
   text-align: center;
+}
+section.intro-title .section-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 95vh;
   padding-top: 4em;
   padding-bottom: 4em;
+}
+section.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+section.intro .section-content {
+  width: 100%;
 }
 @media (max-width: 840px) {
   section {
@@ -150,7 +163,7 @@ section.intro-title {
     max-width: 100%;
     padding: var(--content-padding-y) var(--content-padding-x);
   }
-  section + section {
+  section.intro {
     align-items: center;
     border-left: none;
   }

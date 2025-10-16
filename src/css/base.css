@@ -88,6 +88,7 @@ a.button {
 
   display: inline-block;
   text-decoration: none;
+  text-align: center;
   color: var(--b0);
   background: color(from var(--c0) srgb r g b / 0.65);
   border: 0.075em solid var(--c0);
