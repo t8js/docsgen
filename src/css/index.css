@@ -177,6 +177,7 @@ section.intro .section-content {
     background: none transparent;
   }
   section.intro-title .section-content {
+    min-height: auto;
     padding-top: 2em;
     padding-bottom: 0;
   }
