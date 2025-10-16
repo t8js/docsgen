@@ -209,6 +209,14 @@ export async function getParsedContent(ctx: Context) {
     intro = [];
   }
 
+  for (let i = 0; i < intro.length; i++) {
+    if (intro[i].includes("<br>") && intro[i].startsWith("<p>") && intro[i].endsWith("</p>")) {
+      let s = intro[i].slice(3, -4).split("<br>").join("</span><br><span class=\"li\">");
+
+      intro[i] = `<p><span class="li">${s}</span></p>`;
+    }
+  }
+
   return {
     badges: postprocessBadges(joinLines(badges)),
     title,
