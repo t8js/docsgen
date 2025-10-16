@@ -89,8 +89,16 @@ ${getInjectedContent(ctx, "redirect", "body")}
     return;
   }
 
-  let { badges, description, descriptionNote, intro, features, installation, sections, nav } =
-    await getParsedContent(ctx);
+  let {
+    badges,
+    description,
+    descriptionNote,
+    intro,
+    features,
+    installation,
+    sections,
+    nav,
+  } = await getParsedContent(ctx);
 
   let navContent = await getNav(ctx, nav);
   let dirs = [contentDir];
