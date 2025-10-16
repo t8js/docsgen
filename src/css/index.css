@@ -129,13 +129,14 @@ header {
 
 section {
   width: 50%;
+  min-height: 100vh;
   align-self: stretch;
   padding: 0;
   box-sizing: border-box;
 }
 section .section-content {
   max-width: var(--max-content-width);
-  padding: 1em 3.5vw;
+  padding: 1em 3.5vw 2em;
   box-sizing: border-box;
 }
 section.intro-title {
@@ -156,6 +157,7 @@ section.intro {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: color(from var(--c0) srgb r g b / .05);
 }
 section.intro .section-content {
   width: 100%;
@@ -164,18 +166,22 @@ section.intro .section-content {
   section {
     width: auto;
     max-width: 100%;
+    min-height: auto;
+  }
+  section .section-content {
+    max-width: auto;
     padding: var(--content-padding-y) var(--content-padding-x);
   }
   section.intro {
     align-items: center;
-    border-left: none;
+    background: none transparent;
   }
-  section.intro-title {
+  section.intro-title .section-content {
     padding-top: 2em;
     padding-bottom: 0;
   }
-  section.intro,
-  section.intro-title:last-child {
+  section.intro .section-content,
+  section.intro-title:last-child .section-content {
     padding-bottom: 2.5em;
   }
 }
