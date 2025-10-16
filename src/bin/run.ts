@@ -3,29 +3,20 @@ import { getConfig } from "./getConfig";
 import { runEntry } from "./runEntry";
 
 async function run() {
-  let { targetId, entries, ...rootCtx } = await getConfig();
+  let { targetIds, entries, ...rootCtx } = await getConfig();
 
-  if (!entries) {
-    if (!targetId || targetId === rootCtx.id) return await runEntry(rootCtx);
+  if (!entries)
+    return await runEntry(rootCtx);
 
-    console.warn(`Specified config entry not found: '${targetId}'`);
-    return;
-  }
+  let targetEntries = targetIds && targetIds.length !== 0
+    ? entries.filter(({ id, dir }) => {
+        return (id && targetIds.includes(id)) || (dir && targetIds.includes(dir));
+      })
+    : entries;
 
-  if (targetId) {
-    let entryCtx = entries.find(
-      ({ id, dir }) => id === targetId || dir === targetId,
-    );
-
-    if (entryCtx) runEntry({ ...rootCtx, ...entryCtx });
-    else console.warn(`Specified config entry not found: '${targetId}'`);
-  } else {
-    await Promise.all(
-      entries.map((entryCtx) => {
-        return runEntry({ ...rootCtx, ...entryCtx });
-      }),
-    );
-  }
+  await Promise.all(
+    targetEntries.map((entryCtx) => runEntry({ ...rootCtx, ...entryCtx })),
+  );
 }
 
 (async () => {

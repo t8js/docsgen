@@ -56,13 +56,13 @@ export async function getConfig(): Promise<Config> {
     delete localConfig.$schema;
   } catch {}
 
-  let targetId: string | undefined;
   let args = process.argv.slice(2);
+  let targetArgs: string[] = [];
 
-  if (args.length !== 0 && !args[0].startsWith("--")) targetId = args.shift();
+  while (args[0] && !args[0].startsWith("--"))
+    targetArgs.push(args.shift()!);
 
   config = {
-    targetId,
     mainBranch: "main",
     root: "/",
     contentDir: "x",
@@ -70,11 +70,16 @@ export async function getConfig(): Promise<Config> {
     ...parseArgs<Config>(args),
   };
 
-  if (config.entries)
+  if (config.entries) {
+    config.targetIds = targetArgs;
     config.entries = await Promise.all(config.entries.map(reviseConfig));
+  }
   else {
-    if (targetId && !config.dir)
-      config.dir = targetId;
+    if (!config.dir)
+      config.dir = targetArgs.find(arg => !/^https?:\/\//.test(arg));
+
+    if (!config.repo)
+      config.repo = targetArgs.find(arg => /^https?:\/\//.test(arg));
 
     config = await reviseConfig(config);
   }
