@@ -95,6 +95,7 @@ ${getInjectedContent(ctx, "redirect", "body")}
     descriptionNote,
     intro,
     features,
+    note,
     installation,
     sections,
     nav,
@@ -213,28 +214,14 @@ ${getInjectedContent(ctx, "section", "body")}
   <script>document.querySelectorAll(".badges img").forEach(img=>{let c=img.closest(".badge");if(c){if(img.complete)c.classList.add("loaded");else{img.onload=()=>{c.classList.add("loaded");};img.onerror=()=>{c.classList.add("failed");};}}});</script>
 </section>
 ${
-  intro || features
+  intro || features || note
     ? `
 <section class="intro">
-${
-  intro
-    ? `
   <div class="section-content">
-    ${intro}
+    ${intro ? `<div class="intro">${intro}</div>` : ""}
+    ${features ? `<div class="features">${features}</div>` : ""}
+    ${note ? `<div class="note">${note}</div>` : ""}
   </div>
-`
-    : ""
-}
-${
-  features
-    ? `
-  <div class="features section-content">
-    <h2>Features</h2>
-    ${features}
-  </div>
-`
-    : ""
-}
 </section>
 `
     : ""
