@@ -102,16 +102,20 @@ header {
 }
 .description {
   font-size: 1.1em;
+  padding: .2rem 0;
   margin: 0;
 }
 .description p {
-  margin-top: 0;
+  margin: 0;
+}
+.description p + p {
+  margin-top: .75em;
 }
 .actions {
   --r: 1em;
 
   font-size: 1.25em;
-  margin: 0.5em 0;
+  margin: 1.5rem 0;
 }
 .actions a.button {
   min-width: 32%;
@@ -196,7 +200,7 @@ section.intro .section-content {
   --list-padding-x: 1.25rem;
   --list-item-padding-x: 0.35rem;
 
-  margin: 2em 0;
+  margin: 1em 0;
 }
 .features h2 {
   font-size: 1.25em;
@@ -231,7 +235,7 @@ section.intro .section-content {
   list-style: disc;
 }
 .note {
-  margin: 1.5em 0;
+  margin: 1em 0;
 }
 @media (max-width: 840px) {
   .note {
@@ -241,7 +245,7 @@ section.intro .section-content {
 p.installation {
   font-size: 1.25em;
   text-align: center;
-  margin: 1em 0;
+  margin: 0;
 }
 .installation code {
   background: transparent;
