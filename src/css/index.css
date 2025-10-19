@@ -38,7 +38,7 @@ body {
 }
 
 main {
-  --max-content-width: 36em;
+  --max-content-width: 38em;
   --line-color: color(from var(--c0) srgb r g b / 0.1);
 
   display: flex;
