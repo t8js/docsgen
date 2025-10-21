@@ -8,6 +8,7 @@ import { getInstallationCode } from "./getInstallationCode";
 import { getSectionPostprocess } from "./getSectionPostprocess";
 import { postprocessBadges } from "./postprocessBadges";
 import { joinLines } from "./joinLines";
+import { preprocessContent } from "./preprocessContent";
 
 const md = new Markdown({
   html: true,
@@ -16,7 +17,7 @@ const md = new Markdown({
 export async function getParsedContent(ctx: Context) {
   let { singlePage, linkMap } = ctx;
   let rawContent = await fetchText(getLocation(ctx, "README.md", ctx.source));
-  let content = md.render(rawContent);
+  let content = md.render(preprocessContent(rawContent));
   let dom = new JSDOM(content);
 
   let { nav, linkMap: navLinkMap } = buildNav(ctx, dom);
