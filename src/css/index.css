@@ -118,7 +118,7 @@ header {
   margin: 1.5rem 0;
 }
 .actions a.button {
-  min-width: 32%;
+  min-width: 6.5em;
 }
 @media (max-width: 840px) {
   .actions {
