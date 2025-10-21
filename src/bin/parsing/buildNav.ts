@@ -1,4 +1,4 @@
-import { JSDOM } from "jsdom";
+import type { JSDOM } from "jsdom";
 import type { Context } from "../../types/Context";
 import type { NavItem } from "../../types/NavItem";
 import { getSlug } from "../getSlug";

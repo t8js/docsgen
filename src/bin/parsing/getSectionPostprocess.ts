@@ -1,4 +1,6 @@
-export function getSectionPostprocess(linkMap: Record<string, string | undefined>) {
+export function getSectionPostprocess(
+  linkMap: Record<string, string | undefined>,
+) {
   return (content: string) => {
     let s = content;
 

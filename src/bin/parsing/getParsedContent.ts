@@ -6,8 +6,8 @@ import { getLocation } from "../getLocation";
 import { buildNav } from "./buildNav";
 import { getInstallationCode } from "./getInstallationCode";
 import { getSectionPostprocess } from "./getSectionPostprocess";
-import { postprocessBadges } from "./postprocessBadges";
 import { joinLines } from "./joinLines";
+import { postprocessBadges } from "./postprocessBadges";
 import { preprocessContent } from "./preprocessContent";
 
 const md = new Markdown({

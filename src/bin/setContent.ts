@@ -10,9 +10,9 @@ import { getCounterContent } from "./getCounterContent";
 import { getIcon } from "./getIcon";
 import { getInjectedContent } from "./getInjectedContent";
 import { getNav } from "./getNav";
-import { getParsedContent } from "./parsing/getParsedContent";
 import { getRepoLink } from "./getRepoLink";
 import { getTitle } from "./getTitle";
+import { getParsedContent } from "./parsing/getParsedContent";
 import { stripHTML } from "./stripHTML";
 import { toFileContent } from "./toFileContent";
 
