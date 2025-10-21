@@ -19,6 +19,9 @@ export function preprocessContent(s: string) {
   )
     s = `${s.slice(0, k0)}${s.slice(k0 + marker.show.start.length, k1)}${s.slice(k1 + marker.show.end.length)}`;
 
+  k0 = -1;
+  k1 = -1;
+
   while (
     (k0 = s.indexOf(marker.hide.start, k1)) !== -1 &&
     (k1 = s.indexOf(marker.hide.end, k0)) !== -1
