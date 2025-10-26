@@ -1,25 +1,3 @@
-:root {
-  --g0: hsl(from var(--b1) calc(h + 240) 80% 70%);
-  --g1: hsl(from var(--b1) calc(h - 30) 40% 70%);
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --g0: hsl(from var(--b1) calc(h + 50) 40% 30%);
-    --g1: hsl(from var(--b1) calc(h - 10) 40% 40%);
-  }
-}
-html {
-  background:
-    linear-gradient(to bottom right, var(--g0), var(--g1) 60%) 50% 50% / cover
-    no-repeat;
-}
-@media (max-width: 840px) {
-  html {
-    background:
-      linear-gradient(to bottom, var(--g0), var(--g1) 60%) 50% 50% / cover
-      no-repeat;
-  }
-}
 body {
   min-height: 100vh;
 }
@@ -149,6 +127,7 @@ section.intro-title {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  background: var(--overlay-background-color);
 }
 section.intro-title .section-content {
   display: flex;
@@ -162,7 +141,6 @@ section.intro {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: color(from var(--c1) srgb r g b / 0.1);
 }
 section.intro .section-content {
   width: 100%;
