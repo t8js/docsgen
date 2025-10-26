@@ -129,6 +129,11 @@ section.intro-title {
   text-align: center;
   background: var(--overlay-background-color);
 }
+section.intro-title:last-of-type {
+  width: 100%;
+  min-height: 100vh;
+  justify-content: center;
+}
 section.intro-title .section-content {
   display: flex;
   flex-direction: column;
