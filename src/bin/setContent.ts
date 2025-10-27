@@ -18,6 +18,15 @@ import { toFileContent } from "./toFileContent";
 
 const exec = promisify(defaultExec);
 
+function getDefaultCodeStyleContent(cssRoot: string) {
+  return `
+  <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/base16/material.min.css">
+  <link rel="stylesheet" href="${cssRoot}/code.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/highlight.min.js"></script>
+  <script>hljs.highlightAll()</script>
+    `.trim();
+}
+
 export async function setContent(ctx: Context) {
   let {
     dir = "",
@@ -39,12 +48,16 @@ export async function setContent(ctx: Context) {
   let escapedPackageDescription = escapeHTML(packageDescription);
 
   let rootAttrs = "";
-  let cssRoot = "";
+  let cssRoot = {
+    index: "",
+    content: "",
+  };
 
   if (assetsDir) {
-    cssRoot = assetsDir;
+    cssRoot.index = assetsDir;
+    cssRoot.content = `../${assetsDir}`;
 
-    await cp(join(__dirname, "css"), join(dir, cssRoot), {
+    await cp(join(__dirname, "css"), join(dir, cssRoot.index), {
       force: true,
       recursive: true,
     });
@@ -57,15 +70,9 @@ export async function setContent(ctx: Context) {
 
     let packageUrl = `https://unpkg.com/${packageName}@${packageVersion}`;
 
-    cssRoot = `${packageUrl}/dist/css`;
+    cssRoot.index = `${packageUrl}/dist/css`;
+    cssRoot.content = `${packageUrl}/dist/css`;
   }
-
-  let defaultCodeStyleContent = `
-<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/base16/material.min.css">
-<link rel="stylesheet" href="${cssRoot}/code.css">
-<script src="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/highlight.min.js"></script>
-<script>hljs.highlightAll()</script>
-  `.trim();
 
   if (theme) rootAttrs += ` data-theme="${escapeHTML(theme)}"`;
 
@@ -142,8 +149,8 @@ ${getInjectedContent(ctx, "redirect", "body")}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${escapedTitle}: ${escapeHTML(stripHTML(nav[i]?.title))}">
   <title>${escapeHTML(stripHTML(nav[i]?.title))} | ${escapedTitle}</title>
-  <link rel="stylesheet" href="${cssRoot}/base.css">
-  <link rel="stylesheet" href="${cssRoot}/section.css">
+  <link rel="stylesheet" href="${cssRoot.content}/base.css">
+  <link rel="stylesheet" href="${cssRoot.content}/section.css">
   ${iconTag}
   ${nav[i + 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[i + 1]?.id}">` : ""}
   ${nav[i - 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[i - 1]?.id}">` : ""}
@@ -177,7 +184,7 @@ ${navContent.replace(
 
 ${
   content.includes("<pre><code ")
-    ? getInjectedContent(ctx, "section", ":has-code") || defaultCodeStyleContent
+    ? getInjectedContent(ctx, "section", ":has-code") || getDefaultCodeStyleContent(cssRoot.content)
     : ""
 }
 ${counterContent}
@@ -197,8 +204,8 @@ ${getInjectedContent(ctx, "section", "body")}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${escapedTitle}${escapedPackageDescription ? `: ${escapedPackageDescription}` : ""}">
   <title>${escapedTitle}${escapedPackageDescription ? ` | ${escapedPackageDescription}` : ""}</title>
-  <link rel="stylesheet" href="${cssRoot}/base.css">
-  <link rel="stylesheet" href="${cssRoot}/index.css">
+  <link rel="stylesheet" href="${cssRoot.index}/base.css">
+  <link rel="stylesheet" href="${cssRoot.index}/index.css">
   ${iconTag}
   <link rel="prefetch" href="${root}start">
   ${nav[0] ? `<link rel="prefetch" href="${root}${contentDir}/${nav[0]?.id ?? ""}">` : ""}
@@ -245,7 +252,7 @@ ${
 
 ${
   [description, intro, features, note].some((s) => s.includes("<pre><code "))
-    ? getInjectedContent(ctx, "index", ":has-code") || defaultCodeStyleContent
+    ? getInjectedContent(ctx, "index", ":has-code") || getDefaultCodeStyleContent(cssRoot.index)
     : ""
 }
 ${counterContent}
@@ -264,7 +271,7 @@ ${getInjectedContent(ctx, "index", "body")}
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="refresh" content="0; URL=${root}${contentDir}/${nav[0]?.id}">
   <title>${escapedTitle}</title>
-  <link rel="stylesheet" href="${cssRoot}/base.css">
+  <link rel="stylesheet" href="${cssRoot.index}/base.css">
   ${iconTag}
   <script>window.location.replace("${root}${contentDir}/${nav[0]?.id}");</script>
   ${getInjectedContent(ctx, "start", "head")}
