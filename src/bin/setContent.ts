@@ -37,7 +37,7 @@ export async function setContent(ctx: Context) {
   let escapedName = escapeHTML(name);
   let escapedTitle = title ? escapeHTML(title) : escapedName;
   let escapedPackageDescription = escapeHTML(packageDescription);
-  
+
   let rootAttrs = "";
   let cssRoot = "";
 
@@ -45,8 +45,7 @@ export async function setContent(ctx: Context) {
     cssRoot = assetsDir;
 
     await cp("src/css", cssRoot, { force: true, recursive: true });
-  }
-  else {
+  } else {
     let packageVersion = (await exec(`npm view ${packageName} version`)).stdout
       .trim()
       .split(".")
