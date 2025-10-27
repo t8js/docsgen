@@ -21,16 +21,20 @@ async function addMetadata(config: EntryConfig) {
   }
 }
 
-function deriveMissingProps(config: EntryConfig) {
-  let { dir, root, title, htmlTitle } = config;
+function deriveProps(config: EntryConfig) {
+  let { dir, assetsDir, root, title, htmlTitle } = config;
 
   if (htmlTitle && !title) title = stripHTML(htmlTitle);
   if (dir && !root) root = `/${dir}/`;
   if (!root?.endsWith("/")) root = `${root ?? ""}/`;
 
+  if (dir && assetsDir?.includes("{{dir}}"))
+    assetsDir = assetsDir.replaceAll("{{dir}}", dir);
+
   return {
     ...config,
     dir,
+    assetsDir,
     root,
     title,
     htmlTitle,
@@ -38,7 +42,7 @@ function deriveMissingProps(config: EntryConfig) {
 }
 
 async function reviseConfig(config: EntryConfig) {
-  return deriveMissingProps(await addMetadata(config));
+  return deriveProps(await addMetadata(config));
 }
 
 let config: Config | null = null;

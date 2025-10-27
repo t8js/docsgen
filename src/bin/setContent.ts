@@ -1,5 +1,5 @@
 import { exec as defaultExec } from "node:child_process";
-import { access, mkdir, writeFile } from "node:fs/promises";
+import { access, cp, mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { promisify } from "node:util";
 import { packageName } from "../const/packageName";
@@ -21,6 +21,7 @@ const exec = promisify(defaultExec);
 export async function setContent(ctx: Context) {
   let {
     dir = "",
+    assetsDir,
     baseColor,
     theme,
     root,
@@ -36,19 +37,30 @@ export async function setContent(ctx: Context) {
   let escapedName = escapeHTML(name);
   let escapedTitle = title ? escapeHTML(title) : escapedName;
   let escapedPackageDescription = escapeHTML(packageDescription);
-
-  let packageVersion = (await exec(`npm view ${packageName} version`)).stdout
-    .trim()
-    .split(".")
-    .slice(0, 2)
-    .join(".");
-
-  let packageUrl = `https://unpkg.com/${packageName}@${packageVersion}`;
+  
   let rootAttrs = "";
+  let cssRoot = "";
+
+  if (assetsDir) {
+    cssRoot = assetsDir;
+
+    await cp("src/css", cssRoot, { force: true, recursive: true });
+  }
+  else {
+    let packageVersion = (await exec(`npm view ${packageName} version`)).stdout
+      .trim()
+      .split(".")
+      .slice(0, 2)
+      .join(".");
+
+    let packageUrl = `https://unpkg.com/${packageName}@${packageVersion}`;
+
+    cssRoot = `${packageUrl}/dist/css`;
+  }
 
   let defaultCodeStyleContent = `
 <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/base16/material.min.css">
-<link rel="stylesheet" href="${packageUrl}/dist/css/code.css">
+<link rel="stylesheet" href="${cssRoot}/code.css">
 <script src="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/highlight.min.js"></script>
 <script>hljs.highlightAll()</script>
   `.trim();
@@ -128,8 +140,8 @@ ${getInjectedContent(ctx, "redirect", "body")}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${escapedTitle}: ${escapeHTML(stripHTML(nav[i]?.title))}">
   <title>${escapeHTML(stripHTML(nav[i]?.title))} | ${escapedTitle}</title>
-  <link rel="stylesheet" href="${packageUrl}/dist/css/base.css">
-  <link rel="stylesheet" href="${packageUrl}/dist/css/section.css">
+  <link rel="stylesheet" href="${cssRoot}/base.css">
+  <link rel="stylesheet" href="${cssRoot}/section.css">
   ${iconTag}
   ${nav[i + 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[i + 1]?.id}">` : ""}
   ${nav[i - 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[i - 1]?.id}">` : ""}
@@ -183,8 +195,8 @@ ${getInjectedContent(ctx, "section", "body")}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${escapedTitle}${escapedPackageDescription ? `: ${escapedPackageDescription}` : ""}">
   <title>${escapedTitle}${escapedPackageDescription ? ` | ${escapedPackageDescription}` : ""}</title>
-  <link rel="stylesheet" href="${packageUrl}/dist/css/base.css">
-  <link rel="stylesheet" href="${packageUrl}/dist/css/index.css">
+  <link rel="stylesheet" href="${cssRoot}/base.css">
+  <link rel="stylesheet" href="${cssRoot}/index.css">
   ${iconTag}
   <link rel="prefetch" href="${root}start">
   ${nav[0] ? `<link rel="prefetch" href="${root}${contentDir}/${nav[0]?.id ?? ""}">` : ""}
@@ -250,7 +262,7 @@ ${getInjectedContent(ctx, "index", "body")}
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="refresh" content="0; URL=${root}${contentDir}/${nav[0]?.id}">
   <title>${escapedTitle}</title>
-  <link rel="stylesheet" href="${packageUrl}/dist/css/base.css">
+  <link rel="stylesheet" href="${cssRoot}/base.css">
   ${iconTag}
   <script>window.location.replace("${root}${contentDir}/${nav[0]?.id}");</script>
   ${getInjectedContent(ctx, "start", "head")}

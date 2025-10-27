@@ -5,6 +5,13 @@ export type EntryConfig = {
   id?: string;
   source?: string;
   dir?: string;
+  /**
+   * Directory path for asset files.
+   * Can contain the `{{dir}}` placeholder that will be replaced
+   * with the `dir` value.
+   * If not provided, the assets will be added via the package URLs.
+   */
+  assetsDir?: string;
   baseColor?: string;
   theme?: Theme;
   name?: string;
