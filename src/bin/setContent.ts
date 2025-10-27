@@ -184,7 +184,8 @@ ${navContent.replace(
 
 ${
   content.includes("<pre><code ")
-    ? getInjectedContent(ctx, "section", ":has-code") || getDefaultCodeStyleContent(cssRoot.content)
+    ? getInjectedContent(ctx, "section", ":has-code") ||
+      getDefaultCodeStyleContent(cssRoot.content)
     : ""
 }
 ${counterContent}
@@ -252,7 +253,8 @@ ${
 
 ${
   [description, intro, features, note].some((s) => s.includes("<pre><code "))
-    ? getInjectedContent(ctx, "index", ":has-code") || getDefaultCodeStyleContent(cssRoot.index)
+    ? getInjectedContent(ctx, "index", ":has-code") ||
+      getDefaultCodeStyleContent(cssRoot.index)
     : ""
 }
 ${counterContent}
