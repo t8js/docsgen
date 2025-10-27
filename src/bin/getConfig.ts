@@ -2,14 +2,14 @@ import { parseArgs } from "args-json";
 import type { Config } from "../types/Config";
 import type { EntryConfig } from "../types/EntryConfig";
 import type { PackageMetadata } from "../types/PackageMetadata";
-import { fetchText } from "./fetchText";
+import { fetchContent } from "./fetchContent";
 import { getLocation } from "./getLocation";
 import { stripHTML } from "./stripHTML";
 import { toConfig } from "./toConfig";
 
 async function addMetadata(config: EntryConfig) {
   try {
-    let rawContent = await fetchText(getLocation(config, "package.json"));
+    let rawContent = await fetchContent(getLocation(config, "package.json"));
     let metadata = JSON.parse(rawContent) as PackageMetadata;
 
     return {
@@ -50,7 +50,7 @@ export async function getConfig(): Promise<Config> {
 
   try {
     localConfig = JSON.parse(
-      await fetchText("./docsgen.config.json"),
+      await fetchContent("./docsgen.config.json"),
     ) as Config;
 
     delete localConfig.$schema;

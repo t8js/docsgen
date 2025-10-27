@@ -1,7 +1,7 @@
 import { JSDOM } from "jsdom";
 import Markdown from "markdown-it";
 import type { Context } from "../../types/Context";
-import { fetchText } from "../fetchText";
+import { fetchContent } from "../fetchContent";
 import { getLocation } from "../getLocation";
 import { buildNav } from "./buildNav";
 import { getInstallationCode } from "./getInstallationCode";
@@ -16,7 +16,7 @@ const md = new Markdown({
 
 export async function getParsedContent(ctx: Context) {
   let { singlePage, linkMap } = ctx;
-  let rawContent = await fetchText(getLocation(ctx, "README.md", ctx.source));
+  let rawContent = await fetchContent(getLocation(ctx, "README.md", ctx.source));
   let content = md.render(preprocessContent(rawContent));
   let dom = new JSDOM(content);
 

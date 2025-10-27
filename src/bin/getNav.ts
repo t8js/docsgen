@@ -1,12 +1,12 @@
 import { JSDOM } from "jsdom";
 import type { Context } from "../types/Context";
 import type { NavItem } from "../types/NavItem";
-import { fetchText } from "./fetchText";
+import { fetchContent } from "./fetchContent";
 import { getRepoLink } from "./getRepoLink";
 
 export async function getNav(ctx: Context, navItems: NavItem[]) {
   let { name, root, contentDir, backstory, nav } = ctx;
-  let navContent = await fetchText(nav);
+  let navContent = await fetchContent(nav);
   let s = "";
 
   if (navContent) {

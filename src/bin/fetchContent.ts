@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 
-export async function fetchText(location: string | undefined) {
+export async function fetchContent(location: string | undefined) {
   if (!location) return "";
 
   if (/^https?:\/\//.test(location)) {
