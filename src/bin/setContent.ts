@@ -44,7 +44,10 @@ export async function setContent(ctx: Context) {
   if (assetsDir) {
     cssRoot = assetsDir;
 
-    await cp(join(__dirname, "css"), join(dir, cssRoot), { force: true, recursive: true });
+    await cp(join(__dirname, "css"), join(dir, cssRoot), {
+      force: true,
+      recursive: true,
+    });
   } else {
     let packageVersion = (await exec(`npm view ${packageName} version`)).stdout
       .trim()
