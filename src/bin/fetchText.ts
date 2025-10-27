@@ -5,7 +5,7 @@ export async function fetchText(location: string | undefined) {
 
   if (/^https?:\/\//.test(location)) {
     try {
-      return await (await fetch(location)).text();
+      return await (await fetch(location, { cache: "no-cache" })).text();
     } catch {
       console.warn(`Failed to fetch content from '${location}'`);
       return "";
