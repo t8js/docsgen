@@ -6,9 +6,7 @@ export type EntryConfig = {
   source?: string;
   dir?: string;
   /**
-   * Directory path for asset files.
-   * Can contain the `{{dir}}` placeholder that will be replaced
-   * with the `dir` value.
+   * Directory path for assets, relative to `dir`.
    * If not provided, the assets will be added via the package URLs.
    */
   assetsDir?: string;
