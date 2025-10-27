@@ -16,7 +16,9 @@ const md = new Markdown({
 
 export async function getParsedContent(ctx: Context) {
   let { singlePage, linkMap } = ctx;
-  let rawContent = await fetchContent(getLocation(ctx, "README.md", ctx.source));
+  let rawContent = await fetchContent(
+    getLocation(ctx, "README.md", ctx.source),
+  );
   let content = md.render(preprocessContent(rawContent));
   let dom = new JSDOM(content);
 
