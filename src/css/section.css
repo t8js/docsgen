@@ -98,6 +98,7 @@ footer {
     width: 100%;
     display: block;
     font-size: inherit;
+    text-align: start;
     border-top: 0.35em solid var(--overlay-border-color);
     padding: 0.25rem var(--content-padding-x) 0.35rem;
     margin: 0;
