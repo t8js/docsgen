@@ -27,6 +27,10 @@ function getDefaultCodeStyleContent(cssRoot: string) {
     `.trim();
 }
 
+function tweakTypography(s = "") {
+  return s.replace(/\b(for|in|on|at|with|a|an|the)\s+/gi, "$1\xa0");
+}
+
 export async function setContent(ctx: Context) {
   let {
     dir = "",
@@ -129,6 +133,9 @@ ${getInjectedContent(ctx, "redirect", "body")}
     nav,
   } = await getParsedContent(ctx);
 
+  let descriptionContent = tweakTypography(description) ||
+    (escapedPackageDescription ? `<p><em>${tweakTypography(escapedPackageDescription)}</em><p>` : "");
+
   let navContent = await getNav(ctx, nav);
   let dirs = [contentDir];
 
@@ -226,7 +233,7 @@ ${getInjectedContent(ctx, "section", "body")}
   <div class="section-content">
     <h1>${getTitle(ctx, { cover: true })}</h1>
     <div class="description">
-      ${description || (escapedPackageDescription ? `<p><em>${escapedPackageDescription}</em><p>` : "")}
+      ${descriptionContent}
       ${descriptionNote}
     </div>
     <p class="actions">
