@@ -47,9 +47,6 @@ footer {
 .body > nav section + section {
   border-top: 0.05rem solid;
 }
-.body > nav section.related {
-  border-top: 0.15rem double;
-}
 .body > nav h2,
 .body > nav p.title {
   font-size: 0.7rem;
