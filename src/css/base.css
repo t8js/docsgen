@@ -16,7 +16,7 @@
 
   /* link colors */
   --a0: var(--default-link-color);
-  --a1-fallback: hsl(from var(--default-link-color) calc(h - 50) s l);
+  --a1-fallback: hsl(from var(--b1) calc(h - 95) 90% 60%);
   --a1: var(--link-color, var(--a1-fallback));
 
   --a0-light: hsl(from var(--a1) calc(h + 50) s 55%);
