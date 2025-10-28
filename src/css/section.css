@@ -90,6 +90,9 @@ footer {
 .body > nav li + li {
   margin-top: 0.65em;
 }
+.body > nav li > strong {
+  color: color(from var(--c1) srgb r g b / 0.75);
+}
 @media (max-width: 840px) {
   .body > nav {
     width: 100%;
