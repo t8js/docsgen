@@ -111,7 +111,6 @@ ${getInjectedContent(ctx, "redirect", "body")}
   }
 
   let {
-    badges,
     description,
     descriptionNote,
     intro,
@@ -217,9 +216,6 @@ ${getInjectedContent(ctx, "section", "body")}
 <main>
 <section class="b1 intro-title">
   <div class="section-content">
-    <div class="badges">
-      ${badges}
-    </div>
     <h1>${getTitle(ctx, { cover: true })}</h1>
     <div class="description">
       ${description || (escapedPackageDescription ? `<p><em>${escapedPackageDescription}</em><p>` : "")}
@@ -233,7 +229,6 @@ ${getInjectedContent(ctx, "section", "body")}
     ${backstory ? `<p class="ref"><a href="${backstory}">Backstory</a></p>` : ""}
     <p class="installation"><code>${installation}</code></p>
   </div>
-  <script>document.querySelectorAll(".badges img").forEach(img=>{let c=img.closest(".badge");if(c){if(img.complete)c.classList.add("loaded");else{img.onload=()=>{c.classList.add("loaded");};img.onerror=()=>{c.classList.add("failed");};}}});</script>
 </section>
 ${
   intro || features || note

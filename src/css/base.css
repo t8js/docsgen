@@ -208,31 +208,3 @@ html.blank .layout {
   justify-content: center;
   overflow: hidden;
 }
-
-.badges .badge {
-  display: inline-block;
-  min-width: 80px;
-  min-height: 20px;
-  font-size: 11px;
-  font-family: Verdana, sans-serif;
-  line-height: 20px;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: top;
-  color: #fff;
-  background: #345;
-  box-sizing: border-box;
-}
-.badges .badge.loaded,
-.badges .badge.failed {
-  min-width: auto;
-}
-.badges .badge.failed {
-  padding: 0 6px;
-}
-.badges img {
-  vertical-align: top;
-}
-.badges a {
-  text-decoration: none;
-}
