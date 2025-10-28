@@ -87,10 +87,10 @@ header {
 }
 .actions .sep {
   display: block;
-  height: .01em;
+  height: 0.01em;
   font-size: 0;
   overflow: hidden;
-  margin: .25rem 0;
+  margin: 0.25rem 0;
 }
 .ref {
   font-size: 0.9em;

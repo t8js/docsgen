@@ -33,7 +33,7 @@ footer {
   flex: none;
   align-self: stretch;
   font-size: 0.9em;
-  padding: .75rem var(--content-padding-x);
+  padding: 0.75rem var(--content-padding-x);
   margin: 0;
   box-sizing: border-box;
 }

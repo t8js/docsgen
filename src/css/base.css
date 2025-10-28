@@ -161,7 +161,7 @@ main li {
 }
 
 .b1 {
-  color: color(from var(--c1) srgb r g b / .5);
+  color: color(from var(--c1) srgb r g b / 0.5);
   background: var(--b1);
 }
 .b1 a,
