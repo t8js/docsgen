@@ -38,6 +38,7 @@ main {
 }
 
 h1 {
+  max-width: 16rem;
   font-size: 2.5em;
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-weight: 900;
@@ -46,6 +47,7 @@ h1 {
 }
 @media (max-width: 840px) {
   h1 {
+    max-width: none;
     font-size: 2.25em;
   }
 }
@@ -124,6 +126,7 @@ section.intro-title .section-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
   max-width: 24em;
   min-height: 95vh;
 }
@@ -163,6 +166,7 @@ section.intro .section-content {
   }
   section.intro-title .section-content {
     min-height: 50vh;
+    align-items: center;
     padding-top: 1rem;
     padding-bottom: 1.5rem;
   }
