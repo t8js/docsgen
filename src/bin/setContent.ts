@@ -79,8 +79,10 @@ export async function setContent(ctx: Context) {
 
   let rootStyle = "";
 
-  if (baseColor) rootStyle += `${rootStyle ? " " : ""}--base-color: ${escapeHTML(baseColor)};`;
-  if (linkColor) rootStyle += `${rootStyle ? " " : ""}--link-color: ${escapeHTML(linkColor)};`;
+  if (baseColor)
+    rootStyle += `${rootStyle ? " " : ""}--base-color: ${escapeHTML(baseColor)};`;
+  if (linkColor)
+    rootStyle += `${rootStyle ? " " : ""}--link-color: ${escapeHTML(linkColor)};`;
 
   if (rootStyle) rootAttrs += ` style="${rootStyle}"`;
 
