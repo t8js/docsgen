@@ -133,8 +133,11 @@ ${getInjectedContent(ctx, "redirect", "body")}
     nav,
   } = await getParsedContent(ctx);
 
-  let descriptionContent = tweakTypography(description) ||
-    (escapedPackageDescription ? `<p><em>${tweakTypography(escapedPackageDescription)}</em><p>` : "");
+  let descriptionContent =
+    tweakTypography(description) ||
+    (escapedPackageDescription
+      ? `<p><em>${tweakTypography(escapedPackageDescription)}</em><p>`
+      : "");
 
   let navContent = await getNav(ctx, nav);
   let dirs = [contentDir];
