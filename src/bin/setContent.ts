@@ -163,7 +163,7 @@ ${getInjectedContent(ctx, "redirect", "body")}
 <h1>${getTitle(ctx, { withPackageURL: true })}</h1>
 ${content}
 
-<p class="pagenav">
+<p class="b1 pagenav">
   <span class="prev">
     <span class="icon">←</span>
     ${nav[i - 1]?.id ? `<a href="${root}${contentDir}/${nav[i - 1]?.id}">${nav[i - 1]?.title}</a>` : `<a href="${root}">Intro</a>`}
@@ -215,7 +215,7 @@ ${getInjectedContent(ctx, "section", "body")}
 <body>
 <div class="layout">
 <main>
-<section class="intro-title">
+<section class="b1 intro-title">
   <div class="section-content">
     <div class="badges">
       ${badges}
@@ -226,9 +226,9 @@ ${getInjectedContent(ctx, "section", "body")}
       ${descriptionNote}
     </div>
     <p class="actions">
-      <a href="${root}start" class="primary button">Docs</a>
+      <a href="${root}start" class="primary">Docs</a>
       <span class="sep"> • </span>
-      ${getRepoLink(ctx, "button")}
+      ${getRepoLink(ctx)}
     </p>
     ${backstory ? `<p class="ref"><a href="${backstory}">Backstory</a></p>` : ""}
     <p class="installation"><code>${installation}</code></p>

@@ -40,38 +40,27 @@ main {
 h1 {
   font-size: 2.5em;
   font-weight: 900;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
 }
 @media (max-width: 840px) {
   h1 {
-    font-size: 2.35em;
+    font-size: 2em;
   }
 }
-h1 a {
-  display: inline-block;
-  position: relative;
-}
-h1 a::before {
-  content: "";
-  background-color: color(from var(--link-color) srgb r g b / 0.3);
-  position: absolute;
-  inset: 0.25em -0.15em 0.15em;
-  transform: skew(-15deg, -1deg);
-  transition:
-    inset 0.3s,
-    transform 0.3s;
-}
-h1 a:hover {
-  text-decoration: none;
-}
-h1 a:hover::before {
-  inset: 0.15em -0.15em 0.05em;
-  transform: skew(-5deg, -1deg);
+h1 a,
+h1 a:link,
+h1 a:hover,
+h1 a:visited,
+h1 a:active {
+  border-bottom: none;
 }
 header {
   display: block;
   text-align: center;
   padding: 0 var(--content-padding-x);
+}
+.badges {
+  display: none;
 }
 @media (max-width: 840px) {
   .badges {
@@ -79,8 +68,6 @@ header {
   }
 }
 .description {
-  font-size: 1.1em;
-  padding: 0.2rem 0;
   margin: 0;
 }
 .description p {
@@ -93,7 +80,10 @@ header {
   --r: 1em;
 
   font-size: 1.25em;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
+}
+.actions a.primary {
+  font-weight: bold;
 }
 .actions a.button {
   min-width: 6.5em;
@@ -104,7 +94,11 @@ header {
   }
 }
 .actions .sep {
-  display: none;
+  display: block;
+  height: .01em;
+  font-size: 0;
+  overflow: hidden;
+  margin: .25rem 0;
 }
 .ref {
   font-size: 0.9em;
@@ -124,26 +118,31 @@ section .section-content {
 }
 section.intro-title {
   display: flex;
+  width: 40%;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: var(--overlay-background-color);
-}
-section.intro-title:last-of-type {
-  width: 100%;
-  min-height: 100vh;
-  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
 }
 section.intro-title .section-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 24em;
   min-height: 95vh;
-  padding-top: 4em;
-  padding-bottom: 4em;
+}
+section.intro-title:last-of-type {
+  width: 100%;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+section.intro-title:last-of-type .section-content {
+  max-width: 36em;
 }
 section.intro {
   display: flex;
+  width: 60%;
   flex-direction: column;
   justify-content: center;
 }
@@ -157,18 +156,25 @@ section.intro .section-content {
     min-height: auto;
   }
   section .section-content {
-    max-width: auto;
+    max-width: 100%;
     padding: 1rem 1.35rem;
+  }
+  section.intro-title {
+    width: auto;
+    align-items: center;
+    text-align: center;
   }
   section.intro-title .section-content {
     min-height: 60vh;
-    padding-top: 2rem;
+    padding-top: 1rem;
     padding-bottom: 1.5rem;
   }
   section.intro-title:last-child .section-content {
+    max-width: 100%;
     padding-bottom: 2.5rem;
   }
   section.intro {
+    width: auto;
     flex: auto;
     justify-content: flex-start;
     align-items: center;
@@ -178,7 +184,7 @@ section.intro .section-content {
   }
 }
 .features {
-  --link-color: color(from var(--c0) srgb r g b / 0.55);
+  --ca: color(from var(--c0) srgb r g b / 0.55);
   --link-decoration: underline;
   --list-padding-x: 1.25rem;
   --list-item-padding-x: 0.35rem;
@@ -226,8 +232,6 @@ section.intro .section-content {
   }
 }
 p.installation {
-  font-size: 1.25em;
-  text-align: center;
   margin: 0;
 }
 .installation code {

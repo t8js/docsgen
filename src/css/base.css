@@ -2,38 +2,41 @@
   color-scheme: light dark;
 
   --default-base-color: light-dark(#ddd, #555);
+  --default-link-color: light-dark(royalblue, deepskyblue);
+
+  /* backgrounds */
   --b0: light-dark(white, #1a1a1a);
   --b1: var(--base-color, var(--default-base-color));
-  --link-color: light-dark(royalblue, deepskyblue);
   --button-color: light-dark(royalblue, royalblue);
 
-  --overlay-background-color: hsl(from var(--b1) h 50% 50% / 0.2);
-  --overlay-border-color: hsl(from var(--b1) h 60% 60% / 0.7);
-
+  /* text colors */
   --c0: oklch(from var(--b0) calc(100 * (0.78 - l)) 0 0 / 0.82);
   --c1: oklch(from var(--b1) calc(100 * (0.78 - l)) 0 0 / 0.82);
   --c2: oklch(from var(--button-color) calc(100 * (0.75 - l)) 0 0 / 0.82);
 
-  /*
-    --link-color: color(
-        from var(--c0) srgb calc(r + 0.2) calc(g + 0.4) calc(b + 0.8)
-    );
-    */
-  --link-decoration: underline;
+  /* link colors */
+  --a0: var(--default-link-color);
+  --a1-fallback: hsl(from var(--default-link-color) calc(h - 50) s l);
+  --a1: var(--link-color, var(--a1-fallback));
 
+  --a0-light: hsl(from var(--a1) calc(h + 50) s 55%);
+  --a0-dark: hsl(from var(--a1) calc(h + 50) s 65%);
+
+  /* spacing */
   --max-content-width: 64em;
   --content-padding-x: 1.75rem;
   --content-padding-y: 1.75rem;
   --space-x: var(--content-padding-x);
   --block-margin-y: 1em;
-  --hr-border: 0.3rem solid var(--overlay-background-color);
 
-  font-size: 100%;
-  font-family: sans-serif;
-  /*
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    */
-  line-height: 1.45;
+  /* borders */
+  --hr-border: 0.3rem solid var(--overlay-background-color);
+  --link-border: 0.05em solid;
+
+  --overlay-background-color: hsl(from var(--b1) h 50% 50% / 0.2);
+  --overlay-border-color: hsl(from var(--b1) h 60% 60% / 0.7);
+
+  font: normal 100% / 1.45 sans-serif;
 }
 html {
   color: var(--c0);
@@ -75,8 +78,9 @@ a:link,
 a:visited,
 a:hover,
 a:active {
-  color: var(--link-color);
-  text-decoration: var(--link-decoration);
+  color: var(--a0);
+  text-decoration: none;
+  border-bottom: var(--link-border);
 }
 
 a.button {
@@ -124,17 +128,6 @@ h1 {
   line-height: 1;
   margin: 0;
 }
-h1 a,
-h1 a:link,
-h1 a:visited,
-h1 a:active {
-  color: inherit;
-  text-decoration: none;
-}
-h1 a:hover {
-  color: inherit;
-  text-decoration: underline;
-}
 h2,
 h3,
 h4 {
@@ -151,19 +144,6 @@ h4 {
   font-size: 1.15em;
 }
 
-header,
-.body,
-footer {
-  max-width: var(--max-content-width);
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
-header,
-footer {
-  padding: 0 var(--content-padding-x);
-}
-
 main {
   box-sizing: border-box;
 }
@@ -178,6 +158,18 @@ main ul ul {
 main li {
   margin-top: 0;
   margin-bottom: 0.5em;
+}
+
+.b1 {
+  color: color(from var(--c1) srgb r g b / .5);
+  background: var(--b1);
+}
+.b1 a,
+.b1 a:link,
+.b1 a:hover,
+.b1 a:visited,
+.b1 a:active {
+  color: var(--a1);
 }
 
 .highlight {

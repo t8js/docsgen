@@ -79,5 +79,5 @@ export async function getNav(ctx: Context, navItems: NavItem[]) {
 </section>
 `;
 
-  return `<nav>\n${s}${refContent}\n${navContent}\n</nav>`;
+  return `<nav class="b1">\n${s}${refContent}\n${navContent}\n</nav>`;
 }
