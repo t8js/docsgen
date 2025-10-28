@@ -161,7 +161,7 @@ section.intro .section-content {
     text-align: center;
   }
   section.intro-title .section-content {
-    min-height: 60vh;
+    min-height: 40vh;
     padding-top: 1rem;
     padding-bottom: 1.5rem;
   }
