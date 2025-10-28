@@ -166,8 +166,8 @@ ${getInjectedContent(ctx, "redirect", "body")}
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="${escapedTitle}: ${escapeHTML(stripHTML(nav[i]?.title))}">
-  <title>${escapeHTML(stripHTML(nav[i]?.title))} | ${escapedTitle}</title>
+  <meta name="description" content="${escapedTitle}: ${escapeHTML(stripHTML(nav[i]?.title, true))}">
+  <title>${escapeHTML(stripHTML(nav[i]?.title, true))} | ${escapedTitle}</title>
   <link rel="stylesheet" href="${cssRoot.content}/base.css">
   <link rel="stylesheet" href="${cssRoot.content}/section.css">
   ${iconTag}
