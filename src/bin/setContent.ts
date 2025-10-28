@@ -32,6 +32,7 @@ export async function setContent(ctx: Context) {
     dir = "",
     assetsDir,
     baseColor,
+    linkColor,
     theme,
     root,
     contentDir = "",
@@ -76,7 +77,12 @@ export async function setContent(ctx: Context) {
 
   if (theme) rootAttrs += ` data-theme="${escapeHTML(theme)}"`;
 
-  if (baseColor) rootAttrs += ` style="--base-color: ${escapeHTML(baseColor)}"`;
+  let rootStyle = "";
+
+  if (baseColor) rootStyle += `${rootStyle ? " " : ""}--base-color: ${escapeHTML(baseColor)};`;
+  if (linkColor) rootStyle += `${rootStyle ? " " : ""}--link-color: ${escapeHTML(linkColor)};`;
+
+  if (rootStyle) rootAttrs += ` style="${rootStyle}"`;
 
   let icon = getIcon(ctx);
   let iconTag = icon.url

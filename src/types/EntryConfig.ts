@@ -11,6 +11,7 @@ export type EntryConfig = {
    */
   assetsDir?: string;
   baseColor?: string;
+  linkColor?: string;
   theme?: Theme;
   name?: string;
   title?: string;
