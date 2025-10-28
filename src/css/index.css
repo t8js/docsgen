@@ -139,6 +139,7 @@ section.intro-title:last-of-type {
 }
 section.intro-title:last-of-type .section-content {
   max-width: 36em;
+  align-items: center;
 }
 section.intro {
   display: flex;
