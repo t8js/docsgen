@@ -45,10 +45,10 @@ footer {
   box-sizing: border-box;
 }
 .body > nav section + section {
-  border-top: 0.05rem solid var(--overlay-border-color);
+  border-top: 0.05rem solid;
 }
 .body > nav section.related {
-  border-top: 0.15rem double var(--overlay-border-color);
+  border-top: 0.15rem double;
 }
 .body > nav h2,
 .body > nav p.title {
@@ -70,7 +70,7 @@ footer {
   box-sizing: border-box;
 }
 .body > nav > ul + ul {
-  border-top: 0.05rem solid var(--overlay-border-color);
+  border-top: 0.05rem solid;
   padding-top: 1.2em;
   margin-top: 1.5em;
 }
@@ -203,7 +203,7 @@ main h2:first-child {
   display: flex;
   justify-content: space-between;
   gap: 1em;
-  border-top: 0.15rem solid var(--overlay-border-color);
+  border-top: 0.15rem solid;
   padding: 0.6em 0.75em 0.75em;
   margin: 1.5em 0 0;
 }
