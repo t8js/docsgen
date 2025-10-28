@@ -28,7 +28,9 @@ function getDefaultCodeStyleContent(cssRoot: string) {
 }
 
 function tweakTypography(s = "") {
-  return s.replace(/\b(for|in|on|at|with|a|an|the)\s+/gi, "$1\xa0");
+  return s
+    .replace(/\b(for|in|on|at|with|a|an|the)\s+/gi, "$1\xa0")
+    .replace(/\b(React)\s+(apps?)\b/gi, "$1\xa0$2");
 }
 
 export async function setContent(ctx: Context) {
