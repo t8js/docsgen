@@ -200,7 +200,7 @@ main h2:first-child {
   display: flex;
   justify-content: space-between;
   gap: 1em;
-  border-top: 0.15rem solid;
+  border-top: 0.05rem solid;
   padding: 0.6em 0.75em 0.75em;
   margin: 1.5em 0 0;
 }
