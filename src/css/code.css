@@ -2,6 +2,14 @@
   .hljs {
     background: #f2f2f2;
   }
+  .hljs-deletion {
+    color: #ac3e3e;
+    background: #f0e4e3;
+  }
+  .hljs-addition {
+    color: #2b7945;
+    background: #daf4ea;
+  }
 }
 @media (prefers-color-scheme: dark) {
   .hljs {
