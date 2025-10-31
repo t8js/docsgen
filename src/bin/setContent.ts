@@ -183,7 +183,7 @@ ${getInjectedContent(ctx, "redirect", "body")}
 <h1>${getTitle(ctx, { withPackageURL: true })}</h1>
 ${content}
 
-<p class="b1 pagenav">
+<p class="pagenav">
   <span class="prev">
     <span class="icon">←</span>
     ${nav[i - 1]?.id ? `<a href="${root}${contentDir}/${nav[i - 1]?.id}">${nav[i - 1]?.title}</a>` : `<a href="${root}">Intro</a>`}
