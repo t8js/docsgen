@@ -40,3 +40,17 @@ npx @t8/docsgen <dir path> <repo URL>
 ```
 
 </details>
+
+---
+
+```html
+<!-- docsgen-show-start --
+Reveal during content generation
+-- docsgen-show-end -->
+```
+
+```html
+<!-- docsgen-hide-start -->
+Hide during content generation
+<!-- docsgen-hide-end -->
+```
