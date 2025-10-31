@@ -214,7 +214,7 @@ section.intro .section-content {
   box-sizing: border-box;
 }
 .features > ul > li + li {
-  border-top: 0.15em solid var(--line-color);
+  border-top: 0.075em solid var(--line-color);
 }
 @media (max-width: 840px) {
   .features h2 {
