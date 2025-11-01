@@ -1,7 +1,7 @@
 :root {
   color-scheme: light dark;
 
-  --default-base-color: light-dark(#ddd, #555);
+  --default-base-color: light-dark(#f2f2f2, #1d2331);
   --default-link-color: light-dark(royalblue, deepskyblue);
 
   /* backgrounds */
@@ -16,8 +16,7 @@
 
   /* link colors */
   --a0: var(--default-link-color);
-  --a1-fallback: hsl(from var(--b1) calc(h - 95) 90% 60%);
-  --a1: var(--link-color, var(--a1-fallback));
+  --a1: var(--link-color, var(--default-link-color));
 
   --a0-light: hsl(from var(--a1) calc(h + 50) s 55%);
   --a0-dark: hsl(from var(--a1) calc(h + 50) s 65%);
@@ -33,8 +32,8 @@
   --hr-border: 0.3rem solid var(--overlay-background-color);
   --link-border: 0.05em solid;
 
-  --overlay-background-color: hsl(from var(--b1) h 50% 50% / 0.2);
-  --overlay-border-color: hsl(from var(--b1) h 60% 60% / 0.7);
+  --overlay-background-color: hsl(from var(--b1) h s 50% / 0.2);
+  --overlay-border-color: hsl(from var(--b1) h s 60% / 0.7);
 
   font: normal 100% / 1.45 sans-serif;
 }
