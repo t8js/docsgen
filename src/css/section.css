@@ -142,7 +142,7 @@ main {
 @media (max-width: 840px) {
   main {
     width: 100%;
-    padding: var(--content-padding-y) var(--content-padding-x) 0;
+    padding-bottom: 0;
   }
 }
 .body.no-nav {

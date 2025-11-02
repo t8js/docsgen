@@ -160,7 +160,7 @@ section.intro .section-content {
   }
   section .section-content {
     max-width: 100%;
-    padding: 1rem 1.35rem;
+    padding: 1rem var(--content-padding-x);
   }
   section.intro-title {
     width: auto;
