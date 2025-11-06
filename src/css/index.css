@@ -163,8 +163,10 @@ section.intro .section-content {
     padding: 1rem var(--content-padding-x);
   }
   section.intro-title {
+    flex: auto;
     width: auto;
     align-items: center;
+    justify-content: center;
     text-align: center;
   }
   section.intro-title .section-content {
@@ -179,7 +181,7 @@ section.intro .section-content {
   }
   section.intro {
     width: auto;
-    flex: auto;
+    flex: none;
     justify-content: flex-start;
     align-items: center;
   }
