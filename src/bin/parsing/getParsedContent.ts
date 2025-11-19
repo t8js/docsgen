@@ -7,8 +7,8 @@ import { buildNav } from "./buildNav";
 import { getInstallationCode } from "./getInstallationCode";
 import { getSectionPostprocess } from "./getSectionPostprocess";
 import { joinLines } from "./joinLines";
-import { postprocessBadges } from "./postprocessBadges";
 import { preprocessContent } from "./preprocessContent";
+import { isBadgeContainer } from "./isBadgeContainer";
 
 const md = new Markdown({
   html: true,
@@ -24,7 +24,7 @@ export async function getParsedContent(ctx: Context) {
 
   let { nav, linkMap: navLinkMap } = buildNav(ctx, dom);
 
-  let badges: string[] = [];
+  let badges = "";
   let title = "";
   let description: string[] = [];
   let descriptionNote: string[] = [];
@@ -36,49 +36,49 @@ export async function getParsedContent(ctx: Context) {
   let section: string[] = [];
   let sections: string[] = [];
 
-  let hasTitle = false;
   let hasFeatures = false;
   let indexComplete = false;
 
-  let element = dom.window.document.body.firstElementChild;
+  for (let element of dom.window.document.body.children) {
+    if (isBadgeContainer(element)) {
+      badges = element.outerHTML;
+      continue;
+    }
 
-  while (element !== null) {
-    if (element.matches("h1")) hasTitle = true;
-    else {
-      if (element.matches("h2")) {
-        if (!indexComplete) indexComplete = true;
+    if (element.matches("h1")) {
+      title = element.innerHTML;
+      continue;
+    }
 
-        if (!singlePage && section.length !== 0) {
-          sections.push(joinLines(section));
-          section = [];
-        }
+    if (element.matches("h2")) {
+      if (!indexComplete) indexComplete = true;
+
+      if (!singlePage && section.length !== 0) {
+        sections.push(joinLines(section));
+        section = [];
       }
+    }
 
-      let { outerHTML } = element;
+    let { outerHTML } = element;
 
-      if (indexComplete) section.push(outerHTML);
-      else if (!hasTitle) {
-        badges.push(outerHTML);
-      } else if (!hasFeatures) {
-        if (element.matches("ul")) {
-          hasFeatures = true;
-          features.push(outerHTML);
-        } else {
-          let installationCode = getInstallationCode(element);
-
-          if (installationCode) installation = installationCode;
-          else if (description.length === 0) description.push(outerHTML);
-          else intro.push(outerHTML);
-        }
+    if (indexComplete) section.push(outerHTML);
+    else if (!hasFeatures) {
+      if (element.matches("ul")) {
+        hasFeatures = true;
+        features.push(outerHTML);
       } else {
         let installationCode = getInstallationCode(element);
 
         if (installationCode) installation = installationCode;
-        else note.push(outerHTML);
+        else if (description.length === 0) description.push(outerHTML);
+        else intro.push(outerHTML);
       }
-    }
+    } else {
+      let installationCode = getInstallationCode(element);
 
-    element = element.nextElementSibling;
+      if (installationCode) installation = installationCode;
+      else note.push(outerHTML);
+    }
   }
 
   if (section.length !== 0) sections.push(joinLines(section));
@@ -119,7 +119,7 @@ export async function getParsedContent(ctx: Context) {
   }
 
   return {
-    badges: postprocessBadges(joinLines(badges)),
+    badges, // postprocessBadges(joinLines(badges)),
     title,
     description: joinLines(description),
     descriptionNote: joinLines(descriptionNote),
