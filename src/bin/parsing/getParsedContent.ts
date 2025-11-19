@@ -65,7 +65,7 @@ export async function getParsedContent(ctx: Context) {
       section.push(outerHTML);
       continue;
     }
-  
+
     if (hasFeatures) {
       let installationCode = getInstallationCode(element);
 
@@ -74,7 +74,7 @@ export async function getParsedContent(ctx: Context) {
 
       continue;
     }
-  
+
     if (element.matches("ul")) {
       hasFeatures = true;
       features.push(outerHTML);
