@@ -70,7 +70,7 @@ export async function getParsedContent(ctx: Context) {
         let installationCode = getInstallationCode(element);
 
         if (installationCode) installation = installationCode;
-        else if (description.length === 0) description.push(outerHTML);
+        // else if (description.length === 0) description.push(outerHTML);
         else intro.push(outerHTML);
       }
     } else {
