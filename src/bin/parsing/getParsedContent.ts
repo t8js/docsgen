@@ -6,9 +6,9 @@ import { getLocation } from "../getLocation";
 import { buildNav } from "./buildNav";
 import { getInstallationCode } from "./getInstallationCode";
 import { getSectionPostprocess } from "./getSectionPostprocess";
+import { isBadgeContainer } from "./isBadgeContainer";
 import { joinLines } from "./joinLines";
 import { preprocessContent } from "./preprocessContent";
-import { isBadgeContainer } from "./isBadgeContainer";
 
 const md = new Markdown({
   html: true,
