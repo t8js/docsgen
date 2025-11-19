@@ -61,24 +61,39 @@ export async function getParsedContent(ctx: Context) {
 
     let { outerHTML } = element;
 
-    if (indexComplete) section.push(outerHTML);
-    else if (!hasFeatures) {
-      if (element.matches("ul")) {
-        hasFeatures = true;
-        features.push(outerHTML);
-      } else {
-        let installationCode = getInstallationCode(element);
-
-        if (installationCode) installation = installationCode;
-        // else if (description.length === 0) description.push(outerHTML);
-        else intro.push(outerHTML);
-      }
-    } else {
+    if (indexComplete) {
+      section.push(outerHTML);
+      continue;
+    }
+  
+    if (hasFeatures) {
       let installationCode = getInstallationCode(element);
 
       if (installationCode) installation = installationCode;
       else note.push(outerHTML);
+
+      continue;
     }
+  
+    if (element.matches("ul")) {
+      hasFeatures = true;
+      features.push(outerHTML);
+      continue;
+    }
+
+    let installationCode = getInstallationCode(element);
+
+    if (installationCode) {
+      installation = installationCode;
+      continue;
+    }
+
+    if (element.matches("p") && description.length === 0) {
+      description.push(outerHTML);
+      continue;
+    }
+
+    intro.push(outerHTML);
   }
 
   if (section.length !== 0) sections.push(joinLines(section));
@@ -98,11 +113,6 @@ export async function getParsedContent(ctx: Context) {
   }
 
   if (intro.at(-1) === "<hr>") intro.pop();
-
-  if (intro.length === 1) {
-    descriptionNote = intro;
-    intro = [];
-  }
 
   for (let i = 0; i < intro.length; i++) {
     if (
