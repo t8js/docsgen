@@ -125,15 +125,8 @@ ${getInjectedContent(ctx, "redirect", "body")}
     return;
   }
 
-  let {
-    description,
-    intro,
-    features,
-    note,
-    installation,
-    sections,
-    nav,
-  } = await getParsedContent(ctx);
+  let { description, intro, features, note, installation, sections, nav } =
+    await getParsedContent(ctx);
 
   let descriptionContent =
     tweakTypography(description) ||
