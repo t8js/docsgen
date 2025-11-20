@@ -64,7 +64,6 @@ header {
   padding: 0 var(--content-padding-x);
 }
 .description {
-  font-size: 1.15em;
   margin: 0;
 }
 .description p {
@@ -72,6 +71,9 @@ header {
 }
 .description p + p {
   margin-top: 0.75em;
+}
+.description em {
+  font-style: normal;
 }
 .actions {
   --r: 1em;
