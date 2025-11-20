@@ -127,7 +127,6 @@ ${getInjectedContent(ctx, "redirect", "body")}
 
   let {
     description,
-    descriptionNote,
     intro,
     features,
     note,
@@ -139,7 +138,7 @@ ${getInjectedContent(ctx, "redirect", "body")}
   let descriptionContent =
     tweakTypography(description) ||
     (escapedPackageDescription
-      ? `<p><em>${tweakTypography(escapedPackageDescription)}</em><p>`
+      ? `<p>${tweakTypography(escapedPackageDescription)}<p>`
       : "");
 
   let navContent = await getNav(ctx, nav);
@@ -240,7 +239,6 @@ ${getInjectedContent(ctx, "section", "body")}
     <h1>${getTitle(ctx, { cover: true })}</h1>
     <div class="description">
       ${descriptionContent}
-      ${descriptionNote}
     </div>
     <p class="actions">
       <a href="${root}start" class="primary">Docs</a>

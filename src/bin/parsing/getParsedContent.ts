@@ -27,7 +27,6 @@ export async function getParsedContent(ctx: Context) {
   let badges = "";
   let title = "";
   let description: string[] = [];
-  let descriptionNote: string[] = [];
   let intro: string[] = [];
   let features: string[] = [];
   let note: string[] = [];
@@ -132,7 +131,6 @@ export async function getParsedContent(ctx: Context) {
     badges, // postprocessBadges(joinLines(badges)),
     title,
     description: joinLines(description),
-    descriptionNote: joinLines(descriptionNote),
     intro: joinLines(intro),
     features: joinLines(features),
     note: joinLines(note),
