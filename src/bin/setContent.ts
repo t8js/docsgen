@@ -250,6 +250,9 @@ ${
     ${intro ? `<div class="intro">${intro}</div>` : ""}
     ${features ? `<div class="features">${features}</div>` : ""}
     ${note ? `<div class="note">${note}</div>` : ""}
+    <p class="pagenav">
+      <span class="next"><a href="/start">To the docs</a> <span class="icon">→</span></span>
+    </p>
   </div>
 </section>
 `

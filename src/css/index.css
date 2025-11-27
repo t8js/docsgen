@@ -50,12 +50,15 @@ h1 {
     font-size: 2.25em;
   }
 }
-h1 a,
-h1 a:link,
-h1 a:hover,
-h1 a:visited,
-h1 a:active {
+h1 > a,
+h1 > a:link,
+h1 > a:hover,
+h1 > a:visited,
+h1 > a:active {
   border-bottom: none;
+}
+h1 sup {
+  font-size: .5em;
 }
 header {
   display: block;
@@ -237,6 +240,9 @@ section.intro .section-content {
   .note {
     padding: 0;
   }
+}
+.pagenav {
+  text-align: right;
 }
 p.installation {
   margin: 0;
