@@ -24,7 +24,7 @@ async function addMetadata(config: EntryConfig) {
 function deriveProps(config: EntryConfig) {
   let { dir, assetsDir, root, title, htmlTitle } = config;
 
-  if (htmlTitle && !title) title = stripHTML(htmlTitle);
+  if (htmlTitle && !title) title = stripHTML(htmlTitle, true);
   if (dir && !root) root = `/${dir}/`;
   if (!root?.endsWith("/")) root = `${root ?? ""}/`;
 

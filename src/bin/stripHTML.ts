@@ -2,8 +2,15 @@ import { JSDOM } from "jsdom";
 
 export function stripHTML(content: string, replaceNbsp = false) {
   try {
-    let s = new JSDOM(content).window.document.body.textContent;
+    let t = content
+      .replaceAll("<sup>", " (")
+      .replaceAll("</sup>", ")");
 
-    return replaceNbsp ? s.replaceAll("\xa0", " ") : s;
+    let s = new JSDOM(t).window.document.body.textContent;
+
+    if (replaceNbsp) s = s.replaceAll("\xa0", " ");
+    s = s.replace(/ +/, " ");
+
+    return s;
   } catch {}
 }
