@@ -36,15 +36,10 @@
   --overlay-border-color: hsl(from var(--b1) h s 60% / 0.7);
 
   font: normal 100% / 1.45 sans-serif;
-}
-html {
   color: var(--c0);
-  background-color: var(--b0);
-  background-position: 50% 0;
+  background: var(--b0);
 }
 body {
-  color: inherit;
-  background-color: transparent;
   padding: 0;
   margin: 0;
 }
