@@ -36,9 +36,6 @@
   --overlay-border-color: hsl(from var(--b1) h s 60% / 0.7);
 
   font: normal 100% / 1.45 sans-serif;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 html {
   color: var(--c0);
