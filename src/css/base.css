@@ -1,13 +1,11 @@
 :root {
-  color-scheme: light dark;
-
-  --default-base-color: light-dark(#f2f2f2, #1d2331);
-  --default-link-color: light-dark(royalblue, deepskyblue);
+  --default-base-color: #f2f2f2;
+  --default-link-color: royalblue;
 
   /* backgrounds */
-  --b0: light-dark(white, #1a1a1a);
+  --b0: white;
   --b1: var(--base-color, var(--default-base-color));
-  --button-color: light-dark(royalblue, royalblue);
+  --button-color: royalblue;
 
   /* text colors */
   --c0: oklch(from var(--b0) calc(100 * (0.78 - l)) 0 0 / 0.82);
@@ -35,9 +33,20 @@
   --overlay-background-color: hsl(from var(--b1) h s 50% / 0.2);
   --overlay-border-color: hsl(from var(--b1) h s 60% / 0.7);
 
+  --color: var(--c0);
+  --code-background: color(from var(--color) srgb r g b / 0.08);
+
   font: normal 100% / 1.45 sans-serif;
-  color: var(--c0);
+  color: var(--color);
   background: var(--b0);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --default-base-color: #1d2331;
+    --default-link-color: deepskyblue;
+    --b0: #1a1a1a;
+    --code-background: color(from var(--color) srgb r g b / 0.15);
+  }
 }
 body {
   padding: 0;
@@ -72,6 +81,7 @@ a:link,
 a:visited,
 a:hover,
 a:active {
+  --color: var(--a0);
   color: var(--a0);
   text-decoration: none;
   border-bottom: var(--link-border);
@@ -172,10 +182,7 @@ main li {
   margin: 0;
 }
 code {
-  background: light-dark(
-    color(from currentColor srgb r g b / 0.08),
-    color(from currentColor srgb r g b / 0.15)
-  );
+  background: var(--code-background);
   border-radius: 0.35em;
   padding: 0.15em 0.35em;
 }
