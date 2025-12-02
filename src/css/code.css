@@ -11,6 +11,9 @@
     color: #2b7945;
     background: #daf4ea;
   }
+  .hljs-comment {
+    color: #898e93;
+  }
 }
 @media (prefers-color-scheme: dark) {
   .hljs-bullet,
