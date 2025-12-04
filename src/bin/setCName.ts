@@ -1,6 +1,6 @@
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import type { Context } from "../types/Context";
+import type { Context } from "../types/Context.ts";
 
 export async function setCName({ dir = "", name, cname, jsorg }: Context) {
   let domain = "";

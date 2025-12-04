@@ -1,4 +1,4 @@
-import type { Config } from "./Config";
-import type { EntryConfig } from "./EntryConfig";
+import type { Config } from "./Config.ts";
+import type { EntryConfig } from "./EntryConfig.ts";
 
 export type Context = Omit<Config, "entries"> & EntryConfig;

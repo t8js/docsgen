@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { getConfig } from "./getConfig";
-import { runEntry } from "./runEntry";
+import { getConfig } from "./getConfig.ts";
+import { runEntry } from "./runEntry.ts";
 
 async function run() {
   let { targetIds, entries, ...rootCtx } = await getConfig();

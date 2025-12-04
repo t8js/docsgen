@@ -1,11 +1,11 @@
 import { parseArgs } from "args-json";
-import type { Config } from "../types/Config";
-import type { EntryConfig } from "../types/EntryConfig";
-import type { PackageMetadata } from "../types/PackageMetadata";
-import { fetchContent } from "./fetchContent";
-import { getLocation } from "./getLocation";
-import { stripHTML } from "./stripHTML";
-import { toConfig } from "./toConfig";
+import type { Config } from "../types/Config.ts";
+import type { EntryConfig } from "../types/EntryConfig.ts";
+import type { PackageMetadata } from "../types/PackageMetadata.ts";
+import { fetchContent } from "./fetchContent.ts";
+import { getLocation } from "./getLocation.ts";
+import { stripHTML } from "./stripHTML.ts";
+import { toConfig } from "./toConfig.ts";
 
 async function addMetadata(config: EntryConfig) {
   try {

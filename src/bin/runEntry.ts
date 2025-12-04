@@ -1,9 +1,9 @@
 import { exec as defaultExec } from "node:child_process";
 import { access } from "node:fs/promises";
 import { promisify } from "node:util";
-import type { Context } from "../types/Context";
-import { cleanup } from "./cleanup";
-import { createFiles } from "./createFiles";
+import type { Context } from "../types/Context.ts";
+import { cleanup } from "./cleanup.ts";
+import { createFiles } from "./createFiles.ts";
 
 const exec = promisify(defaultExec);
 const stdout = async (cmd: string) => (await exec(cmd)).stdout.trim();

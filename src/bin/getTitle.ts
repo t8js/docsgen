@@ -1,5 +1,5 @@
-import type { Context } from "../types/Context";
-import { escapeHTML } from "../utils/escapeHTML";
+import type { Context } from "../types/Context.ts";
+import { escapeHTML } from "../utils/escapeHTML.ts";
 
 type GetTitleParams = {
   cover?: boolean;

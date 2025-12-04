@@ -1,5 +1,5 @@
-import type { ContentInjectionMap } from "./ContentInjectionMap";
-import type { Theme } from "./Theme";
+import type { ContentInjectionMap } from "./ContentInjectionMap.ts";
+import type { Theme } from "./Theme.ts";
 
 export type EntryConfig = {
   id?: string;

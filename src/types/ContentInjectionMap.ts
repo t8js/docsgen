@@ -1,5 +1,5 @@
-import type { ContentInjectionTarget } from "./ContentInjectionTarget";
-import type { Page } from "./Page";
+import type { ContentInjectionTarget } from "./ContentInjectionTarget.ts";
+import type { Page } from "./Page.ts";
 
 type InjectedContent =
   | string

@@ -1,4 +1,4 @@
-import type { EntryConfig } from "./EntryConfig";
+import type { EntryConfig } from "./EntryConfig.ts";
 
 export type Config = EntryConfig & {
   $schema?: string;

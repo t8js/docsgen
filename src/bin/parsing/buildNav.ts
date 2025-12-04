@@ -1,7 +1,7 @@
 import type { JSDOM } from "jsdom";
-import type { Context } from "../../types/Context";
-import type { NavItem } from "../../types/NavItem";
-import { getSlug } from "../getSlug";
+import type { Context } from "../../types/Context.ts";
+import type { NavItem } from "../../types/NavItem.ts";
+import { getSlug } from "../getSlug.ts";
 
 export function buildNav(ctx: Context, dom: JSDOM) {
   let { root, contentDir, singlePage } = ctx;

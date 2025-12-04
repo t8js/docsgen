@@ -3,6 +3,7 @@
   "version": "0.2.39",
   "description": "",
   "main": "dist/bin.js",
+  "type": "module",
   "bin": {
     "docsgen": "dist/bin.js"
   },
@@ -13,9 +14,8 @@
     "build-schema": "npx ts-json-schema-generator -p src/types/Config.ts -t Config -o schema.json --minify",
     "clean": "node -e \"require('node:fs').rmSync('dist', { force: true, recursive: true });\"",
     "prepublishOnly": "npm run build",
-    "preversion": "npx npm-run-all typecheck build-schema shape build",
-    "shape": "npx codeshape",
-    "typecheck": "tsc --noEmit"
+    "preversion": "npx npm-run-all shape build-schema build",
+    "shape": "npx codeshape --typecheck"
   },
   "repository": {
     "type": "git",
@@ -26,8 +26,7 @@
   "devDependencies": {
     "@types/jsdom": "^27.0.0",
     "@types/markdown-it": "^14.1.2",
-    "@types/node": "^24.7.0",
-    "typescript": "^5.9.3"
+    "@types/node": "^24.7.0"
   },
   "dependencies": {
     "args-json": "^1.2.6",

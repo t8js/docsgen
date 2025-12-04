@@ -1,8 +1,8 @@
 import { access, mkdir } from "node:fs/promises";
-import type { Context } from "../types/Context";
-import { setCName } from "./setCName";
-import { setContent } from "./setContent";
-import { setImages } from "./setImages";
+import type { Context } from "../types/Context.ts";
+import { setCName } from "./setCName.ts";
+import { setContent } from "./setContent.ts";
+import { setImages } from "./setImages.ts";
 
 export async function createFiles(ctx: Context) {
   let { dir } = ctx;

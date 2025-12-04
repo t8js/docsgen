@@ -1,6 +1,6 @@
-import type { Config } from "../types/Config";
-import type { PackageMetadata } from "../types/PackageMetadata";
-import { toRepoURL } from "./toRepoURL";
+import type { Config } from "../types/Config.ts";
+import type { PackageMetadata } from "../types/PackageMetadata.ts";
+import { toRepoURL } from "./toRepoURL.ts";
 
 export function toConfig(metadata: PackageMetadata): Partial<Config> {
   let { name, description, version, repository } = metadata;

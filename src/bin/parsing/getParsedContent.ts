@@ -1,14 +1,14 @@
 import { JSDOM } from "jsdom";
 import Markdown from "markdown-it";
-import type { Context } from "../../types/Context";
-import { fetchContent } from "../fetchContent";
-import { getLocation } from "../getLocation";
-import { buildNav } from "./buildNav";
-import { getInstallationCode } from "./getInstallationCode";
-import { getSectionPostprocess } from "./getSectionPostprocess";
-import { isBadgeContainer } from "./isBadgeContainer";
-import { joinLines } from "./joinLines";
-import { preprocessContent } from "./preprocessContent";
+import type { Context } from "../../types/Context.ts";
+import { fetchContent } from "../fetchContent.ts";
+import { getLocation } from "../getLocation.ts";
+import { buildNav } from "./buildNav.ts";
+import { getInstallationCode } from "./getInstallationCode.ts";
+import { getSectionPostprocess } from "./getSectionPostprocess.ts";
+import { isBadgeContainer } from "./isBadgeContainer.ts";
+import { joinLines } from "./joinLines.ts";
+import { preprocessContent } from "./preprocessContent.ts";
 
 const md = new Markdown({
   html: true,

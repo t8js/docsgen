@@ -1,4 +1,4 @@
-import type { PackageMetadata } from "../types/PackageMetadata";
+import type { PackageMetadata } from "../types/PackageMetadata.ts";
 
 export function toRepoURL(x: PackageMetadata["repository"]) {
   if (!x) return "";

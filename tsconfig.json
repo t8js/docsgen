@@ -1,11 +1,13 @@
 {
-  "include": ["src/**/*"],
+  "include": ["./src"],
   "compilerOptions": {
+    "noEmit": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "target": "ESNext",
     "outDir": "dist",
     "module": "nodenext",
     "moduleResolution": "nodenext",
+    "allowImportingTsExtensions": true,
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,

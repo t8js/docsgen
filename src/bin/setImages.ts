@@ -1,7 +1,7 @@
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import type { Context } from "../types/Context";
-import { getIconContent } from "../utils/getIconContent";
+import type { Context } from "../types/Context.ts";
+import { getIconContent } from "../utils/getIconContent.ts";
 
 export async function setImages({ dir = "", baseColor, favicon }: Context) {
   if (favicon) return;
