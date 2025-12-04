@@ -13,6 +13,7 @@
     "build-css": "node -e \"require('node:fs').cpSync('src/css', 'dist/css', { force: true, recursive: true });\"",
     "build-schema": "npx ts-json-schema-generator -p src/types/Config.ts -t Config -o schema.json --minify",
     "clean": "node -e \"require('node:fs').rmSync('dist', { force: true, recursive: true });\"",
+    "postinstall": "node src/scripts/postinstall.ts",
     "prepublishOnly": "npm run build",
     "preversion": "npx npm-run-all shape build-schema build",
     "shape": "npx codeshape --typecheck"
