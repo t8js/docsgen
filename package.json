@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "npx npm-run-all clean build-bin build-css",
-    "build-bin": "npx esbuild ./src/bin/run.ts --bundle --outfile=dist/bin.js --platform=node --external:jsdom --external:markdown-it",
+    "build-bin": "npx esbuild ./src/bin/run.ts --bundle --outfile=dist/bin.js --platform=node --external:jsdom --external:markdown-it --format=esm",
     "build-css": "node -e \"require('node:fs').cpSync('src/css', 'dist/css', { force: true, recursive: true });\"",
     "build-schema": "npx ts-json-schema-generator -p src/types/Config.ts -t Config -o schema.json --minify",
     "clean": "node -e \"require('node:fs').rmSync('dist', { force: true, recursive: true });\"",
