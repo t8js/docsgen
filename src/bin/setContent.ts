@@ -138,7 +138,9 @@ ${getInjectedContent(ctx, "redirect", "body")}
     nav,
   } = await getParsedContent(ctx);
 
-  let plainTitle = escapeHTML(title || stripHTML(htmlTitle || parsedTitle, true) || name);
+  let plainTitle = escapeHTML(
+    title || stripHTML(htmlTitle || parsedTitle, true) || name,
+  );
   let coverTitle = htmlTitle || parsedTitle || plainTitle;
 
   let descriptionContent =
