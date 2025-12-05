@@ -12,7 +12,6 @@ import { getIcon } from "./getIcon.ts";
 import { getInjectedContent } from "./getInjectedContent.ts";
 import { getNav } from "./getNav.ts";
 import { getRepoLink } from "./getRepoLink.ts";
-import { getTitle } from "./getTitle.ts";
 import { getParsedContent } from "./parsing/getParsedContent.ts";
 import { stripHTML } from "./stripHTML.ts";
 import { toFileContent } from "./toFileContent.ts";
@@ -48,7 +47,8 @@ export async function setContent(ctx: Context) {
     root,
     contentDir = "",
     name,
-    title: configTitle,
+    title,
+    htmlTitle,
     description: packageDescription,
     backstory,
     redirect,
@@ -128,7 +128,7 @@ ${getInjectedContent(ctx, "redirect", "body")}
   }
 
   let {
-    title,
+    title: parsedTitle,
     description,
     intro,
     features,
@@ -138,9 +138,8 @@ ${getInjectedContent(ctx, "redirect", "body")}
     nav,
   } = await getParsedContent(ctx);
 
-  let escapedTitle = configTitle
-    ? escapeHTML(configTitle)
-    : title || escapeHTML(name);
+  let plainTitle = escapeHTML(title || stripHTML(htmlTitle || parsedTitle, true) || name);
+  let coverTitle = htmlTitle || parsedTitle || plainTitle;
 
   let descriptionContent =
     tweakTypography(description) ||
@@ -173,8 +172,8 @@ ${getInjectedContent(ctx, "redirect", "body")}
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="${escapedTitle}: ${escapeHTML(stripHTML(nav[i]?.title, true))}">
-  <title>${escapeHTML(stripHTML(nav[i]?.title, true))} | ${escapedTitle}</title>
+  <meta name="description" content="${plainTitle}: ${escapeHTML(stripHTML(nav[i]?.title, true))}">
+  <title>${escapeHTML(stripHTML(nav[i]?.title, true))} | ${plainTitle}</title>
   <link rel="stylesheet" href="${cssRoot.content}/base.css">
   <link rel="stylesheet" href="${cssRoot.content}/section.css">
   ${iconTag}
@@ -186,7 +185,7 @@ ${getInjectedContent(ctx, "redirect", "body")}
 <div class="layout">
 <div class="${navContent ? "" : "no-nav "}body">
 <main>
-<h1>${getTitle(ctx, { withPackageURL: true })}</h1>
+<h1><a href="${root}">${coverTitle}</a></h1>
 ${content}
 
 <p class="pagenav">
@@ -229,8 +228,8 @@ ${getInjectedContent(ctx, "section", "body")}
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="${escapedTitle}${escapedPackageDescription ? `: ${escapedPackageDescription}` : ""}">
-  <title>${escapedTitle}${escapedPackageDescription ? ` | ${escapedPackageDescription}` : ""}</title>
+  <meta name="description" content="${plainTitle}${escapedPackageDescription ? `: ${escapedPackageDescription}` : ""}">
+  <title>${plainTitle}${escapedPackageDescription ? ` | ${escapedPackageDescription}` : ""}</title>
   <link rel="stylesheet" href="${cssRoot.index}/base.css">
   <link rel="stylesheet" href="${cssRoot.index}/index.css">
   ${iconTag}
@@ -243,7 +242,7 @@ ${getInjectedContent(ctx, "section", "body")}
 <main>
 <section class="b1 intro-title">
   <div class="section-content">
-    <h1>${getTitle(ctx, { cover: true })}</h1>
+    <h1>${coverTitle}</h1>
     <div class="description">
       ${descriptionContent}
     </div>
@@ -296,7 +295,7 @@ ${getInjectedContent(ctx, "index", "body")}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="refresh" content="0; URL=${root}${contentDir}/${nav[0]?.id}">
-  <title>${escapedTitle}</title>
+  <title>${plainTitle}</title>
   <link rel="stylesheet" href="${cssRoot.index}/base.css">
   ${iconTag}
   <script>window.location.replace("${root}${contentDir}/${nav[0]?.id}");</script>
@@ -304,7 +303,7 @@ ${getInjectedContent(ctx, "index", "body")}
 </head>
 <body>
 <div class="layout">
-  <h1>${escapedTitle}</h1>
+  <h1>${plainTitle}</h1>
 </div>
 
 ${counterContent}

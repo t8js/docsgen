@@ -48,8 +48,6 @@ export type EntryConfig = {
   /** Favicon URL. */
   favicon?: string;
   faviconType?: string;
-  /** Scope URL. */
-  scope?: string;
   /** Redirection URL. */
   redirect?: string;
   /** Whether to remove the GitHub Pages branch and quit. */
