@@ -1,6 +1,7 @@
 import { exec as defaultExec } from "node:child_process";
 import { access, cp, mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { packageName } from "../const/packageName.ts";
 import type { Context } from "../types/Context.ts";
@@ -15,7 +16,6 @@ import { getTitle } from "./getTitle.ts";
 import { getParsedContent } from "./parsing/getParsedContent.ts";
 import { stripHTML } from "./stripHTML.ts";
 import { toFileContent } from "./toFileContent.ts";
-import { fileURLToPath } from "node:url";
 
 const exec = promisify(defaultExec);
 
