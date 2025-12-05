@@ -48,15 +48,13 @@ export async function setContent(ctx: Context) {
     root,
     contentDir = "",
     name,
-    title,
+    title: configTitle,
     description: packageDescription,
     backstory,
     redirect,
   } = ctx;
 
   let counterContent = getCounterContent(ctx);
-  let escapedName = escapeHTML(name);
-  let escapedTitle = title ? escapeHTML(title) : escapedName;
   let escapedPackageDescription = escapeHTML(packageDescription);
 
   let rootAttrs = "";
@@ -129,8 +127,10 @@ ${getInjectedContent(ctx, "redirect", "body")}
     return;
   }
 
-  let { description, intro, features, note, installation, sections, nav } =
+  let { title, description, intro, features, note, installation, sections, nav } =
     await getParsedContent(ctx);
+
+  let escapedTitle = configTitle ? escapeHTML(configTitle) : (title || escapeHTML(name));
 
   let descriptionContent =
     tweakTypography(description) ||
