@@ -127,10 +127,20 @@ ${getInjectedContent(ctx, "redirect", "body")}
     return;
   }
 
-  let { title, description, intro, features, note, installation, sections, nav } =
-    await getParsedContent(ctx);
+  let {
+    title,
+    description,
+    intro,
+    features,
+    note,
+    installation,
+    sections,
+    nav,
+  } = await getParsedContent(ctx);
 
-  let escapedTitle = configTitle ? escapeHTML(configTitle) : (title || escapeHTML(name));
+  let escapedTitle = configTitle
+    ? escapeHTML(configTitle)
+    : title || escapeHTML(name);
 
   let descriptionContent =
     tweakTypography(description) ||
