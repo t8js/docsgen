@@ -9,9 +9,12 @@
   --aux-color: #797979;
   --aux-background: #f2f2f2;
   --aux-link-color: royalblue;
-  --aux-secondary-color: #797979;
+  --aux-secondary-color: var(--color);
   --aux-emphatic-color: #3d3d3d; /* cover title, selected nav item */
   --aux-line-color: #b3b3b3;
+
+  --code-block-color: var(--color);
+  --code-block-background: #f2f2f2;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -25,9 +28,12 @@
     --aux-color: #8e9198;
     --aux-background: #1d2331;
     --aux-link-color: deepskyblue;
-    --aux-secondary-color: #8e9198;
+    --aux-secondary-color: var(--color);
     --aux-emphatic-color: #c6c7cb;
     --aux-line-color: #616e8c;
+    
+    --code-block-color: var(--color);
+    --code-block-background: #1d2331;
   }
 }
 :root {

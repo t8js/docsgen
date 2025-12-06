@@ -1,6 +1,6 @@
 .hljs {
-  color: var(--color);
-  background: var(--aux-background);
+  color: var(--code-block-color);
+  background: var(--code-block-background);
 }
 @media (prefers-color-scheme: light) {
   .hljs-deletion {
