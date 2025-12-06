@@ -1,5 +1,5 @@
 .hljs {
-  color: var(--aux-color);
+  color: var(--color);
   background: var(--aux-background);
 }
 @media (prefers-color-scheme: light) {
