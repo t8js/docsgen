@@ -21,7 +21,7 @@
     --secondary-color: #8d8d8d;
     --emphatic-color: var(--color);
     --line-color: #272b34;
-  
+
     --aux-color: #8e9198;
     --aux-background: #1d2331;
     --aux-link-color: deepskyblue;
@@ -130,13 +130,13 @@ main li {
   margin: 0;
 }
 code {
-  background: color(from var(--color) srgb r g b / .08);
+  background: color(from var(--color) srgb r g b / 0.08);
   border-radius: 0.35em;
   padding: 0.15em 0.35em;
 }
 @media (prefers-color-scheme: dark) {
   code {
-    background: color(from var(--color) srgb r g b / .12);
+    background: color(from var(--color) srgb r g b / 0.12);
   }
 }
 pre,
