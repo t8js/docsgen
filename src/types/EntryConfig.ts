@@ -1,5 +1,4 @@
 import type { ContentInjectionMap } from "./ContentInjectionMap.ts";
-import type { Theme } from "./Theme.ts";
 
 export type EntryConfig = {
   id?: string;
@@ -10,9 +9,6 @@ export type EntryConfig = {
    * If not provided, the assets will be added via the package URLs.
    */
   assetsDir?: string;
-  baseColor?: string;
-  linkColor?: string;
-  theme?: Theme;
   name?: string;
   title?: string;
   htmlTitle?: string;

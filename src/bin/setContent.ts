@@ -41,9 +41,6 @@ export async function setContent(ctx: Context) {
   let {
     dir = "",
     assetsDir,
-    baseColor,
-    linkColor,
-    theme,
     root,
     contentDir = "",
     name,
@@ -57,7 +54,6 @@ export async function setContent(ctx: Context) {
   let counterContent = getCounterContent(ctx);
   let escapedPackageDescription = escapeHTML(packageDescription);
 
-  let rootAttrs = "";
   let cssRoot = {
     index: "",
     content: "",
@@ -84,17 +80,6 @@ export async function setContent(ctx: Context) {
     cssRoot.content = `${packageUrl}/dist/css`;
   }
 
-  if (theme) rootAttrs += ` data-theme="${escapeHTML(theme)}"`;
-
-  let rootStyle = "";
-
-  if (baseColor)
-    rootStyle += `${rootStyle ? " " : ""}--base-color: ${escapeHTML(baseColor)};`;
-  if (linkColor)
-    rootStyle += `${rootStyle ? " " : ""}--link-color: ${escapeHTML(linkColor)};`;
-
-  if (rootStyle) rootAttrs += ` style="${rootStyle}"`;
-
   let icon = getIcon(ctx);
   let iconTag = icon.url
     ? `<link rel="icon"${icon.type ? ` type="${icon.type}"` : ""} href="${icon.url}">`
@@ -107,7 +92,7 @@ export async function setContent(ctx: Context) {
       join(dir, "index.html"),
       toFileContent(`
 <!DOCTYPE html>
-<html lang="en" class="blank"${rootAttrs}>
+<html lang="en" class="blank">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -170,7 +155,7 @@ ${getInjectedContent(ctx, "redirect", "body")}
         join(dir, contentDir, `${nav[i]?.id ?? `_untitled_${i}`}.html`),
         toFileContent(`
 <!DOCTYPE html>
-<html lang="en"${rootAttrs}>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -226,7 +211,7 @@ ${getInjectedContent(ctx, "section", "body")}
       join(dir, "index.html"),
       toFileContent(`
 <!DOCTYPE html>
-<html lang="en"${rootAttrs}>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -292,7 +277,7 @@ ${getInjectedContent(ctx, "index", "body")}
       join(dir, "start.html"),
       toFileContent(`
 <!DOCTYPE html>
-<html lang="en" class="blank"${rootAttrs}>
+<html lang="en" class="blank">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
