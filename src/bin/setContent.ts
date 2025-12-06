@@ -92,7 +92,7 @@ export async function setContent(ctx: Context) {
       join(dir, "index.html"),
       toFileContent(`
 <!DOCTYPE html>
-<html lang="en" class="blank">
+<html lang="en" data-layout="redirect" class="blank">
 <head>
   ${getInjectedContent(ctx, "redirect", "head", "prepend")}
   <meta charset="utf-8">
@@ -157,7 +157,7 @@ ${getInjectedContent(ctx, "redirect", "body", "append")}
         join(dir, contentDir, `${nav[i]?.id ?? `_untitled_${i}`}.html`),
         toFileContent(`
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-layout="section">
 <head>
   ${getInjectedContent(ctx, "section", "head", "prepend")}
   <meta charset="utf-8">
@@ -215,7 +215,7 @@ ${getInjectedContent(ctx, "section", "body", "append")}
       join(dir, "index.html"),
       toFileContent(`
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-layout="index">
 <head>
   ${getInjectedContent(ctx, "index", "head", "prepend")}
   <meta charset="utf-8">
@@ -285,7 +285,7 @@ ${getInjectedContent(ctx, "index", "body", "append")}
       join(dir, "start.html"),
       toFileContent(`
 <!DOCTYPE html>
-<html lang="en" class="blank">
+<html lang="en" data-layout="start" class="blank">
 <head>
   ${getInjectedContent(ctx, "start", "head", "prepend")}
   <meta charset="utf-8">
