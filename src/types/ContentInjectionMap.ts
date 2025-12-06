@@ -9,6 +9,6 @@ type InjectedContent =
       pages?: Page[];
     };
 
-export type ContentInjectionMap<T extends ContentInjectionTarget> = Partial<
-  Record<T, InjectedContent | InjectedContent[]>
+export type ContentInjectionMap = Partial<
+  Record<ContentInjectionTarget, InjectedContent | InjectedContent[]>
 >;

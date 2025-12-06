@@ -94,15 +94,17 @@ export async function setContent(ctx: Context) {
 <!DOCTYPE html>
 <html lang="en" class="blank">
 <head>
+  ${getInjectedContent(ctx, "redirect", "head", "prepend")}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="refresh" content="0; URL=${escapedRedirect}">
   ${iconTag}
-  ${getInjectedContent(ctx, "redirect", "head")}
+  ${getInjectedContent(ctx, "redirect", "head", "append")}
 </head>
 <body>
+${getInjectedContent(ctx, "redirect", "body", "prepend")}
 ${counterContent}
-${getInjectedContent(ctx, "redirect", "body")}
+${getInjectedContent(ctx, "redirect", "body", "append")}
 <script>window.location.replace("${escapedRedirect}");</script>
 </body>
 </html>
@@ -157,6 +159,7 @@ ${getInjectedContent(ctx, "redirect", "body")}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  ${getInjectedContent(ctx, "section", "head", "prepend")}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${plainTitle}: ${escapeHTML(stripHTML(nav[i]?.title, true))}">
@@ -166,9 +169,10 @@ ${getInjectedContent(ctx, "redirect", "body")}
   ${iconTag}
   ${nav[i + 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[i + 1]?.id}">` : ""}
   ${nav[i - 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[i - 1]?.id}">` : ""}
-  ${getInjectedContent(ctx, "section", "head")}
+  ${getInjectedContent(ctx, "section", "head", "append")}
 </head>
 <body>
+${getInjectedContent(ctx, "section", "body", "prepend")}
 <div class="layout">
 <div class="${navContent ? "" : "no-nav "}body">
 <main>
@@ -196,12 +200,12 @@ ${navContent.replace(
 
 ${
   content.includes("<pre><code ")
-    ? getInjectedContent(ctx, "section", ":has-code") ||
+    ? getInjectedContent(ctx, "section", ":has-code", "append") ||
       getDefaultCodeStyleContent(cssRoot.content)
     : ""
 }
 ${counterContent}
-${getInjectedContent(ctx, "section", "body")}
+${getInjectedContent(ctx, "section", "body", "append")}
 </body>
 </html>
         `),
@@ -213,6 +217,7 @@ ${getInjectedContent(ctx, "section", "body")}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  ${getInjectedContent(ctx, "index", "head", "prepend")}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${plainTitle}${escapedPackageDescription ? `: ${escapedPackageDescription}` : ""}">
@@ -222,13 +227,15 @@ ${getInjectedContent(ctx, "section", "body")}
   ${iconTag}
   <link rel="prefetch" href="${root}start">
   ${nav[0] ? `<link rel="prefetch" href="${root}${contentDir}/${nav[0]?.id ?? ""}">` : ""}
-  ${getInjectedContent(ctx, "index", "head")}
+  ${getInjectedContent(ctx, "index", "head", "append")}
 </head>
 <body>
+${getInjectedContent(ctx, "index", "body", "prepend")}
 <div class="layout">
 <main>
 <section class="aux intro-title">
   <div class="section-content">
+    ${getInjectedContent(ctx, "index", "cover", "prepend")}
     <h1>${coverTitle}</h1>
     <div class="description">
       ${descriptionContent}
@@ -240,6 +247,7 @@ ${getInjectedContent(ctx, "section", "body")}
     </p>
     ${backstory ? `<p class="ref"><a href="${backstory}">Backstory</a></p>` : ""}
     <p class="installation"><code>${installation}</code></p>
+    ${getInjectedContent(ctx, "index", "cover", "append")}
   </div>
 </section>
 ${
@@ -263,12 +271,12 @@ ${
 
 ${
   [description, intro, features, note].some((s) => s.includes("<pre><code "))
-    ? getInjectedContent(ctx, "index", ":has-code") ||
+    ? getInjectedContent(ctx, "index", ":has-code", "append") ||
       getDefaultCodeStyleContent(cssRoot.index)
     : ""
 }
 ${counterContent}
-${getInjectedContent(ctx, "index", "body")}
+${getInjectedContent(ctx, "index", "body", "append")}
 </body>
 </html>
             `),
@@ -279,6 +287,7 @@ ${getInjectedContent(ctx, "index", "body")}
 <!DOCTYPE html>
 <html lang="en" class="blank">
 <head>
+  ${getInjectedContent(ctx, "start", "head", "prepend")}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="refresh" content="0; URL=${root}${contentDir}/${nav[0]?.id}">
@@ -286,15 +295,16 @@ ${getInjectedContent(ctx, "index", "body")}
   <link rel="stylesheet" href="${cssRoot.index}/base.css">
   ${iconTag}
   <script>window.location.replace("${root}${contentDir}/${nav[0]?.id}");</script>
-  ${getInjectedContent(ctx, "start", "head")}
+  ${getInjectedContent(ctx, "start", "head", "append")}
 </head>
 <body>
+${getInjectedContent(ctx, "start", "body", "prepend")}
 <div class="layout">
   <h1>${plainTitle}</h1>
 </div>
 
 ${counterContent}
-${getInjectedContent(ctx, "start", "body")}
+${getInjectedContent(ctx, "start", "body", "append")}
 </body>
 </html>
             `),

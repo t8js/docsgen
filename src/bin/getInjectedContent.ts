@@ -6,7 +6,7 @@ export function getInjectedContent(
   ctx: Context,
   page: Page,
   target: ContentInjectionTarget,
-  mode: "append" | undefined = "append",
+  mode: "append" | "prepend",
 ) {
   let injectedContent = ctx[mode]?.[target];
 
