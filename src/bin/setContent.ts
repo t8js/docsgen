@@ -242,7 +242,7 @@ ${getInjectedContent(ctx, "section", "body")}
 <body>
 <div class="layout">
 <main>
-<section class="b1 intro-title">
+<section class="aux intro-title">
   <div class="section-content">
     <h1>${coverTitle}</h1>
     <div class="description">

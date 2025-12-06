@@ -17,8 +17,6 @@ body {
 
 main {
   --max-content-width: 38em;
-  --line-color: color(from var(--c0) srgb r g b / 0.1);
-
   display: flex;
   width: 100%;
   align-items: flex-start;
@@ -30,7 +28,6 @@ main {
 @media (max-width: 840px) {
   main {
     --max-content-width: 100%;
-
     min-height: 100vh;
     flex-direction: column;
     margin: 0;
@@ -41,7 +38,7 @@ h1 {
   max-width: 16rem;
   font-size: 2.5em;
   font-weight: 900;
-  color: color(from var(--c1) srgb r g b / 0.75);
+  color: var(--emphatic-color);
   margin: 1rem 0;
 }
 @media (max-width: 840px) {
@@ -78,16 +75,8 @@ header {
   font-style: normal;
 }
 .actions {
-  --r: 1em;
-
   font-size: 1.25em;
   margin: 1.25rem 0;
-}
-.actions a.primary {
-  font-weight: bold;
-}
-.actions a.button {
-  min-width: 6.5em;
 }
 .actions .sep {
   display: block;
@@ -95,6 +84,9 @@ header {
   font-size: 0;
   overflow: hidden;
   margin: 0.35rem 0;
+}
+.actions .primary {
+  font-weight: bold;
 }
 .ref {
   font-size: 0.9em;
@@ -194,11 +186,8 @@ section.intro .section-content {
   }
 }
 .features {
-  --ca: color(from var(--c0) srgb r g b / 0.55);
-  --link-decoration: underline;
   --list-padding-x: 1.25rem;
   --list-item-padding-x: 0.35rem;
-
   margin: 1em 0;
 }
 .features h2 {
