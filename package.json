@@ -15,7 +15,7 @@
     "clean": "node -e \"require('node:fs').rmSync('dist', { force: true, recursive: true });\"",
     "patch": "node src/scripts/patch.ts",
     "prepublishOnly": "npm run build",
-    "preversion": "npx npm-run-all shape build-schema build",
+    "preversion": "npx npm-run-all shape build",
     "shape": "npx codeshape --typecheck"
   },
   "repository": {
