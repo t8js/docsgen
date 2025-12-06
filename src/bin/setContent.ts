@@ -172,7 +172,7 @@ ${getInjectedContent(ctx, "redirect", "body")}
 <div class="layout">
 <div class="${navContent ? "" : "no-nav "}body">
 <main>
-<h1><a href="${root}">${coverTitle}</a></h1>
+<h1><a href="${root}">${plainTitle}</a></h1>
 ${content}
 
 <p class="pagenav">
