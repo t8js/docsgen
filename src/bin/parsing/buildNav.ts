@@ -27,7 +27,7 @@ export function buildNav(ctx: Context, dom: JSDOM) {
     let isSubsectionTitle = tagName === "h3";
     let slug = getSlug(element.textContent);
 
-    let sectionId = isSectionTitle ? slug : (navItem?.id ?? "");
+    let sectionId = isSectionTitle && !singlePage ? slug : (navItem?.id ?? "");
     let link = `${root}${contentDir}/${sectionId}`;
 
     let elementId = element.id || slug.toLowerCase().replace(/_/g, "-");
