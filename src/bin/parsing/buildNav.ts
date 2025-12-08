@@ -33,7 +33,8 @@ export function buildNav(ctx: Context, dom: JSDOM) {
     let elementId = element.id || slug.toLowerCase().replace(/_/g, "-");
 
     if (elementId)
-      linkMap[`#${elementId}`] = `${link}${isSectionTitle && !singlePage ? "" : `#${slug}`}`;
+      linkMap[`#${elementId}`] =
+        `${link}${isSectionTitle && !singlePage ? "" : `#${slug}`}`;
 
     if (singlePage && isSectionTitle) {
       if (navItem) {
