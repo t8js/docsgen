@@ -37,7 +37,7 @@
   }
 }
 :root {
-  --max-content-width: 64em;
+  --max-content-width: 45em;
   --content-padding-x: 1.75rem;
   --content-padding-y: 1.75rem;
   --block-margin-y: 1em;
@@ -64,6 +64,7 @@ body {
 }
 @media (max-width: 840px) {
   :root {
+    --max-content-width: 100%;
     --content-padding-x: 0.85rem;
     --content-padding-y: 1rem;
   }

@@ -135,7 +135,7 @@ footer {
 
 main {
   width: 75%;
-  max-width: 45em;
+  max-width: var(--max-content-width);
   padding: var(--content-padding-y) var(--content-padding-x);
   box-sizing: border-box;
 }
@@ -144,9 +144,6 @@ main {
     width: 100%;
     padding-bottom: 0;
   }
-}
-.body.no-nav {
-  --max-content-width: 45em;
 }
 .body.no-nav > main {
   width: auto;

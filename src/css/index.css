@@ -16,7 +16,6 @@ body {
 }
 
 main {
-  --max-content-width: 38em;
   display: flex;
   width: 100%;
   align-items: flex-start;
@@ -27,7 +26,6 @@ main {
 }
 @media (max-width: 840px) {
   main {
-    --max-content-width: 100%;
     min-height: 100vh;
     flex-direction: column;
     margin: 0;
