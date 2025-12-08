@@ -112,7 +112,7 @@ section .section-content {
 }
 section.intro-title {
   display: flex;
-  width: 40%;
+  width: 36%;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
@@ -139,7 +139,7 @@ section.intro-title:last-of-type .section-content {
 }
 section.intro {
   display: flex;
-  width: 60%;
+  width: 64%;
   flex-direction: column;
   justify-content: center;
 }
