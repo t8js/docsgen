@@ -13,6 +13,11 @@ export type EntryConfig = {
   title?: string;
   htmlTitle?: string;
   description?: string;
+  /**
+   * Whether the first line following the main title is the package
+   * description.
+   */
+  firstLineDescription?: boolean;
   version?: string;
   repo?: string;
   npm?: string;

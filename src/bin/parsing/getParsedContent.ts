@@ -15,7 +15,7 @@ const md = new Markdown({
 });
 
 export async function getParsedContent(ctx: Context) {
-  let { singlePage, linkMap } = ctx;
+  let { singlePage, firstLineDescription, linkMap } = ctx;
   let rawContent = await fetchContent(
     getLocation(ctx, "README.md", ctx.source),
   );
@@ -45,7 +45,7 @@ export async function getParsedContent(ctx: Context) {
     }
 
     if (element.matches("h1")) {
-      title = element.innerHTML;
+      title = element.innerHTML.trim();
       continue;
     }
 
@@ -87,7 +87,7 @@ export async function getParsedContent(ctx: Context) {
       continue;
     }
 
-    if (element.matches("p") && description.length === 0) {
+    if (title && firstLineDescription && element.matches("p") && description.length === 0) {
       description.push(outerHTML);
       continue;
     }
@@ -101,15 +101,6 @@ export async function getParsedContent(ctx: Context) {
     ...navLinkMap,
     ...linkMap,
   });
-
-  if (
-    intro.length !== 0 &&
-    description.length !== 0 &&
-    !description[0].startsWith("<p><em>")
-  ) {
-    intro.unshift(description[0]);
-    description = [];
-  }
 
   if (intro.at(-1) === "<hr>") intro.pop();
 
