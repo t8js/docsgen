@@ -87,7 +87,12 @@ export async function getParsedContent(ctx: Context) {
       continue;
     }
 
-    if (title && firstLineDescription && element.matches("p") && description.length === 0) {
+    if (
+      title &&
+      firstLineDescription &&
+      element.matches("p") &&
+      description.length === 0
+    ) {
       description.push(outerHTML);
       continue;
     }
