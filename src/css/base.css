@@ -158,9 +158,6 @@ pre > code {
   background: var(--code-block-background);
   padding: 1.25em;
 }
-pre > code[data-highlighted] {
-  background: transparent;
-}
 
 html.blank h1 {
   font-size: 10vmin;
