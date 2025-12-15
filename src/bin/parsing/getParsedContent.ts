@@ -15,7 +15,7 @@ const md = new Markdown({
 });
 
 export async function getParsedContent(ctx: Context) {
-  let { singlePage, firstLineDescription, hasCoverIntro = true, linkMap } = ctx;
+  let { singlePage, firstLineDescription, linkMap } = ctx;
   let rawContent = await fetchContent(
     getLocation(ctx, "README.md", ctx.source),
   );
@@ -97,13 +97,7 @@ export async function getParsedContent(ctx: Context) {
       continue;
     }
 
-    if (hasCoverIntro) {
-      intro.push(outerHTML);
-      continue;
-    }
-
-    section.push(outerHTML);
-    indexComplete = true;
+    intro.push(outerHTML);
   }
 
   if (section.length !== 0) sections.push(joinLines(section));
