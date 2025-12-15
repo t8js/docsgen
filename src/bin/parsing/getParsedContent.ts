@@ -15,7 +15,7 @@ const md = new Markdown({
 });
 
 export async function getParsedContent(ctx: Context) {
-  let { singlePage, firstLineDescription, hasCoverIntro, linkMap } = ctx;
+  let { singlePage, firstLineDescription, hasCoverIntro = true, linkMap } = ctx;
   let rawContent = await fetchContent(
     getLocation(ctx, "README.md", ctx.source),
   );
