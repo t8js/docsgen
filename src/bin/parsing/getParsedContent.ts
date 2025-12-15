@@ -102,6 +102,7 @@ export async function getParsedContent(ctx: Context) {
       continue;
     }
 
+    section.push(outerHTML);
     indexComplete = true;
   }
 
