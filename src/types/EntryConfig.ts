@@ -18,6 +18,12 @@ export type EntryConfig = {
    * description.
    */
   firstLineDescription?: boolean;
+  hasCoverIntro?: boolean;
+  /**
+   * Whether the package installation instruction should include the
+   * "-D" flag.
+   */
+  isDevDep?: boolean;
   version?: string;
   repo?: string;
   npm?: string;

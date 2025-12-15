@@ -47,6 +47,7 @@ export async function setContent(ctx: Context) {
     title,
     htmlTitle,
     description: packageDescription,
+    isDevDep,
     backstory,
     redirect,
   } = ctx;
@@ -135,6 +136,9 @@ ${getInjectedContent(ctx, "redirect", "body", "append")}
     (escapedPackageDescription
       ? `<p>${tweakTypography(escapedPackageDescription)}<p>`
       : "");
+
+  if (!installation || isDevDep !== undefined)
+    installation = `npm i${isDevDep ? " -D" : ""} ${name}`;
 
   let navContent = await getNav(ctx, nav);
   let dirs = [contentDir];
@@ -246,7 +250,7 @@ ${getInjectedContent(ctx, "index", "body", "prepend")}
       ${getRepoLink(ctx)}
     </p>
     ${backstory ? `<p class="ref"><a href="${backstory}">Backstory</a></p>` : ""}
-    <p class="installation"><code>${installation}</code></p>
+    <p class="installation"><code>${escapeHTML(installation)}</code></p>
     ${getInjectedContent(ctx, "index", "cover", "append")}
   </div>
 </section>
