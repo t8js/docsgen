@@ -3,6 +3,7 @@ import type { Context } from "../types/Context.ts";
 import type { NavItem } from "../types/NavItem.ts";
 import { fetchContent } from "./fetchContent.ts";
 import { getRepoLink } from "./getRepoLink.ts";
+import { getNpmLink } from "./getNpmLink.ts";
 
 export async function getNav(ctx: Context, navItems: NavItem[]) {
   let { name, root, contentDir, backstory, nav } = ctx;
@@ -68,12 +69,14 @@ export async function getNav(ctx: Context, navItems: NavItem[]) {
   s = s ? `<p class="title">Contents</p>\n<ul>${s}\n</ul>\n` : "";
 
   let repoLink = getRepoLink(ctx);
+  let npmLink = getNpmLink(ctx);
 
-  if (repoLink || backstory)
+  if (repoLink || npmLink || backstory)
     s += `
 <p class="title">Resources</p>
 <ul>
   ${repoLink ? `<li>${repoLink}</li>` : ""}
+  ${npmLink ? `<li>${npmLink}</li>` : ""}
   ${backstory ? `<li><a href="${backstory}">Backstory</a></li>` : ""}
 </ul>
 `;
