@@ -151,6 +151,9 @@ section.intro {
 section.intro .section-content {
   width: 100%;
 }
+section.intro pre {
+  margin: 1.75em 0;
+}
 @media (max-width: 840px) {
   section {
     width: auto;
@@ -186,9 +189,6 @@ section.intro .section-content {
   }
   section.intro .section-content {
     padding-top: 0.75rem;
-  }
-  section.intro pre {
-    margin: 1.75em 0;
   }
 }
 .features {
