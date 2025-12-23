@@ -13,6 +13,15 @@
   }
   .hljs-comment {
     color: #898e93;
+    font-style: italic;
+  }
+  .hljs-name, .hljs-quote, .hljs-selector-id, .hljs-template-tag, .hljs-type {
+    color: #86329d;
+    font-weight: bold;
+  }
+  .hljs-built_in, .hljs-literal, .hljs-title {
+    color: #7460ac;
+    font-weight: bold;
   }
 }
 @media (prefers-color-scheme: dark) {
