@@ -29,6 +29,9 @@
     color: #7460ac;
     font-weight: bold;
   }
+  .hljs-link, .hljs-regexp, .hljs-selector-attr, .hljs-string, .hljs-symbol, .hljs-template-variable, .hljs-variable {
+    color: #934365;
+  }
 }
 @media (prefers-color-scheme: dark) {
   .hljs-bullet,
