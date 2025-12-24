@@ -184,7 +184,7 @@ h1 a:active {
   }
 }
 main h1 + h2 {
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
 }
 main h2 {
   border-bottom: var(--sep-line);
