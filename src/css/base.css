@@ -108,13 +108,13 @@ h4 {
   margin: 1em 0 0.65em 0;
 }
 h2 {
-  font-size: 1.5em;
-}
-h3 {
   font-size: 1.3em;
 }
-h4 {
+h3 {
   font-size: 1.15em;
+}
+h4 {
+  font-size: 1em;
 }
 main {
   box-sizing: border-box;
