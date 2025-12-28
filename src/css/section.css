@@ -33,6 +33,7 @@ footer {
   flex: none;
   align-self: stretch;
   font-size: 0.9em;
+  line-height: 1.25;
   text-align: end;
   border-right: 0.05em solid var(--line-color);
   padding: 0.75rem var(--content-padding-x);
@@ -52,7 +53,6 @@ footer {
 .body > nav p.title {
   font-size: 0.7rem;
   font-weight: normal;
-  line-height: 1.2;
   text-transform: uppercase;
   margin: 1.1rem 0 0.75rem 0;
 }
@@ -62,7 +62,6 @@ footer {
 }
 .body > nav ul {
   list-style: none;
-  line-height: 1.2;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -89,7 +88,7 @@ footer {
   top: 0;
 }
 .body > nav li + li {
-  margin-top: 0.65em;
+  margin-top: 0.55em;
 }
 .body > nav li > strong {
   color: var(--emphatic-color);
@@ -116,9 +115,6 @@ footer {
   .body > nav li::before {
     left: 0;
     right: auto;
-  }
-  .body > nav li + li {
-    margin-top: 0.65em;
   }
 }
 .body > nav > ul:last-child,
@@ -201,6 +197,7 @@ main h2:first-child {
   display: flex;
   justify-content: space-between;
   gap: 1em;
+  line-height: 1.25;
   border-top: var(--sep-line);
   padding: 0.6em 0 0;
   margin: 1.5em 0 0;
@@ -214,7 +211,6 @@ main h2:first-child {
 .pagenav .prev,
 .pagenav .next {
   display: inline-block;
-  line-height: 1.2;
   position: relative;
 }
 .pagenav .icon {
