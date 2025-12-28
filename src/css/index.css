@@ -39,7 +39,7 @@ main {
 
 h1 {
   max-width: 16rem;
-  font-size: 2.5em;
+  font-size: 1.6em;
   font-weight: 900;
   color: var(--emphatic-color);
   margin: 1rem 0;
@@ -47,7 +47,6 @@ h1 {
 @media (max-width: 840px) {
   h1 {
     max-width: none;
-    font-size: 2.25em;
   }
 }
 h1 > a,
@@ -78,7 +77,6 @@ header {
   font-style: normal;
 }
 .actions {
-  font-size: 1.25em;
   margin: 1.25rem 0;
 }
 .actions .sep {
@@ -95,9 +93,6 @@ header {
   font-size: 0.9em;
 }
 @media (max-width: 840px) {
-  .actions {
-    font-size: 1.25em;
-  }
   .actions .sep {
     margin: 0.5rem 0;
   }
