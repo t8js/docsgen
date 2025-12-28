@@ -41,7 +41,6 @@ h1 {
   max-width: 16rem;
   font-size: 1.6em;
   font-weight: 900;
-  color: var(--emphatic-color);
   margin: 1rem 0;
 }
 @media (max-width: 840px) {
@@ -117,6 +116,7 @@ section.intro-title {
   align-items: flex-end;
   text-align: right;
   line-height: 1.3;
+  color: var(--emphatic-color);
   border-right: 0.05em solid var(--line-color);
 }
 section.intro-title .section-content {
@@ -170,10 +170,10 @@ section.intro pre {
     border-bottom: 0.05em solid var(--line-color);
   }
   section.intro-title .section-content {
-    min-height: 50vh;
+    min-height: 35vh;
     align-items: center;
-    padding-top: 1rem;
-    padding-bottom: 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
   }
   section.intro-title:last-child .section-content {
     max-width: 100%;
