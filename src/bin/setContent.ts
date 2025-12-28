@@ -189,7 +189,7 @@ ${content}
     ${nav[i - 1]?.id ? `<a href="${root}${contentDir}/${nav[i - 1]?.id}">${nav[i - 1]?.title}</a>` : `<a href="${root}">Intro</a>`}
   </span>
   <span class="sep">|</span>
-  ${nav[i + 1]?.id ? `<span class="next"><a href="${root}${contentDir}/${nav[i + 1]?.id}">${nav[i + 1]?.title}</a> <span class="icon">→</span></span>` : `<span class="repo next">${getRepoLink(ctx)} <span class="icon">✦</span></span>`}
+  ${nav[i + 1]?.id ? `<span class="next"><a href="${root}${contentDir}/${nav[i + 1]?.id}">${nav[i + 1]?.title}</a> <span class="icon">→</span></span>` : `<span class="repo">${getRepoLink(ctx)}</span>`}
 </p>
 </main>
 ${navContent ? "<hr>" : ""}
