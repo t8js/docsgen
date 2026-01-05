@@ -8,7 +8,7 @@
 
   --aux-color: #797979;
   --aux-background: #f2f2f2;
-  --aux-background-end: var(--aux-background);
+  --aux-background-end: #e3e3e3;
   --aux-link-color: royalblue;
   --aux-secondary-color: var(--color);
   --aux-emphatic-color: #3d3d3d; /* cover title, selected nav item */
@@ -28,6 +28,7 @@
 
     --aux-color: #8e9198;
     --aux-background: #1d2331;
+    --aux-background-end: #232738;
     --aux-link-color: deepskyblue;
     --aux-secondary-color: var(--color);
     --aux-emphatic-color: #c6c7cb;
