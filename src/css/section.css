@@ -35,7 +35,11 @@ footer {
   font-size: 0.9em;
   line-height: 1.25;
   text-align: end;
-  background: linear-gradient(to right, var(--aux-background), var(--aux-background-end));
+  background: linear-gradient(
+    to right,
+    var(--aux-background),
+    var(--aux-background-end)
+  );
   border-right: 0.05em solid var(--line-color);
   padding: 0.75rem var(--content-padding-x);
   margin: 0;
@@ -100,7 +104,11 @@ footer {
     display: block;
     font-size: inherit;
     text-align: start;
-    background: linear-gradient(to top, var(--aux-background), var(--aux-background-end));
+    background: linear-gradient(
+      to top,
+      var(--aux-background),
+      var(--aux-background-end)
+    );
     border-top: 0.35em solid var(--line-color);
     border-right: none;
     padding: 0.25rem var(--content-padding-x) 0.35rem;
