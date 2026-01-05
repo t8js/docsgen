@@ -40,7 +40,7 @@ footer {
     var(--aux-background),
     var(--aux-background-end)
   );
-  border-right: 0.05em solid var(--line-color);
+  border-right: 0.05em solid var(--aux-border-color);
   padding: 0.75rem var(--content-padding-x);
   margin: 0;
   box-sizing: border-box;
@@ -109,7 +109,7 @@ footer {
       var(--aux-background),
       var(--aux-background-end)
     );
-    border-top: 0.35em solid var(--line-color);
+    border-top: 0.35em solid var(--aux-border-color);
     border-right: none;
     padding: 0.25rem var(--content-padding-x) 0.35rem;
     margin: 0;
