@@ -8,7 +8,7 @@
 
   --aux-color: #797979;
   --aux-background: #f2f2f2;
-  --aux-background-end: #e3e3e3;
+  --aux-background-end: #f2f2f2;
   --aux-border-color: #828282;
   --aux-link-color: royalblue;
   --aux-secondary-color: var(--color);
@@ -29,7 +29,7 @@
 
     --aux-color: #8e9198;
     --aux-background: #1d2331;
-    --aux-background-end: #232738;
+    --aux-background-end: #1d2331;
     --aux-border-color: #49587b;
     --aux-link-color: deepskyblue;
     --aux-secondary-color: var(--color);
