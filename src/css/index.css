@@ -106,7 +106,7 @@ section {
 }
 section .section-content {
   max-width: var(--max-content-width);
-  padding: 1em 3.5vw 2em;
+  padding: 15vh 2.5em;
   box-sizing: border-box;
 }
 section.intro-title {
@@ -127,10 +127,8 @@ section.intro-title {
 section.intro-title .section-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-end;
   max-width: 24em;
-  min-height: 95vh;
 }
 section.intro-title:last-of-type {
   width: 100%;
@@ -147,7 +145,6 @@ section.intro {
   display: flex;
   width: 60%;
   flex-direction: column;
-  justify-content: center;
 }
 section.intro .section-content {
   width: 100%;
@@ -243,9 +240,6 @@ section.intro pre {
   .note {
     padding: 0;
   }
-}
-.pagenav {
-  text-align: right;
 }
 p.installation {
   margin: 0;
