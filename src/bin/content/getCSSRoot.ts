@@ -1,0 +1,47 @@
+import { exec as defaultExec } from "node:child_process";
+import { cp } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { promisify } from "node:util";
+import { packageName } from "../../const/packageName.ts";
+import { Context } from "../../types/Context.ts";
+import { fileURLToPath } from "node:url";
+
+const exec = promisify(defaultExec);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+export async function getCSSRoot(ctx: Context, type: "index" | "content") {
+  let {
+    dir = "",
+    assetsDir,
+  } = ctx;
+
+  let cssRoot = {
+    index: "",
+    content: "",
+  };
+
+  if (assetsDir) {
+    cssRoot.index = assetsDir;
+    cssRoot.content = `../${assetsDir}`;
+
+    await cp(join(__dirname, "css"), join(dir, cssRoot.index), {
+      force: true,
+      recursive: true,
+    });
+  } else {
+    let packageVersion = (await exec(`npm view ${packageName} version`)).stdout
+      .trim()
+      .split(".")
+      .slice(0, 2)
+      .join(".");
+
+    let packageUrl = `https://unpkg.com/${packageName}@${packageVersion}`;
+
+    cssRoot.index = `${packageUrl}/dist/css`;
+    cssRoot.content = `${packageUrl}/dist/css`;
+  }
+
+  return cssRoot[type];
+}

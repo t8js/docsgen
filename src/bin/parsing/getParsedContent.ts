@@ -9,16 +9,35 @@ import { getSectionPostprocess } from "./getSectionPostprocess.ts";
 import { isBadgeContainer } from "./isBadgeContainer.ts";
 import { joinLines } from "./joinLines.ts";
 import { preprocessContent } from "./preprocessContent.ts";
+import { NavItem } from "../../types/NavItem.ts";
+
+export type ParsedContent = {
+  badges: string;
+  title: string;
+  description: string;
+  intro: string;
+  features: string;
+  note: string;
+  installation: string;
+  sections: string[];
+  nav: NavItem[];
+};
 
 const md = new Markdown({
   html: true,
 });
 
-export async function getParsedContent(ctx: Context) {
+const parsedContentCache = new Map<string, ParsedContent>();
+
+export async function getParsedContent(ctx: Context): Promise<ParsedContent> {
+  let contentLocation = getLocation(ctx, "README.md", ctx.source);
+  let parsedContent = parsedContentCache.get(contentLocation);
+
+  if (parsedContent) return parsedContent;
+
   let { singlePage, firstLineDescription, linkMap } = ctx;
-  let rawContent = await fetchContent(
-    getLocation(ctx, "README.md", ctx.source),
-  );
+
+  let rawContent = await fetchContent(contentLocation);
   let content = md.render(preprocessContent(rawContent));
   let dom = new JSDOM(content);
 
@@ -123,7 +142,7 @@ export async function getParsedContent(ctx: Context) {
     }
   }
 
-  return {
+  parsedContent = {
     badges, // postprocessBadges(joinLines(badges)),
     title,
     description: joinLines(description),
@@ -134,4 +153,8 @@ export async function getParsedContent(ctx: Context) {
     sections: sections.map(postprocess),
     nav,
   };
+
+  parsedContentCache.set(contentLocation, parsedContent);
+
+  return parsedContent;
 }

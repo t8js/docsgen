@@ -1,9 +1,9 @@
 import { JSDOM } from "jsdom";
-import type { Context } from "../types/Context.ts";
-import type { NavItem } from "../types/NavItem.ts";
-import { fetchContent } from "./fetchContent.ts";
-import { getNpmLink } from "./getNpmLink.ts";
-import { getRepoLink } from "./getRepoLink.ts";
+import type { Context } from "../../types/Context.ts";
+import type { NavItem } from "../../types/NavItem.ts";
+import { fetchContent } from "../fetchContent.ts";
+import { getNpmLink } from "../getNpmLink.ts";
+import { getRepoLink } from "../getRepoLink.ts";
 
 export async function getNav(ctx: Context, navItems: NavItem[]) {
   let { name, root, contentDir, backstory, nav } = ctx;

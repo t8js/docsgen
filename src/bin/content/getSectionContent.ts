@@ -1,0 +1,80 @@
+import { Context } from "../../types/Context.ts";
+import { escapeHTML } from "../../utils/escapeHTML.ts";
+import { escapeRegExp } from "../../utils/escapeRegExp.ts";
+import { getRepoLink } from "../getRepoLink.ts";
+import { getParsedContent } from "../parsing/getParsedContent.ts";
+import { stripHTML } from "../stripHTML.ts";
+import { getCounterContent } from "./getCounterContent.ts";
+import { getCSSRoot } from "./getCSSRoot.ts";
+import { getDefaultCodeStyleContent } from "./getDefaultCodeStyleContent.ts";
+import { getIconTag } from "./getIconTag.ts";
+import { getInjectedContent } from "./getInjectedContent.ts";
+import { getNav } from "./getNav.ts";
+import { getPlainTitle } from "./getPlainTitle.ts";
+import { toFileContent } from "./toFileContent.ts";
+
+export async function getSectionContent(ctx: Context, index: number) {
+  let { root, contentDir = "" } = ctx;
+
+  let cssRoot = await getCSSRoot(ctx, "content");
+  let { sections, nav } = await getParsedContent(ctx);
+
+  let content = sections[index];
+  let navContent = await getNav(ctx, nav);
+  let plainTitle = await getPlainTitle(ctx);
+
+  return toFileContent(`
+  <!DOCTYPE html>
+  <html lang="en" data-layout="section">
+  <head>
+    ${getInjectedContent(ctx, "section", "head", "prepend")}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="${plainTitle}: ${escapeHTML(stripHTML(nav[index]?.title, true))}">
+    <title>${escapeHTML(stripHTML(nav[index]?.title, true))} | ${plainTitle}</title>
+    <link rel="stylesheet" href="${cssRoot}/base.css">
+    <link rel="stylesheet" href="${cssRoot}/section.css">
+    ${getIconTag(ctx)}
+    ${nav[index + 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[index + 1]?.id}">` : ""}
+    ${nav[index - 1]?.id ? `<link rel="prefetch" href="${root}${contentDir}/${nav[index - 1]?.id}">` : ""}
+    ${getInjectedContent(ctx, "section", "head", "append")}
+  </head>
+  <body>
+  ${getInjectedContent(ctx, "section", "body", "prepend")}
+  <div class="layout">
+  <div class="${navContent ? "" : "no-nav "}body">
+  <main>
+  <h1><a href="${root}">${plainTitle}</a></h1>
+  ${content}
+  
+  <p class="pagenav">
+    <span class="prev">
+      <span class="icon">←</span>
+      ${nav[index - 1]?.id ? `<a href="${root}${contentDir}/${nav[index - 1]?.id}">${nav[index - 1]?.title}</a>` : `<a href="${root}">Intro</a>`}
+    </span>
+    <span class="sep">|</span>
+    ${nav[index + 1]?.id ? `<span class="next"><a href="${root}${contentDir}/${nav[index + 1]?.id}">${nav[index + 1]?.title}</a> <span class="icon">→</span></span>` : `<span class="repo">${getRepoLink(ctx)}</span>`}
+  </p>
+  </main>
+  ${navContent ? "<hr>" : ""}
+  ${navContent.replace(
+    new RegExp(
+      `(<li data-id="${escapeRegExp(nav[index]?.id)}">)<a href="[^"]+">([^<]+)</a>`,
+    ),
+    "$1<strong>$2</strong>",
+  )}
+  </div>
+  </div>
+  
+  ${
+    content.includes("<pre><code ")
+      ? getInjectedContent(ctx, "section", ":has-code", "append") ||
+        getDefaultCodeStyleContent(cssRoot)
+      : ""
+  }
+  ${getCounterContent(ctx)}
+  ${getInjectedContent(ctx, "section", "body", "append")}
+  </body>
+  </html>
+  `);
+}

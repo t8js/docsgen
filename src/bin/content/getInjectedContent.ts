@@ -1,6 +1,6 @@
-import type { ContentInjectionTarget } from "../types/ContentInjectionTarget.ts";
-import type { Context } from "../types/Context.ts";
-import type { Page } from "../types/Page.ts";
+import type { ContentInjectionTarget } from "../../types/ContentInjectionTarget.ts";
+import type { Context } from "../../types/Context.ts";
+import type { Page } from "../../types/Page.ts";
 
 export function getInjectedContent(
   ctx: Context,
