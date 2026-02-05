@@ -15,14 +15,13 @@ export async function fetchContent(location: string | undefined) {
     } catch {
       console.warn(`Failed to fetch content from '${location}'`);
     }
-  }
-  else {
+  } else {
     let locationPath = location.replace(/^\//, "");
 
     content = (await readFile(locationPath)).toString();
   }
 
-  cachedContent.set(location, content ??= "");
+  cachedContent.set(location, (content ??= ""));
 
   return content;
 }
