@@ -11,6 +11,8 @@ const exec = promisify(defaultExec);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+let packageURL = "";
+
 export async function getCSSRoot(ctx: Context, type: "index" | "content") {
   let { dir = "", assetsDir } = ctx;
 
@@ -28,16 +30,18 @@ export async function getCSSRoot(ctx: Context, type: "index" | "content") {
       recursive: true,
     });
   } else {
-    let packageVersion = (await exec(`npm view ${packageName} version`)).stdout
-      .trim()
-      .split(".")
-      .slice(0, 2)
-      .join(".");
+    if (!packageURL) {
+      let packageVersion = (await exec(`npm view ${packageName} version`)).stdout
+        .trim()
+        .split(".")
+        .slice(0, 2)
+        .join(".");
 
-    let packageUrl = `https://unpkg.com/${packageName}@${packageVersion}`;
+      packageURL = `https://unpkg.com/${packageName}@${packageVersion}`;
+    }
 
-    cssRoot.index = `${packageUrl}/dist/css`;
-    cssRoot.content = `${packageUrl}/dist/css`;
+    cssRoot.index = `${packageURL}/dist/css`;
+    cssRoot.content = `${packageURL}/dist/css`;
   }
 
   return cssRoot[type];
