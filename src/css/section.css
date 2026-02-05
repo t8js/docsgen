@@ -25,7 +25,6 @@ header h1 > a:link,
 header h1 > a:hover,
 header h1 > a:visited,
 header h1 > a:active {
-  --color: var(--aux-emphatic-color);
   text-decoration: underline;
   border-bottom: none;
 }
@@ -112,7 +111,6 @@ aside h1 > a:link,
 aside h1 > a:hover,
 aside h1 > a:visited,
 aside h1 > a:active {
-  --color: var(--aux-emphatic-color);
   text-decoration: underline;
   border-bottom: none;
 }
