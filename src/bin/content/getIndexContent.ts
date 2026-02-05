@@ -1,15 +1,15 @@
-import { getParsedContent } from "../parsing/getParsedContent.ts";
-import { getPlainTitle } from "./getPlainTitle.ts";
-import { getIconTag } from "./getIconTag.ts";
-import { getCSSRoot } from "./getCSSRoot.ts";
-import { tweakTypography } from "./tweakTypography.ts";
-import { getDefaultCodeStyleContent } from "./getDefaultCodeStyleContent.ts";
-import { Context } from "../../types/Context.ts";
-import { getCounterContent } from "./getCounterContent.ts";
+import type { Context } from "../../types/Context.ts";
 import { escapeHTML } from "../../utils/escapeHTML.ts";
-import { toFileContent } from "./toFileContent.ts";
-import { getInjectedContent } from "./getInjectedContent.ts";
 import { getRepoLink } from "../getRepoLink.ts";
+import { getParsedContent } from "../parsing/getParsedContent.ts";
+import { getCounterContent } from "./getCounterContent.ts";
+import { getCSSRoot } from "./getCSSRoot.ts";
+import { getDefaultCodeStyleContent } from "./getDefaultCodeStyleContent.ts";
+import { getIconTag } from "./getIconTag.ts";
+import { getInjectedContent } from "./getInjectedContent.ts";
+import { getPlainTitle } from "./getPlainTitle.ts";
+import { toFileContent } from "./toFileContent.ts";
+import { tweakTypography } from "./tweakTypography.ts";
 
 export async function getIndexContent(ctx: Context) {
   let {

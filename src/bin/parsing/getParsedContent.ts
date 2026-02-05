@@ -1,6 +1,7 @@
 import { JSDOM } from "jsdom";
 import Markdown from "markdown-it";
 import type { Context } from "../../types/Context.ts";
+import type { NavItem } from "../../types/NavItem.ts";
 import { fetchContent } from "../fetchContent.ts";
 import { getLocation } from "../getLocation.ts";
 import { buildNav } from "./buildNav.ts";
@@ -9,7 +10,6 @@ import { getSectionPostprocess } from "./getSectionPostprocess.ts";
 import { isBadgeContainer } from "./isBadgeContainer.ts";
 import { joinLines } from "./joinLines.ts";
 import { preprocessContent } from "./preprocessContent.ts";
-import { NavItem } from "../../types/NavItem.ts";
 
 export type ParsedContent = {
   badges: string;

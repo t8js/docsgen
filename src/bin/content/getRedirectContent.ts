@@ -1,9 +1,9 @@
 import type { Context } from "../../types/Context.ts";
 import { escapeHTML } from "../../utils/escapeHTML.ts";
 import { getCounterContent } from "./getCounterContent.ts";
+import { getIconTag } from "./getIconTag.ts";
 import { getInjectedContent } from "./getInjectedContent.ts";
 import { toFileContent } from "./toFileContent.ts";
-import { getIconTag } from "./getIconTag.ts";
 
 export function getRedirectContent(ctx: Context) {
   let { redirect } = ctx;

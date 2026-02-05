@@ -1,11 +1,11 @@
 import type { Context } from "../../types/Context.ts";
-import { getCounterContent } from "./getCounterContent.ts";
-import { getInjectedContent } from "./getInjectedContent.ts";
 import { getParsedContent } from "../parsing/getParsedContent.ts";
-import { toFileContent } from "./toFileContent.ts";
-import { getPlainTitle } from "./getPlainTitle.ts";
-import { getIconTag } from "./getIconTag.ts";
+import { getCounterContent } from "./getCounterContent.ts";
 import { getCSSRoot } from "./getCSSRoot.ts";
+import { getIconTag } from "./getIconTag.ts";
+import { getInjectedContent } from "./getInjectedContent.ts";
+import { getPlainTitle } from "./getPlainTitle.ts";
+import { toFileContent } from "./toFileContent.ts";
 
 export async function getStartContent(ctx: Context) {
   let { root, contentDir = "" } = ctx;

@@ -1,12 +1,12 @@
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { Context } from "../types/Context.ts";
-import { getParsedContent } from "./parsing/getParsedContent.ts";
-import { getRedirectContent } from "./content/getRedirectContent.ts";
-import { getStartContent } from "./content/getStartContent.ts";
-import { getIndexContent } from "./content/getIndexContent.ts";
-import { getSectionContent } from "./content/getSectionContent.ts";
 import { createDirs } from "./content/createDirs.ts";
+import { getIndexContent } from "./content/getIndexContent.ts";
+import { getRedirectContent } from "./content/getRedirectContent.ts";
+import { getSectionContent } from "./content/getSectionContent.ts";
+import { getStartContent } from "./content/getStartContent.ts";
+import { getParsedContent } from "./parsing/getParsedContent.ts";
 
 export async function setContent(ctx: Context) {
   let { dir = "", contentDir = "", redirect } = ctx;

@@ -1,10 +1,10 @@
 import { exec as defaultExec } from "node:child_process";
 import { cp } from "node:fs/promises";
 import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { packageName } from "../../const/packageName.ts";
-import { Context } from "../../types/Context.ts";
-import { fileURLToPath } from "node:url";
+import type { Context } from "../../types/Context.ts";
 
 const exec = promisify(defaultExec);
 
@@ -12,10 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export async function getCSSRoot(ctx: Context, type: "index" | "content") {
-  let {
-    dir = "",
-    assetsDir,
-  } = ctx;
+  let { dir = "", assetsDir } = ctx;
 
   let cssRoot = {
     index: "",

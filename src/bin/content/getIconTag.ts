@@ -1,4 +1,4 @@
-import { Context } from "../../types/Context.ts";
+import type { Context } from "../../types/Context.ts";
 import { getIcon } from "./getIcon.ts";
 
 export function getIconTag(ctx: Context) {

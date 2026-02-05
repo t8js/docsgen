@@ -1,4 +1,4 @@
-import { Context } from "../../types/Context.ts";
+import type { Context } from "../../types/Context.ts";
 import { escapeHTML } from "../../utils/escapeHTML.ts";
 import { escapeRegExp } from "../../utils/escapeRegExp.ts";
 import { getRepoLink } from "../getRepoLink.ts";
