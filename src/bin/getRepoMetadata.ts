@@ -1,8 +1,10 @@
-import { Context } from "../types/Context.ts";
-import { RepoMetadata } from "../types/RepoMetadata.ts";
+import type { Context } from "../types/Context.ts";
+import type { RepoMetadata } from "../types/RepoMetadata.ts";
 import { fetchContent } from "./fetchContent.ts";
 
-export async function getRepoMetadata({ repo }: Context): Promise<RepoMetadata> {
+export async function getRepoMetadata({
+  repo,
+}: Context): Promise<RepoMetadata> {
   if (repo?.startsWith("https://github.com/")) {
     try {
       let repoMetadata = await fetchContent(
@@ -10,8 +12,7 @@ export async function getRepoMetadata({ repo }: Context): Promise<RepoMetadata> 
       );
 
       return JSON.parse(repoMetadata) as RepoMetadata;
-    }
-    catch {}
+    } catch {}
   }
 
   return {};

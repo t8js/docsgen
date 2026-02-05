@@ -19,8 +19,11 @@ import { tweakTypography } from "./tweakTypography.ts";
 
 export async function getSectionContent(ctx: Context, index: number) {
   let { root, contentDir = "" } = ctx;
-  let repoDescription = index === 0 ? (await getRepoMetadata(ctx)).description : "";
-  let descriptionContent = escapeHTML(tweakTypography(repoDescription || ctx.description));
+  let repoDescription =
+    index === 0 ? (await getRepoMetadata(ctx)).description : "";
+  let descriptionContent = escapeHTML(
+    tweakTypography(repoDescription || ctx.description),
+  );
 
   let cssRoot = await getCSSRoot(ctx, "content");
   let { sections, nav } = await getParsedContent(ctx);
