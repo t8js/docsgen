@@ -192,6 +192,9 @@ aside li > strong {
   aside > .header {
     display: none;
   }
+  aside nav {
+    font-size: inherit;
+  }
   aside section {
     max-width: 100%;
   }
