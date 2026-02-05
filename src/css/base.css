@@ -41,9 +41,9 @@
   }
 }
 :root {
-  --max-content-width: 45em;
+  --max-content-width: 720px;
   --content-padding-x: 1.75rem;
-  --content-padding-y: 1.75rem;
+  --content-padding-y: 1rem;
   --block-margin-y: 1em;
   --sep-line: 0.3rem solid var(--line-color);
 
@@ -70,7 +70,7 @@ body {
   :root {
     --max-content-width: 100%;
     --content-padding-x: 0.85rem;
-    --content-padding-y: 1rem;
+    --content-padding-y: 0.65rem;
   }
   body {
     font-size: 100%;

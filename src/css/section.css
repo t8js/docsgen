@@ -8,6 +8,25 @@ footer {
   padding: 0 var(--content-padding-x);
 }
 
+header {
+  display: none;
+  text-align: center;
+  padding-top: .5em;
+  padding-bottom: .5em;
+}
+header h1 {
+  font-size: 1.25em;
+  font-weight: 900;
+  margin: 0;
+}
+header .description {
+  font-size: .8em;
+  margin-top: .15em;
+}
+header .description p {
+  margin: 0;
+}
+
 .body {
   min-height: 100vh;
   display: flex;
@@ -20,19 +39,22 @@ footer {
   display: none;
 }
 @media (max-width: 840px) {
+  header {
+    display: block;
+  }
   .body {
     flex-direction: column;
     padding: 0;
   }
 }
-.body > nav {
+aside {
   width: 25%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   flex: none;
   align-self: stretch;
-  font-size: 0.9em;
+  font-size: 0.87em;
   line-height: 1.25;
   text-align: end;
   background: linear-gradient(
@@ -41,65 +63,89 @@ footer {
     var(--aux-background-end)
   );
   border-right: 0.05em solid var(--aux-border-color);
-  padding: 0.75rem var(--content-padding-x);
+  padding: var(--content-padding-y) var(--content-padding-x);
   margin: 0;
   box-sizing: border-box;
 }
-.body > nav section {
+aside > .header {
+  display: block;
+  margin: .5rem 0 .25rem;
+}
+aside > .header .description p:not(.installation) {
+  font-size: .9em;
+  margin: .35em 0 0;
+}
+aside > .header .description p.installation {
+  margin: 1em 0 0;
+}
+aside > .header .installation code {
+  display: inline-block;
+  background: transparent;
+  border: 0.05em solid;
+  border-radius: 0.5em;
+  padding: 0.35em 0.75em;
+  margin: 0;
+}
+aside h1 {
+  font-size: 1.35em;
+  font-weight: 900;
+  margin: 0;
+}
+aside section {
   width: 100%;
   max-width: 16em;
   padding: 1rem 0;
   box-sizing: border-box;
 }
-.body > nav section + section {
+aside section + section {
   border-top: 0.05rem solid;
 }
-.body > nav h2,
-.body > nav p.title {
+aside h2,
+aside p.title {
   font-size: 0.7rem;
   font-weight: normal;
   text-transform: uppercase;
   margin: 1.1rem 0 0.75rem 0;
 }
-.body > nav h2:first-of-type,
-.body > nav p.title:first-of-type {
+aside h2:first-of-type,
+aside p.title:first-of-type {
   margin-top: 0;
 }
-.body > nav ul {
+aside ul {
   list-style: none;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-.body > nav > ul + ul {
+aside > ul + ul {
   border-top: 0.05rem solid;
   padding-top: 1.2em;
   margin-top: 1.5em;
 }
-.body > nav ul ul {
+aside ul ul {
   margin: 0.65em 0 0.5em;
 }
-.body > nav li {
+aside li {
   text-align: end;
   padding-inline-end: 1em;
   margin-top: 0;
   margin-bottom: 0;
   position: relative;
 }
-.body > nav li::before {
+aside li::before {
   content: "•";
   position: absolute;
   right: 0;
   top: 0;
 }
-.body > nav li + li {
+aside li + li {
   margin-top: 0.55em;
 }
-.body > nav li > strong {
+aside li > strong {
   color: var(--emphatic-color);
 }
 @media (max-width: 840px) {
-  .body > nav {
+  aside {
     width: 100%;
     display: block;
     font-size: inherit;
@@ -114,30 +160,33 @@ footer {
     padding: 0.25rem var(--content-padding-x) 0.35rem;
     margin: 0;
   }
-  .body > nav section {
+  aside > .header {
+    display: none;
+  }
+  aside section {
     max-width: 100%;
   }
-  .body > nav li {
+  aside li {
     text-align: start;
     padding-inline-start: 1em;
     padding-inline-end: 0;
   }
-  .body > nav li::before {
+  aside li::before {
     left: 0;
     right: auto;
   }
 }
-.body > nav > ul:last-child,
-.body > nav > ul:last-child > li:last-child {
+aside > ul:last-child,
+aside > ul:last-child > li:last-child {
   margin-bottom: 0;
 }
-.body > nav a.active {
+aside a.active {
   font-weight: bold;
   text-decoration: none;
   color: inherit;
   pointer-events: none;
 }
-.body > nav a.anchorjs-link {
+aside a.anchorjs-link {
   display: none;
 }
 

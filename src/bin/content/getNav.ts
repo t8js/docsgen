@@ -84,5 +84,5 @@ export async function getNav(ctx: Context, navItems: NavItem[]) {
   s = s.trim();
   s = s ? `<section>\n${s}\n</section>` : "";
 
-  return `<nav class="aux">\n${s}\n${navContent}\n</nav>`;
+  return `<nav>\n${s}\n${navContent}\n</nav>`;
 }

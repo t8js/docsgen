@@ -5,20 +5,19 @@ import { getParsedContent } from "../parsing/getParsedContent.ts";
 import { getCounterContent } from "./getCounterContent.ts";
 import { getCSSRoot } from "./getCSSRoot.ts";
 import { getDefaultCodeStyleContent } from "./getDefaultCodeStyleContent.ts";
+import { getDescriptionContent } from "./getDescriptionContent.ts";
 import { getIconTag } from "./getIconTag.ts";
 import { getInjectedContent } from "./getInjectedContent.ts";
+import { getInstallationContent } from "./getInstallationContent.ts";
+import { getMainTitle } from "./getMainTitle.ts";
 import { getPlainTitle } from "./getPlainTitle.ts";
 import { toFileContent } from "./toFileContent.ts";
-import { tweakTypography } from "./tweakTypography.ts";
 
 export async function getIndexContent(ctx: Context) {
   let {
     root,
     contentDir = "",
-    name,
-    htmlTitle,
     description: packageDescription,
-    isDevDep,
     backstory,
   } = ctx;
 
@@ -26,27 +25,14 @@ export async function getIndexContent(ctx: Context) {
   let escapedPackageDescription = escapeHTML(packageDescription);
 
   let {
-    title: parsedTitle,
     description,
     intro,
     features,
     note,
-    installation,
     nav,
   } = await getParsedContent(ctx);
 
   let plainTitle = await getPlainTitle(ctx);
-  let coverTitle = htmlTitle || parsedTitle || plainTitle;
-
-  let descriptionContent =
-    tweakTypography(description) ||
-    (escapedPackageDescription
-      ? `<p>${tweakTypography(escapedPackageDescription)}<p>`
-      : "");
-
-  if (!installation || isDevDep !== undefined)
-    installation = `npm i${isDevDep ? " -D" : ""} ${name}`;
-
   let cssRoot = await getCSSRoot(ctx, "index");
 
   return toFileContent(`
@@ -72,9 +58,9 @@ ${getInjectedContent(ctx, "index", "body", "prepend")}
 <section class="aux intro-title">
   <div class="section-content">
     ${getInjectedContent(ctx, "index", "cover", "prepend")}
-    <h1>${coverTitle}</h1>
+    <h1>${await getMainTitle(ctx)}</h1>
     <div class="description">
-      ${descriptionContent}
+      ${await getDescriptionContent(ctx)}
     </div>
     <p class="actions">
       <a href="${root}start" class="primary">Docs</a>
@@ -82,7 +68,7 @@ ${getInjectedContent(ctx, "index", "body", "prepend")}
       ${getRepoLink(ctx)}
     </p>
     ${backstory ? `<p class="ref"><a href="${backstory}">Backstory</a></p>` : ""}
-    <p class="installation"><code>${escapeHTML(installation)}</code></p>
+    <p class="installation">${await getInstallationContent(ctx)}</p>
     ${getInjectedContent(ctx, "index", "cover", "append")}
   </div>
 </section>

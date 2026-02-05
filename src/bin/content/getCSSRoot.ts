@@ -14,6 +14,8 @@ const __dirname = dirname(__filename);
 let packageURL = "";
 let packageVersionRequest: Promise<{ stdout: string }> | null = null;
 
+let assetsCreated = new Map<string, boolean>();
+
 export async function getCSSRoot(ctx: Context, type: "index" | "content") {
   let { dir = "", assetsDir } = ctx;
 
@@ -26,10 +28,16 @@ export async function getCSSRoot(ctx: Context, type: "index" | "content") {
     cssRoot.index = assetsDir;
     cssRoot.content = `../${assetsDir}`;
 
-    await cp(join(__dirname, "css"), join(dir, cssRoot.index), {
-      force: true,
-      recursive: true,
-    });
+    let assetsDestination = join(dir, cssRoot.index);
+
+    if (!assetsCreated.get(assetsDestination)) {
+      assetsCreated.set(assetsDestination, true);
+
+      await cp(join(__dirname, "css"), assetsDestination, {
+        force: true,
+        recursive: true,
+      });
+    }
   } else {
     if (!packageURL) {
       packageVersionRequest ??= exec(`npm view ${packageName} version`);

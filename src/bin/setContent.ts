@@ -2,7 +2,7 @@ import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { Context } from "../types/Context.ts";
 import { createDirs } from "./content/createDirs.ts";
-import { getIndexContent } from "./content/getIndexContent.ts";
+// import { getIndexContent } from "./content/getIndexContent.ts";
 import { getRedirectContent } from "./content/getRedirectContent.ts";
 import { getSectionContent } from "./content/getSectionContent.ts";
 import { getStartContent } from "./content/getStartContent.ts";
@@ -27,7 +27,8 @@ export async function setContent(ctx: Context) {
         await getSectionContent(ctx, i),
       ),
     ),
-    writeFile(join(dir, "index.html"), await getIndexContent(ctx)),
+    // writeFile(join(dir, "index.html"), await getIndexContent(ctx)),
+    writeFile(join(dir, "index.html"), await getStartContent(ctx)),
     writeFile(join(dir, "start.html"), await getStartContent(ctx)),
   ]);
 }
