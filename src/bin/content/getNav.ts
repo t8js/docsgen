@@ -5,9 +5,46 @@ import { fetchContent } from "../fetchContent.ts";
 import { getNpmLink } from "../getNpmLink.ts";
 import { getRepoLink } from "../getRepoLink.ts";
 
+let cachedNavContent = new Map<string, string>();
+
+async function getNavContent({ name, nav }: Context) {
+  if (!nav) return "";
+
+  let navContent = cachedNavContent.get(nav);
+
+  if (navContent !== undefined) return navContent;
+
+  navContent = await fetchContent(nav);
+
+  if (navContent) {
+    let navDom = new JSDOM(navContent).window.document.body;
+
+    for (let link of navDom.querySelectorAll("a")) {
+      if (link.dataset.name === name) {
+        let parent = link.parentElement;
+
+        link.remove();
+
+        while (parent && parent.innerHTML.trim() === "") {
+          let nextParent = parent.parentElement;
+
+          parent.remove();
+          parent = nextParent;
+        }
+      }
+    }
+
+    navContent = navDom.innerHTML;
+  }
+
+  cachedNavContent.set(nav, navContent);
+
+  return navContent;
+}
+
 export async function getNav(ctx: Context, navItems: NavItem[]) {
-  let { name, root, contentDir, backstory, nav } = ctx;
-  let navContent = await fetchContent(nav);
+  let { name, root, contentDir, backstory } = ctx;
+  let navContent = await getNavContent(ctx);
   let s = "";
 
   if (navContent) {
