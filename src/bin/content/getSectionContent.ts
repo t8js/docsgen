@@ -14,10 +14,11 @@ import { getMainTitle } from "./getMainTitle.ts";
 import { getNav } from "./getNav.ts";
 import { getPlainTitle } from "./getPlainTitle.ts";
 import { toFileContent } from "./toFileContent.ts";
+import { tweakTypography } from "./tweakTypography.ts";
 
 export async function getSectionContent(ctx: Context, index: number) {
   let { root, contentDir = "" } = ctx;
-  let escapedPackageDescription = escapeHTML(ctx.description);
+  let escapedPackageDescription = escapeHTML(tweakTypography(ctx.description));
 
   let cssRoot = await getCSSRoot(ctx, "content");
   let { sections, nav } = await getParsedContent(ctx);
