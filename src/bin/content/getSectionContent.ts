@@ -2,6 +2,7 @@ import type { Context } from "../../types/Context.ts";
 import { escapeHTML } from "../../utils/escapeHTML.ts";
 import { escapeRegExp } from "../../utils/escapeRegExp.ts";
 import { getRepoLink } from "../getRepoLink.ts";
+import { getRepoMetadata } from "../getRepoMetadata.ts";
 import { getParsedContent } from "../parsing/getParsedContent.ts";
 import { stripHTML } from "../stripHTML.ts";
 import { getCounterContent } from "./getCounterContent.ts";
@@ -18,7 +19,8 @@ import { tweakTypography } from "./tweakTypography.ts";
 
 export async function getSectionContent(ctx: Context, index: number) {
   let { root, contentDir = "" } = ctx;
-  let escapedPackageDescription = escapeHTML(tweakTypography(ctx.description));
+  let repoDescription = index === 0 ? (await getRepoMetadata(ctx)).description : "";
+  let descriptionContent = escapeHTML(tweakTypography(repoDescription || ctx.description));
 
   let cssRoot = await getCSSRoot(ctx, "content");
   let { sections, nav } = await getParsedContent(ctx);
@@ -51,7 +53,7 @@ ${getInjectedContent(ctx, "section", "body", "prepend")}
 <header class="aux">
   <h1>${mainTitle}</h1>
   <div class="description">
-    <p>${escapedPackageDescription}</p>
+    <p>${descriptionContent}</p>
   </div>
 </header>
 <div class="${navContent ? "" : "no-nav "}body">
@@ -72,7 +74,7 @@ ${content}
   <div class="header" hidden>
     <h1>${mainTitle}</h1>
     <div class="description">
-      <p>${escapedPackageDescription}</p>
+      <p>${descriptionContent}</p>
       <p class="installation">${await getInstallationContent(ctx)}</p>
     </div>
   </div>
