@@ -62,11 +62,7 @@ ${getInjectedContent(ctx, "section", "body", "prepend")}
 ${content}
 
 <p class="pagenav">
-  <span class="prev">
-    <span class="icon">←</span>
-    ${nav[index - 1]?.id ? `<a href="${root}${contentDir}/${nav[index - 1]?.id}">${nav[index - 1]?.title}</a>` : `<a href="${root}">Intro</a>`}
-  </span>
-  <span class="sep">|</span>
+  ${nav[index - 1]?.id ? `<span class="prev"><span class="icon">←</span> <a href="${root}${contentDir}/${nav[index - 1]?.id}">${nav[index - 1]?.title}</a></span>\n  <span class="sep">|</span>` : ""}
   ${nav[index + 1]?.id ? `<span class="next"><a href="${root}${contentDir}/${nav[index + 1]?.id}">${nav[index + 1]?.title}</a> <span class="icon">→</span></span>` : `<span class="repo">${getRepoLink(ctx)}</span>`}
 </p>
 </main>

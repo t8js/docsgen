@@ -317,6 +317,7 @@ main h2:first-child {
   padding-left: var(--icon-width);
 }
 .pagenav .next {
+  flex: auto;
   padding-right: var(--icon-width);
 }
 .pagenav .sep,
