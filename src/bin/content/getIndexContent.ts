@@ -24,13 +24,7 @@ export async function getIndexContent(ctx: Context) {
   let counterContent = getCounterContent(ctx);
   let escapedPackageDescription = escapeHTML(packageDescription);
 
-  let {
-    description,
-    intro,
-    features,
-    note,
-    nav,
-  } = await getParsedContent(ctx);
+  let { description, intro, features, note, nav } = await getParsedContent(ctx);
 
   let plainTitle = await getPlainTitle(ctx);
   let cssRoot = await getCSSRoot(ctx, "index");

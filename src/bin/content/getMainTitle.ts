@@ -1,4 +1,4 @@
-import { Context } from "../../types/Context.ts";
+import type { Context } from "../../types/Context.ts";
 import { getParsedContent } from "../parsing/getParsedContent.ts";
 import { getPlainTitle } from "./getPlainTitle.ts";
 
