@@ -15,9 +15,22 @@ header {
   padding-bottom: 0.5em;
 }
 header h1 {
-  font-size: 1.25em;
+  font-size: 1.3rem;
   font-weight: 900;
+  color: var(--aux-emphatic-color);
   margin: 0;
+}
+header h1 > a,
+header h1 > a:link,
+header h1 > a:hover,
+header h1 > a:visited,
+header h1 > a:active {
+  --color: var(--aux-emphatic-color);
+  text-decoration: underline;
+  border-bottom: none;
+}
+header h1 sup {
+  font-size: 0.5em;
 }
 header .description {
   font-size: 0.8em;
@@ -87,8 +100,9 @@ aside > .header .installation code {
   margin: 0;
 }
 aside h1 {
-  font-size: 1.35em;
+  font-size: 1.3rem;
   font-weight: 900;
+  color: var(--aux-emphatic-color);
   margin: 0;
 }
 aside h1 > a,
@@ -96,7 +110,7 @@ aside h1 > a:link,
 aside h1 > a:hover,
 aside h1 > a:visited,
 aside h1 > a:active {
-  --color: var(--aux-color);
+  --color: var(--aux-emphatic-color);
   text-decoration: underline;
   border-bottom: none;
 }
@@ -251,6 +265,7 @@ main h1 + h2 {
   margin-top: 0.5rem;
 }
 main h2 {
+  font-weight: 900;
   border-bottom: var(--sep-line);
   padding-bottom: 0.1em;
 }
