@@ -12,6 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 let packageURL = "";
+let packageVersionRequest: Promise<{ stdout: string }> | null = null;
 
 export async function getCSSRoot(ctx: Context, type: "index" | "content") {
   let { dir = "", assetsDir } = ctx;
@@ -31,9 +32,10 @@ export async function getCSSRoot(ctx: Context, type: "index" | "content") {
     });
   } else {
     if (!packageURL) {
-      let packageVersion = (
-        await exec(`npm view ${packageName} version`)
-      ).stdout
+      packageVersionRequest ??= exec(`npm view ${packageName} version`);
+
+      let packageVersion = (await packageVersionRequest)
+        .stdout
         .trim()
         .split(".")
         .slice(0, 2)
