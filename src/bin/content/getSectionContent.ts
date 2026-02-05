@@ -2,7 +2,7 @@ import type { Context } from "../../types/Context.ts";
 import { escapeHTML } from "../../utils/escapeHTML.ts";
 import { escapeRegExp } from "../../utils/escapeRegExp.ts";
 import { getRepoLink } from "../getRepoLink.ts";
-import { getRepoMetadata } from "../getRepoMetadata.ts";
+// import { getRepoMetadata } from "../getRepoMetadata.ts";
 import { getParsedContent } from "../parsing/getParsedContent.ts";
 import { stripHTML } from "../stripHTML.ts";
 import { getCounterContent } from "./getCounterContent.ts";
@@ -19,11 +19,9 @@ import { tweakTypography } from "./tweakTypography.ts";
 
 export async function getSectionContent(ctx: Context, index: number) {
   let { root, contentDir = "" } = ctx;
-  let repoDescription =
-    index === 0 ? (await getRepoMetadata(ctx)).description : "";
-  let descriptionContent = escapeHTML(
-    tweakTypography(repoDescription || ctx.description),
-  );
+  // let repoDescription =
+  //   index === 0 ? (await getRepoMetadata(ctx)).description : "";
+  let descriptionContent = escapeHTML(tweakTypography(ctx.description));
 
   let cssRoot = await getCSSRoot(ctx, "content");
   let { sections, nav } = await getParsedContent(ctx);
