@@ -26,11 +26,11 @@
   "devDependencies": {
     "@types/jsdom": "^27.0.0",
     "@types/markdown-it": "^14.1.2",
-    "@types/node": "^25.0.2"
+    "@types/node": "^25.2.1"
   },
   "dependencies": {
-    "args-json": "^1.2.9",
-    "jsdom": "^27.3.0",
+    "args-json": "^1.2.12",
+    "jsdom": "^28.0.0",
     "markdown-it": "^14.1.0"
   }
 }
