@@ -31,7 +31,9 @@ export async function getCSSRoot(ctx: Context, type: "index" | "content") {
     });
   } else {
     if (!packageURL) {
-      let packageVersion = (await exec(`npm view ${packageName} version`)).stdout
+      let packageVersion = (
+        await exec(`npm view ${packageName} version`)
+      ).stdout
         .trim()
         .split(".")
         .slice(0, 2)
