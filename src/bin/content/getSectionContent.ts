@@ -34,7 +34,7 @@ export async function getSectionContent(ctx: Context, index: number) {
 
   return toFileContent(`
 <!DOCTYPE html>
-<html lang="en" data-layout="section">
+<html lang="en" data-layout="section" data-section="${index}">
 <head>
   ${getInjectedContent(ctx, "section", "head", "prepend")}
   <meta charset="utf-8">
@@ -51,7 +51,7 @@ export async function getSectionContent(ctx: Context, index: number) {
 <body>
 ${getInjectedContent(ctx, "section", "body", "prepend")}
 <div class="layout">
-<header class="aux">
+<header>
   <h1>${mainTitle}</h1>
   <div class="description">
     <p>${descriptionContent}</p>
