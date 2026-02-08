@@ -12,7 +12,7 @@ header {
   display: none;
   text-align: center;
   border-bottom: 0.15rem solid;
-  padding: 1.5em 0;
+  padding: 2em 0;
   margin: 0 var(--content-padding-x) 1em;
 }
 header h1 {
@@ -41,17 +41,17 @@ header .description {
 header .description p {
   margin: 0;
 }
-html:not([data-section="0"]) header {
+header.compact {
   text-align: start;
-  border-bottom: 0.1rem solid;
-  padding: 0.65em 0 0.35em;
-  margin-bottom: 0.5em;
+  border-bottom: none;
+  padding: 1em 0 0;
+  margin-bottom: 0;
 }
-html:not([data-section="0"]) header h1 {
-  font-size: 0.85em;
-  font-weight: bold;
+header.compact h1 {
+  font-size: 0.75em;
+  font-weight: normal;
 }
-html:not([data-section="0"]) header .description {
+header.compact .description {
   max-width: none;
   font-size: 0.65em;
   margin-top: 0.35em;
