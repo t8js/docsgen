@@ -96,23 +96,30 @@ a:hover,
 a:active {
   --color: var(--link-color);
   color: var(--color);
-  text-decoration: none;
-  border-bottom: 0.05em solid;
+  text-decoration-thickness: 0.02rem;
+  text-underline-offset: 0.18em;
 }
 h1 {
   font-size: 2.25em;
+  font-weight: 900;
   line-height: 1;
+  color: var(--emphatic-color);
   margin: 0;
+}
+h1 sup {
+  font-size: 0.5em;
 }
 h2,
 h3,
 h4 {
   line-height: 1.1;
+  color: var(--emphatic-color);
   padding-top: 0.3em;
   margin: 1em 0 0.65em 0;
 }
 h2 {
   font-size: 1.3em;
+  font-weight: 900;
 }
 h3 {
   font-size: 1.15em;
