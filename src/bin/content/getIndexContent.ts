@@ -13,7 +13,7 @@ import { getMainTitle } from "./getMainTitle.ts";
 import { getPlainTitle } from "./getPlainTitle.ts";
 import { toFileContent } from "./toFileContent.ts";
 
-export async function getIndexContent(ctx: Context) {
+export async function getIndexContent(ctx: Context, hideIntro = false) {
   let {
     root,
     contentDir = "",
@@ -67,7 +67,7 @@ ${getInjectedContent(ctx, "index", "body", "prepend")}
   </div>
 </section>
 ${
-  intro || features || note
+  !hideIntro && (intro || features || note)
     ? `
 <section class="intro">
   <div class="section-content">
