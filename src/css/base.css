@@ -170,9 +170,12 @@ pre > code {
   padding: 1.25em;
 }
 
+html.blank {
+  background: var(--aux-background);
+}
 html.blank h1 {
-  font-size: 10vmin;
-  color: var(--secondary-color);
+  font-size: 5vmin;
+  color: var(--aux-color);
 }
 html.blank .layout {
   display: flex;
