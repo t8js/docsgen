@@ -68,7 +68,7 @@ export async function getConfig(): Promise<Config> {
   config = {
     mainBranch: "main",
     root: "/",
-    contentDir: "x",
+    contentDir: "docs",
     ...localConfig,
     ...parseArgs<Config>(args),
   };

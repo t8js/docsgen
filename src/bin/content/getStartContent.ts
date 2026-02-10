@@ -23,7 +23,7 @@ export async function getStartContent(ctx: Context, delay?: number) {
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="refresh" content="${delay ?? 0}; URL=${root}${contentDir}/${nav[0]?.id}">
   <title>${plainTitle}</title>
-  <link rel="stylesheet" href="${await getCSSRoot(ctx, "index")}/base.css">
+  <link rel="stylesheet" href="${await getCSSRoot(ctx, "content")}/base.css">
   ${getIconTag(ctx)}
   <script>${delay === undefined ? jsRedirect : `setTimeout(() => { ${jsRedirect} }, ${delay * 1000});`}</script>
   ${getInjectedContent(ctx, "start", "head", "append")}

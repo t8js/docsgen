@@ -28,7 +28,6 @@ export async function setContent(ctx: Context) {
       ),
     ),
     writeFile(join(dir, "index.html"), await getIndexContent(ctx)),
-    // writeFile(join(dir, "index.html"), await getStartContent(ctx)),
-    writeFile(join(dir, "start.html"), await getStartContent(ctx)),
+    writeFile(join(dir, contentDir, "index.html"), await getStartContent(ctx)),
   ]);
 }

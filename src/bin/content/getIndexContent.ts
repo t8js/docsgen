@@ -32,7 +32,7 @@ export async function getIndexContent(ctx: Context) {
   let cssRoot = await getCSSRoot(ctx, "index");
 
   let links = [
-    `<a href="${root}start" class="primary">Docs</a>`,
+    `<a href="${root}${contentDir}" class="primary">Docs</a>`,
     getRepoLink(ctx),
     backstory ? `<a href="${backstory}">Backstory</a>` : "",
   ].filter(x => x !== "");
@@ -51,7 +51,7 @@ export async function getIndexContent(ctx: Context) {
   <link rel="stylesheet" href="${cssRoot}/base.css">
   <link rel="stylesheet" href="${cssRoot}/index.css">
   ${getIconTag(ctx)}
-  <link rel="prefetch" href="${root}start">
+  <link rel="prefetch" href="${root}${contentDir}">
   ${nav[0] ? `<link rel="prefetch" href="${root}${contentDir}/${nav[0]?.id ?? ""}">` : ""}
   ${getInjectedContent(ctx, "index", "head", "append")}
 </head>
