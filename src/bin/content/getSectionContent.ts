@@ -48,9 +48,8 @@ export async function getSectionContent(ctx: Context, index: number) {
 <body>
 ${getInjectedContent(ctx, "section", "body", "prepend")}
 <div class="layout">
-<header${index === 0 ? ' class="full"' : ' class="compact"'}>
-  <h1>${index === 0 ? mainTitle : `<a href="${root}">${plainTitle}</a>`}</h1>
-${index === 0 ? `  <div class="description"><p>${descriptionContent}</p></div>` : ""}
+<header class="compact">
+  <h1><a href="${root}">${plainTitle}</a></h1>
 </header>
 <div class="${navContent ? "" : "no-nav "}body">
 <main>
