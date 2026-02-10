@@ -28,6 +28,39 @@ function getPreviewContent(url: string, title?: string) {
   return content;
 }
 
+function isEmpty(element: Element) {
+  return element.innerHTML.trim() === "";
+}
+
+function insertPreview(preview: HTMLElement, a: HTMLAnchorElement) {
+  let p: HTMLElement | null = a.closest("p");
+
+  if (p?.parentElement) {
+    p.parentElement.insertBefore(preview, p);
+
+    if (a.nextElementSibling?.matches("br"))
+      a.nextElementSibling.remove();
+
+    a.remove();
+
+    if (isEmpty(p)) p.remove();
+
+    return;
+  }
+
+  let li = a.closest("li");
+  let list = li?.closest("ul, ol");
+
+  if (li && list?.parentElement) {
+    list.parentElement.insertBefore(preview, list);
+
+    a.remove();
+
+    if (isEmpty(li)) li.remove();
+    if (isEmpty(list)) list.remove();
+  }
+}
+
 export function getSectionPostprocess(
   linkMap: Record<string, string | undefined>,
 ) {
@@ -44,18 +77,7 @@ export function getSectionPostprocess(
 
         preview.innerHTML = getPreviewContent(href, a.innerHTML);
 
-        let p = a.closest("p");
-
-        if (p?.parentElement) {
-          p.parentElement.insertBefore(preview, p);
-
-          if (a.nextElementSibling?.matches("br"))
-            a.nextElementSibling.remove();
-
-          a.remove();
-
-          if (p.innerHTML.trim() === "") p.remove();
-        }
+        insertPreview(preview, a);
       } else {
         let nextHref = linkMap[href] ?? href;
 
