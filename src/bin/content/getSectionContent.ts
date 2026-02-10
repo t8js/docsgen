@@ -51,7 +51,9 @@ ${content}
   ${nav[index + 1]?.id ? `<span class="next"><a href="${root}${contentDir}/${nav[index + 1]?.id}">${nav[index + 1]?.title}</a> <span class="icon">→</span></span>` : `<span class="repo">${getRepoLink(ctx)}</span>`}
 </p>
 </main>
-${navContent && `<hr>
+${
+  navContent &&
+  `<hr>
 <aside class="aux">
 ${navContent.replace(
   new RegExp(
@@ -59,7 +61,8 @@ ${navContent.replace(
   ),
   "$1<strong>$2</strong>",
 )}
-</aside>`}
+</aside>`
+}
 </div>
 </div>
 
