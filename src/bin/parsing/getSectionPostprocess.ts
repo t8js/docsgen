@@ -16,8 +16,7 @@ function getPreviewContent(url: string, title?: string) {
 
   if (file) previewURL.searchParams.set("module", file);
 
-  previewContent +=
-    `<iframe src="${previewURL.href}"${title ? ` title="${title}"` : ""} sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts" loading="lazy"></iframe>`;
+  previewContent += `<iframe src="${previewURL.href}"${title ? ` title="${title}"` : ""} sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts" loading="lazy"></iframe>`;
 
   return previewContent;
 }
@@ -40,12 +39,12 @@ export function getSectionPostprocess(
 
         a.parentElement.insertBefore(preview, a);
         a.remove();
-      }
-      else {
+      } else {
         let nextHref = linkMap[href] ?? href;
 
         a.setAttribute("href", nextHref);
-        if (/^(https?:)?\/\//.test(nextHref)) a.setAttribute("target", "_blank");
+        if (/^(https?:)?\/\//.test(nextHref))
+          a.setAttribute("target", "_blank");
       }
     }
 

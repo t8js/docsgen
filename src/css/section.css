@@ -251,10 +251,10 @@ main h2:first-child {
   margin-top: 0;
 }
 main fieldset {
-  border: .05em solid var(--secondary-color);
+  border: 0.05em solid var(--secondary-color);
 }
 main fieldset legend {
-  font-size: .8em;
+  font-size: 0.8em;
   color: var(--secondary-color);
 }
 main fieldset iframe {
