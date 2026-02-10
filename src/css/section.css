@@ -252,6 +252,7 @@ main h2:first-child {
 }
 main fieldset {
   border: 0.05em solid var(--secondary-color);
+  margin: var(--block-margin-y) 0;
 }
 main fieldset legend {
   font-size: 0.8em;

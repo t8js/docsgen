@@ -32,13 +32,23 @@ export function getSectionPostprocess(
 
       if (href === null) continue;
 
-      if (isPreviewURL(href) && a.parentElement) {
+      if (isPreviewURL(href)) {
         let preview = document.createElement("fieldset");
 
         preview.innerHTML = getPreviewContent(href, a.innerHTML);
 
-        a.parentElement.insertBefore(preview, a);
-        a.remove();
+        let p = a.closest("p");
+
+        if (p?.parentElement) {
+          p.parentElement.insertBefore(preview, p);
+
+          if (a.nextElementSibling?.matches("br"))
+            a.nextElementSibling.remove();
+
+          a.remove();
+
+          if (p.innerHTML.trim() === "") p.remove();
+        }
       } else {
         let nextHref = linkMap[href] ?? href;
 
