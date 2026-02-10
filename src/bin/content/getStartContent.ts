@@ -7,10 +7,12 @@ import { getInjectedContent } from "./getInjectedContent.ts";
 import { getPlainTitle } from "./getPlainTitle.ts";
 import { toFileContent } from "./toFileContent.ts";
 
-export async function getStartContent(ctx: Context, delay = 0) {
+export async function getStartContent(ctx: Context, delay?: number) {
   let { root, contentDir = "" } = ctx;
   let { nav } = await getParsedContent(ctx);
   let plainTitle = await getPlainTitle(ctx);
+
+  let jsRedirect = `window.location.replace("${root}${contentDir}/${nav[0]?.id}");`;
 
   return toFileContent(`
 <!DOCTYPE html>
@@ -19,11 +21,11 @@ export async function getStartContent(ctx: Context, delay = 0) {
   ${getInjectedContent(ctx, "start", "head", "prepend")}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <meta http-equiv="refresh" content="${delay}; URL=${root}${contentDir}/${nav[0]?.id}">
+  <meta http-equiv="refresh" content="${delay ?? 0}; URL=${root}${contentDir}/${nav[0]?.id}">
   <title>${plainTitle}</title>
   <link rel="stylesheet" href="${await getCSSRoot(ctx, "index")}/base.css">
   ${getIconTag(ctx)}
-  <script>setTimeout(() => { window.location.replace("${root}${contentDir}/${nav[0]?.id}"); }, ${delay * 1000});</script>
+  <script>${delay === undefined ? jsRedirect : `setTimeout(() => { ${jsRedirect} }, ${delay * 1000});`}</script>
   ${getInjectedContent(ctx, "start", "head", "append")}
 </head>
 <body>
