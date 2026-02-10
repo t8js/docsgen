@@ -51,7 +51,8 @@
   color: var(--color);
   background: var(--background);
 }
-.aux, html.aux {
+.aux,
+html.aux {
   --color: var(--aux-color);
   --background: var(--aux-background);
   --link-color: var(--aux-link-color);
