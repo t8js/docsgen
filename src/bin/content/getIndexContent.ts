@@ -1,19 +1,19 @@
 import type { Context } from "../../types/Context.ts";
 import { escapeHTML } from "../../utils/escapeHTML.ts";
 import { getRepoLink } from "../getRepoLink.ts";
+import { getRepoMetadata } from "../getRepoMetadata.ts";
 import { getParsedContent } from "../parsing/getParsedContent.ts";
 import { getCounterContent } from "./getCounterContent.ts";
 import { getCSSRoot } from "./getCSSRoot.ts";
 import { getDefaultCodeStyleContent } from "./getDefaultCodeStyleContent.ts";
-import { getDescriptionContent } from "./getDescriptionContent.ts";
 import { getIconTag } from "./getIconTag.ts";
 import { getInjectedContent } from "./getInjectedContent.ts";
-import { getInstallationContent } from "./getInstallationContent.ts";
 import { getMainTitle } from "./getMainTitle.ts";
 import { getPlainTitle } from "./getPlainTitle.ts";
 import { toFileContent } from "./toFileContent.ts";
+import { tweakTypography } from "./tweakTypography.ts";
 
-export async function getIndexContent(ctx: Context, hideIntro = false) {
+export async function getIndexContent(ctx: Context) {
   let {
     root,
     contentDir = "",
@@ -23,15 +23,25 @@ export async function getIndexContent(ctx: Context, hideIntro = false) {
 
   let counterContent = getCounterContent(ctx);
   let escapedPackageDescription = escapeHTML(packageDescription);
+  let repoDescription = (await getRepoMetadata(ctx)).description;
 
-  let { description, intro, features, note, nav } = await getParsedContent(ctx);
+  let { description, nav } = await getParsedContent(ctx);
+  let descriptionContent = escapeHTML(tweakTypography(repoDescription || description));
 
   let plainTitle = await getPlainTitle(ctx);
   let cssRoot = await getCSSRoot(ctx, "index");
 
+  let links = [
+    `<a href="${root}start" class="primary">Docs</a>`,
+    getRepoLink(ctx),
+    backstory ? `<a href="${backstory}">Backstory</a>` : "",
+  ].filter(x => x !== "");
+
+  let sep = '&nbsp;<span class="sep">·</span> ';
+
   return toFileContent(`
 <!DOCTYPE html>
-<html lang="en" data-layout="index">
+<html lang="en" data-layout="index" class="aux">
 <head>
   ${getInjectedContent(ctx, "index", "head", "prepend")}
   <meta charset="utf-8">
@@ -49,44 +59,13 @@ export async function getIndexContent(ctx: Context, hideIntro = false) {
 ${getInjectedContent(ctx, "index", "body", "prepend")}
 <div class="layout">
 <main>
-<section class="aux intro-title">
-  <div class="section-content">
-    ${getInjectedContent(ctx, "index", "cover", "prepend")}
-    <h1>${await getMainTitle(ctx)}</h1>
-    <div class="description">
-      ${await getDescriptionContent(ctx)}
-    </div>
-    <p class="actions">
-      <a href="${root}start" class="primary">Docs</a>
-      <span class="sep"> • </span>
-      ${getRepoLink(ctx)}
-    </p>
-    ${backstory ? `<p class="ref"><a href="${backstory}">Backstory</a></p>` : ""}
-    <p class="installation">${await getInstallationContent(ctx)}</p>
-    ${getInjectedContent(ctx, "index", "cover", "append")}
-  </div>
-</section>
-${
-  !hideIntro && (intro || features || note)
-    ? `
-<section class="intro">
-  <div class="section-content">
-    ${intro ? `<div class="intro">${intro}</div>` : ""}
-    ${features ? `<div class="features">${features}</div>` : ""}
-    ${note ? `<div class="note">${note}</div>` : ""}
-    <p class="pagenav">
-      <span class="next"><a href="${root}start">To the docs</a> <span class="icon">→</span></span>
-    </p>
-  </div>
-</section>
-`
-    : ""
-}
+<h1>${await getMainTitle(ctx)}</h1>
+<p class="description">${descriptionContent}</p>
+${links.length === 0 ? "" : `<p class="links">${links.join(sep)}</p>`}
 </main>
 </div>
-
 ${
-  [description, intro, features, note].some((s) => s.includes("<pre><code "))
+  [descriptionContent].some((s) => s.includes("<pre><code "))
     ? getInjectedContent(ctx, "index", ":has-code", "append") ||
       getDefaultCodeStyleContent(cssRoot)
     : ""
