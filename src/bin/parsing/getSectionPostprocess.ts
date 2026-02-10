@@ -7,18 +7,25 @@ function isPreviewURL(url: string) {
 function getPreviewContent(url: string, title?: string) {
   let { pathname, searchParams } = new URL(url);
   let sandboxId = pathname.split("/").at(-1);
+
   let file = searchParams.get("file");
+  let height = searchParams.get("h");
 
   let previewURL = new URL(`https://codesandbox.io/embed/${sandboxId}`);
-  let previewContent = title ? `<legend>${title}</legend>` : "";
+  let content = title ? `<legend>${title}</legend>` : "";
 
   previewURL.searchParams.set("view", "preview");
 
   if (file) previewURL.searchParams.set("module", file);
 
-  previewContent += `<iframe src="${previewURL.href}"${title ? ` title="${title}"` : ""} sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts" loading="lazy"></iframe>`;
+  let attrs = [`src="${previewURL.href}"`];
 
-  return previewContent;
+  if (title) attrs.push(`title="${title}"`);
+  if (height) attrs.push(`style="height: ${height}px;"`);
+
+  content += `<iframe ${attrs.join(" ")} sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts" loading="lazy"></iframe>`;
+
+  return content;
 }
 
 export function getSectionPostprocess(
@@ -53,6 +60,7 @@ export function getSectionPostprocess(
         let nextHref = linkMap[href] ?? href;
 
         a.setAttribute("href", nextHref);
+
         if (/^(https?:)?\/\//.test(nextHref))
           a.setAttribute("target", "_blank");
       }
