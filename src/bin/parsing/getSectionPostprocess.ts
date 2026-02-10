@@ -38,8 +38,7 @@ function insertPreview(preview: HTMLElement, a: HTMLAnchorElement) {
   if (p?.parentElement) {
     p.parentElement.insertBefore(preview, p);
 
-    if (a.nextElementSibling?.matches("br"))
-      a.nextElementSibling.remove();
+    if (a.nextElementSibling?.matches("br")) a.nextElementSibling.remove();
 
     a.remove();
 
