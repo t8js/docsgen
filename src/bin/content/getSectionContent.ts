@@ -9,24 +9,17 @@ import { getCSSRoot } from "./getCSSRoot.ts";
 import { getDefaultCodeStyleContent } from "./getDefaultCodeStyleContent.ts";
 import { getIconTag } from "./getIconTag.ts";
 import { getInjectedContent } from "./getInjectedContent.ts";
-import { getInstallationContent } from "./getInstallationContent.ts";
-import { getMainTitle } from "./getMainTitle.ts";
 import { getNav } from "./getNav.ts";
 import { getPlainTitle } from "./getPlainTitle.ts";
 import { toFileContent } from "./toFileContent.ts";
-import { tweakTypography } from "./tweakTypography.ts";
 
 export async function getSectionContent(ctx: Context, index: number) {
   let { root, contentDir = "" } = ctx;
-  let descriptionContent = escapeHTML(tweakTypography(ctx.description));
-
-  let cssRoot = await getCSSRoot(ctx, "content");
   let { sections, nav } = await getParsedContent(ctx);
+  let cssRoot = await getCSSRoot(ctx, "content");
 
   let content = sections[index];
   let navContent = await getNav(ctx, nav);
-
-  let mainTitle = await getMainTitle(ctx);
   let plainTitle = await getPlainTitle(ctx);
 
   return toFileContent(`
@@ -48,11 +41,9 @@ export async function getSectionContent(ctx: Context, index: number) {
 <body>
 ${getInjectedContent(ctx, "section", "body", "prepend")}
 <div class="layout">
-<header class="compact">
-  <h1><a href="${root}">${plainTitle}</a></h1>
-</header>
 <div class="${navContent ? "" : "no-nav "}body">
 <main>
+<h1><a href="${root}">${plainTitle}</a></h1>
 ${content}
 
 <p class="pagenav">
@@ -60,22 +51,15 @@ ${content}
   ${nav[index + 1]?.id ? `<span class="next"><a href="${root}${contentDir}/${nav[index + 1]?.id}">${nav[index + 1]?.title}</a> <span class="icon">→</span></span>` : `<span class="repo">${getRepoLink(ctx)}</span>`}
 </p>
 </main>
-<hr>
+${navContent && `<hr>
 <aside class="aux">
-  <div class="header" hidden>
-    <h1>${mainTitle}</h1>
-    <div class="description">
-      <p>${descriptionContent}</p>
-      <p class="installation">${await getInstallationContent(ctx)}</p>
-    </div>
-  </div>
 ${navContent.replace(
   new RegExp(
     `(<li data-id="${escapeRegExp(nav[index]?.id)}">)<a href="[^"]+">([^<]+)</a>`,
   ),
   "$1<strong>$2</strong>",
 )}
-</aside>
+</aside>`}
 </div>
 </div>
 

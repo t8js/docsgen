@@ -80,28 +80,9 @@ aside {
     var(--aux-background-end)
   );
   border-right: 0.05em solid var(--aux-border-color);
-  padding: var(--content-padding-y) var(--content-padding-x);
+  padding: 0 var(--content-padding-x);
   margin: 0;
   box-sizing: border-box;
-}
-aside > .header {
-  display: block;
-  margin: 0.5rem 0 0.25rem;
-}
-aside > .header .description p:not(.installation) {
-  font-size: 0.9em;
-  margin: 0.35em 0 0;
-}
-aside > .header .description p.installation {
-  margin: 1em 0 0;
-}
-aside > .header .installation code {
-  display: inline-block;
-  background: transparent;
-  border: 0.05em solid;
-  border-radius: 0.5em;
-  padding: 0.35em 0.75em;
-  margin: 0;
 }
 aside h1 {
   font-size: 1.3rem;
@@ -113,7 +94,7 @@ aside nav {
 aside section {
   width: 100%;
   max-width: 16em;
-  padding: 1rem 0;
+  padding: var(--content-padding-y) 0;
   box-sizing: border-box;
 }
 aside section + section {
@@ -179,9 +160,6 @@ aside li > strong {
     padding: 0.25rem var(--content-padding-x) 0.35rem;
     margin: 0;
   }
-  aside > .header {
-    display: none;
-  }
   aside nav {
     font-size: inherit;
   }
@@ -245,6 +223,13 @@ main h1 {
   line-height: 1.1;
   color: var(--secondary-color);
   margin: 0;
+}
+main h1 a,
+main h1 a:link,
+main h1 a:visited,
+main h1 a:hover,
+main h1 a:active {
+  --color: var(--secondary-color);
 }
 h1 .sep {
   margin: 0 0.1em;
