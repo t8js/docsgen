@@ -26,7 +26,9 @@ export async function getIndexContent(ctx: Context) {
   let repoDescription = (await getRepoMetadata(ctx)).description;
 
   let { description, nav } = await getParsedContent(ctx);
-  let descriptionContent = escapeHTML(tweakTypography(repoDescription || description));
+  let descriptionContent = escapeHTML(
+    tweakTypography(repoDescription || description),
+  );
 
   let plainTitle = await getPlainTitle(ctx);
   let cssRoot = await getCSSRoot(ctx, "index");
@@ -35,7 +37,7 @@ export async function getIndexContent(ctx: Context) {
     `<a href="${root}${contentDir}" class="primary">Docs</a>`,
     getRepoLink(ctx),
     backstory ? `<a href="${backstory}">Backstory</a>` : "",
-  ].filter(x => x !== "");
+  ].filter((x) => x !== "");
 
   let sep = '&nbsp;<span class="sep">·</span> ';
 
