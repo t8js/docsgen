@@ -42,21 +42,21 @@ export async function getNav(ctx: Context, navItems: NavItem[]) {
       navItemCount++;
     }
   } else {
-    for (let { id, title, items } of navItems) {
+    for (let { id, title/*, items */ } of navItems) {
       let itemLink = `${root}${contentDir}/${encodeURIComponent(id)}`;
 
       s += `\n<li data-id="${id}"><a href="${itemLink}">${title}</a>`;
 
-      if (items.length !== 0) {
-        s += "\n  <ul>";
+      // if (items.length !== 0) {
+      //   s += "\n  <ul>";
 
-        for (let { id, title } of items) {
-          s += `\n    <li><a href="${itemLink}#${encodeURIComponent(id)}">${title}</a></li>`;
-          navItemCount++;
-        }
+      //   for (let { id, title } of items) {
+      //     s += `\n    <li><a href="${itemLink}#${encodeURIComponent(id)}">${title}</a></li>`;
+      //     navItemCount++;
+      //   }
 
-        s += "\n  </ul>\n";
-      }
+      //   s += "\n  </ul>\n";
+      // }
 
       s += "</li>";
       navItemCount++;
