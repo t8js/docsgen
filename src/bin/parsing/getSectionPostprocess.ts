@@ -15,10 +15,12 @@ function getPreviewContent(url: string, title?: string) {
   let content = title ? `<legend>${title}</legend>` : "";
 
   previewURL.searchParams.set("view", "preview");
+  previewURL.searchParams.set("hidedevtools", "1");
+  previewURL.searchParams.set("theme", "dark");
 
   if (file) previewURL.searchParams.set("module", file);
 
-  let attrs = [`src="${previewURL.href}"`];
+  let attrs = ['class="csb"', `src="${previewURL.href}"`];
 
   if (title) attrs.push(`title="${title}"`);
   if (height) attrs.push(`style="height: ${height}px;"`);
