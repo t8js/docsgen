@@ -17,6 +17,7 @@ function getPreviewContent(url: string, title?: string) {
   previewURL.searchParams.set("view", "preview");
   previewURL.searchParams.set("hidedevtools", "1");
   previewURL.searchParams.set("theme", "dark");
+  previewURL.searchParams.set("fontsize", "12");
 
   if (file) previewURL.searchParams.set("module", file);
 
